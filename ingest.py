@@ -202,7 +202,9 @@ def ingest_gsm(c: Collector, max_models: int | None,
                      and MODEL.fullmatch(path)
                      and not BRAND.fullmatch(path)
                      and not PAGE.fullmatch(path)
-                     and not any(tag in path for tag in ("-review-", "-news-", "-opinions-"))}
+                     # Brand filter pages such as apple-phones-f-48-15.php also
+                     # end in -<number>.php; model slugs never contain -phones-.
+                     and not any(tag in path for tag in ("-review-", "-news-", "-opinions-", "-phones-"))}
             if not found:
                 raise IngestError(f"GSMArena: no phone links on {url}; inspect saved HTML")
             models.update(found)

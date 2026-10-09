@@ -36,6 +36,20 @@ class IngestionRegressionTests(unittest.TestCase):
             self.assertEqual(get.call_args.args[0], good.url)
         c.session.close()
 
+    def test_brand_filter_pages_are_not_models(self):
+        gsm = 'https://www.gsmarena.com/'
+        pages = {
+            gsm + 'makers.php3': b'<a href="apple-phones-48.php">Apple</a>',
+            gsm + 'apple-phones-48.php': b'<a href="apple_iphone_17-13999.php">iPhone 17</a>'
+                                         b'<a href="apple-phones-f-48-15.php">2015</a>',
+            gsm + 'apple_iphone_17-13999.php': b'<h1>iPhone 17</h1><td data-spec="year">2025</td>',
+        }
+        c = Mock()
+        c.fetch.side_effect = lambda source, url: pages[url]
+        with tempfile.TemporaryDirectory() as tmp, patch.object(ingest, 'ROOT', Path(tmp)), \
+                patch.object(ingest, 'RAW', Path(tmp) / 'raw'), contextlib.redirect_stdout(io.StringIO()):
+            self.assertEqual(ingest.ingest_gsm(c, None, None), 1)
+
     def test_wikidata_linked_models_are_fetched_first(self):
         acer, nokia, zte = (f'https://www.gsmarena.com/{name}.php'
                             for name in ('acer_a1-1', 'nokia_3310-3', 'zte_z2-2'))
