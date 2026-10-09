@@ -149,6 +149,30 @@ class Collector:
         self.counts[source] += 1
 
 
+def wikidata_gsm_ids() -> set[str]:
+    """GSMArena IDs (Wikidata P4723) in previously saved Wikidata responses."""
+    ids = set()
+    for path in (RAW / "wikidata").glob("*.json"):
+        if path.name.endswith(".meta.json"):
+            continue
+        try:
+            rows = json.loads(path.read_bytes())["results"]["bindings"]
+            ids.update(row["gsmId"]["value"] for row in rows)
+        except (OSError, ValueError, KeyError, TypeError):
+            continue
+    return ids
+
+
+def gsm_id(url: str) -> str:
+    return MODEL.fullmatch(Path(urlparse(url).path).name).group(1)
+
+
+def fetch_order(models: set[str], linked: set[str]) -> list[str]:
+    # Phones linked from Wikidata can be joined across all three sources, so
+    # they come first; within each group the order stays alphabetical.
+    return sorted(models, key=lambda url: (gsm_id(url) not in linked, url))
+
+
 def ingest_gsm(c: Collector, max_models: int | None,
                max_brands: int | None) -> int:
     index = c.fetch("gsmarena", urljoin(GSM, "makers.php3"))
@@ -193,7 +217,11 @@ def ingest_gsm(c: Collector, max_models: int | None,
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
     with (inventory / f"{stamp}_gsmarena_model_urls.txt").open("x", encoding="utf-8") as file:
         file.write("\n".join(sorted(models)) + "\n")
-    chosen = sorted(models)[:max_models] if max_models else sorted(models)
+    linked = wikidata_gsm_ids()
+    ordered = fetch_order(models, linked)
+    first = sum(gsm_id(url) in linked for url in ordered)
+    print(f"GSMArena: fetching {first} Wikidata-linked models first", flush=True)
+    chosen = ordered[:max_models] if max_models else ordered
     for number, url in enumerate(chosen, 1):
         html = c.fetch("gsmarena", url)
         soup = BeautifulSoup(html, "html.parser")

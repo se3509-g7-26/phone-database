@@ -1,7 +1,9 @@
 import contextlib
 import io
+import json
 import os
 from pathlib import Path
+import tempfile
 import unittest
 from unittest.mock import Mock, patch
 
@@ -33,6 +35,21 @@ class IngestionRegressionTests(unittest.TestCase):
             c.fetch('gsmarena', 'https://www.gsmarena.com/acer_f900-2717.php')
             self.assertEqual(get.call_args.args[0], good.url)
         c.session.close()
+
+    def test_wikidata_linked_models_are_fetched_first(self):
+        acer, nokia, zte = (f'https://www.gsmarena.com/{name}.php'
+                            for name in ('acer_a1-1', 'nokia_3310-3', 'zte_z2-2'))
+        self.assertEqual(ingest.fetch_order({acer, nokia, zte}, {'2'}), [zte, acer, nokia])
+
+    def test_wikidata_ids_come_from_saved_responses(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            folder = Path(tmp) / 'wikidata'
+            folder.mkdir()
+            (folder / 'x.json').write_text(json.dumps({'results': {'bindings': [
+                {'phone': {'value': 'Q1'}, 'gsmId': {'value': '11103'}}]}}))
+            (folder / 'x.meta.json').write_text('{"bytes": 1}')
+            with patch.object(ingest, 'RAW', Path(tmp)):
+                self.assertEqual(ingest.wikidata_gsm_ids(), {'11103'})
 
     def test_paths_are_inside_project(self):
         self.assertEqual(ingest.ROOT, Path(ingest.__file__).resolve().parent)
