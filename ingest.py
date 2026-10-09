@@ -72,6 +72,10 @@ class Collector:
 
     def fetch(self, source: str, url: str, *, params: dict | None = None,
               kind: str = "html") -> bytes:
+        if source == "gsmarena":
+            # www answers non-browser clients with a 302 to the mobile site;
+            # asking m.gsmarena.com directly halves the rate-limited requests.
+            url = url.replace("://www.gsmarena.com/", "://m.gsmarena.com/", 1)
         request_url = requests.Request("GET", url, params=params).prepare().url
         if source == "gsmarena" and request_url in self.cached:
             body = self.cached[request_url].read_bytes()

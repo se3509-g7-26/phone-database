@@ -23,6 +23,17 @@ class IngestionRegressionTests(unittest.TestCase):
             save.assert_called_once_with('gsmarena', good.url, good.content, 'html')
         c.session.close()
 
+    def test_gsmarena_requests_mobile_host_directly(self):
+        c = ingest.Collector('test', 0, 20, 0)
+        good = Mock(status_code=200, ok=True, content=b'<html>phone</html>',
+                    headers={'Content-Type': 'text/html'},
+                    url='https://m.gsmarena.com/acer_f900-2717.php')
+        with patch.object(c.session, 'get', return_value=good) as get, \
+                patch.object(c, 'save'), contextlib.redirect_stdout(io.StringIO()):
+            c.fetch('gsmarena', 'https://www.gsmarena.com/acer_f900-2717.php')
+            self.assertEqual(get.call_args.args[0], good.url)
+        c.session.close()
+
     def test_paths_are_inside_project(self):
         self.assertEqual(ingest.ROOT, Path(ingest.__file__).resolve().parent)
         self.assertEqual(ingest.RAW, ingest.ROOT / 'data' / 'raw')
