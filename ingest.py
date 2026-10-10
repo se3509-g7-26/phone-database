@@ -13,9 +13,12 @@ import os
 import re
 import sys
 import time
+import urllib.error
+import urllib.request
 from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
+from types import SimpleNamespace
 from urllib.parse import unquote, urljoin, urlparse
 
 import requests
@@ -46,6 +49,24 @@ def anchors(html: bytes, base: str, selector: str) -> set[str]:
             if urlparse(url).netloc == "www.gsmarena.com":
                 result.add(url)
     return result
+
+
+def literal_get(url: str, agent: str, timeout: float) -> SimpleNamespace:
+    """GET through urllib, which sends the path exactly as written.
+
+    urllib3 percent-encodes "[" and "]", and GSMArena redirects that form of
+    vivo_y20s_[g]-10847.php back to the literal one without end.
+    """
+    request = urllib.request.Request(url, headers={"User-Agent": agent})
+    try:
+        reply = urllib.request.urlopen(request, timeout=timeout)
+    except urllib.error.HTTPError as error:
+        reply = error  # 4xx and 5xx; also a response
+    except OSError as exc:
+        raise requests.ConnectionError(str(exc)) from exc
+    with reply:
+        return SimpleNamespace(status_code=reply.status, ok=reply.status < 400, url=reply.url,
+                               headers=reply.headers, content=reply.read())
 
 
 class Collector:
@@ -79,6 +100,9 @@ class Collector:
             # asking m.gsmarena.com directly halves the rate-limited requests.
             url = url.replace("://www.gsmarena.com/", "://m.gsmarena.com/", 1)
         request_url = requests.Request("GET", url, params=params).prepare().url
+        literal = source == "gsmarena" and ("[" in url or "]" in url)
+        if literal:
+            request_url = url  # literal_get asks for it unencoded
         if source == "gsmarena" and request_url in self.cached:
             body = self.cached[request_url].read_bytes()
             if b"<" in body and b"please slow down" not in body.lower():
@@ -93,7 +117,9 @@ class Collector:
                   f"(attempt {attempt + 1}/{self.retries + 1})", flush=True)
             try:
                 self.last_request = time.monotonic()
-                response = self.session.get(
+                response = literal_get(
+                    url, self.session.headers["User-Agent"], self.timeout
+                ) if literal else self.session.get(
                     url, params=params, timeout=self.timeout,
                     headers={"Accept": "application/sparql-results+json"}
                     if source == "wikidata" else None)

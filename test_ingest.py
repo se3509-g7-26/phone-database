@@ -5,7 +5,7 @@ import os
 from pathlib import Path
 import tempfile
 import unittest
-from unittest.mock import Mock, patch
+from unittest.mock import MagicMock, Mock, patch
 
 import ingest
 
@@ -34,6 +34,26 @@ class IngestionRegressionTests(unittest.TestCase):
                 patch.object(c, 'save'), contextlib.redirect_stdout(io.StringIO()):
             c.fetch('gsmarena', 'https://www.gsmarena.com/acer_f900-2717.php')
             self.assertEqual(get.call_args.args[0], good.url)
+        c.session.close()
+
+    def test_square_brackets_are_requested_unencoded(self):
+        url = 'https://m.gsmarena.com/vivo_y20s_[g]-10847.php'
+        reply = MagicMock(status=200, url=url, headers={'Content-Type': 'text/html'})
+        reply.read.return_value = b'<html>phone</html>'
+        c = ingest.Collector('test', 0, 20, 0)
+        with patch('ingest.urllib.request.urlopen', return_value=reply) as urlopen, \
+                patch.object(c.session, 'get') as get, patch.object(c, 'save') as save, \
+                contextlib.redirect_stdout(io.StringIO()):
+            self.assertEqual(c.fetch('gsmarena', url.replace('//m.', '//www.')), reply.read())
+            get.assert_not_called()
+            self.assertEqual(urlopen.call_args.args[0].full_url, url)
+            save.assert_called_once_with('gsmarena', url, reply.read(), 'html')
+            # A saved copy is found again under the same unencoded address.
+            with tempfile.TemporaryDirectory() as tmp:
+                c.cached[url] = Path(tmp) / 'page.html'
+                c.cached[url].write_bytes(reply.read())
+                c.fetch('gsmarena', url)
+            urlopen.assert_called_once()
         c.session.close()
 
     def models_fetched(self, pages):
