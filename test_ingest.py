@@ -36,19 +36,34 @@ class IngestionRegressionTests(unittest.TestCase):
             self.assertEqual(get.call_args.args[0], good.url)
         c.session.close()
 
-    def test_brand_filter_pages_are_not_models(self):
+    def models_fetched(self, pages):
         gsm = 'https://www.gsmarena.com/'
-        pages = {
-            gsm + 'makers.php3': b'<a href="apple-phones-48.php">Apple</a>',
-            gsm + 'apple-phones-48.php': b'<a href="apple_iphone_17-13999.php">iPhone 17</a>'
-                                         b'<a href="apple-phones-f-48-15.php">2015</a>',
-            gsm + 'apple_iphone_17-13999.php': b'<h1>iPhone 17</h1><td data-spec="year">2025</td>',
-        }
         c = Mock()
-        c.fetch.side_effect = lambda source, url: pages[url]
+        c.fetch.side_effect = lambda source, url: pages[url.removeprefix(gsm)]
         with tempfile.TemporaryDirectory() as tmp, patch.object(ingest, 'ROOT', Path(tmp)), \
                 patch.object(ingest, 'RAW', Path(tmp) / 'raw'), contextlib.redirect_stdout(io.StringIO()):
-            self.assertEqual(ingest.ingest_gsm(c, None, None), 1)
+            return ingest.ingest_gsm(c, None, None)
+
+    def test_brand_filter_pages_are_not_models(self):
+        self.assertEqual(self.models_fetched({
+            'makers.php3': b'<a href="apple-phones-48.php">Apple</a>',
+            'apple-phones-48.php': b'<a href="apple_iphone_17-13999.php">iPhone 17</a>'
+                                   b'<a href="apple-phones-f-48-15.php">2015</a>',
+            'apple_iphone_17-13999.php': b'<h1>iPhone 17</h1><td data-spec="year">2025</td>',
+        }), 1)
+
+    def test_slugs_with_punctuation_are_discovered(self):
+        phone = b'<h1>Phone</h1><td data-spec="year">2025</td>'
+        self.assertEqual(self.models_fetched({
+            'makers.php3': b'<a href="at&amp;t-phones-57.php">AT&amp;T</a>',
+            'at&t-phones-57.php': b'<a href="at&amp;t_quickfire-2598.php">Quickfire</a>'
+                                  b'<a href="alcatel_pop_4+-7936.php">Pop 4+</a>'
+                                  b'<a href="alcatel_3_(2025)-13886.php">3 (2025)</a>'
+                                  b'<a href="at&amp;t-phones-f-57-0-p2.php">2</a>',
+            'at&t-phones-f-57-0-p2.php': b'<a href="vivo_y20s_[g]-10847.php">Y20s [G]</a>',
+            'at&t_quickfire-2598.php': phone, 'alcatel_pop_4+-7936.php': phone,
+            'alcatel_3_(2025)-13886.php': phone, 'vivo_y20s_[g]-10847.php': phone,
+        }), 4)
 
     def test_wikidata_linked_models_are_fetched_first(self):
         acer, nokia, zte = (f'https://www.gsmarena.com/{name}.php'

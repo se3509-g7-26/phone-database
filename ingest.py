@@ -27,9 +27,11 @@ RAW = ROOT / "data" / "raw"
 GSM = "https://www.gsmarena.com/"
 WDQS = "https://query.wikidata.org/sparql"
 WIKIPEDIA = "https://en.wikipedia.org/w/api.php"
-BRAND = re.compile(r"^[a-z0-9_-]+-phones-(\d+)\.php$", re.I)
-PAGE = re.compile(r"^[a-z0-9_-]+-phones-f-(\d+)-0-p\d+\.php$", re.I)
-MODEL = re.compile(r"^[a-z0-9_-]+-(\d+)\.php$", re.I)
+# Slugs are not just [a-z0-9_]: at&t-phones-57.php, alcatel_pop_4+-7936.php and
+# alcatel_3_(2025)-13886.php are real, and about 930 phones have such names.
+BRAND = re.compile(r"^.+-phones-(\d+)\.php$", re.I)
+PAGE = re.compile(r"^.+-phones-f-(\d+)-0-p\d+\.php$", re.I)
+MODEL = re.compile(r"^.+-(\d+)\.php$", re.I)
 
 
 class IngestError(RuntimeError):
