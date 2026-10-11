@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{6a0d0161-3e30-40c2-b186-937d7a1a16f5}</ProjectGuid>
     <ProjectHome />
-    <StartupFile>ingest.py</StartupFile>
+    <StartupFile>src\ingest.py</StartupFile>
     <SearchPath />
     <WorkingDirectory>.</WorkingDirectory>
     <CommandLineArguments>--sources gsmarena --resume</CommandLineArguments>
@@ -24,7 +24,7 @@
     <Content Include="requirements.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ingest.py" />
+    <Compile Include="src\ingest.py" />
   </ItemGroup>
   <ItemGroup>
     <InterpreterReference Include="Global|PythonCore|3.14" />

@@ -3,14 +3,14 @@
 # rate limit outlasts its retries; wait and resume. Stop after three runs in a
 # row that save nothing, so a persistent block or a bad page is not hammered.
 set -u
-cd "$(dirname "$0")"
+cd "$(dirname "$0")/.."
 python=${PYTHON:-.venv/bin/python}
 cooldown=${COOLDOWN_SECONDS:-900}
 idle=0
 saved() { find data/raw/gsmarena -name '*.meta.json' 2>/dev/null | wc -l; }
 while :; do
     before=$(saved)
-    "$python" ingest.py --sources gsmarena --resume
+    "$python" src/ingest.py --sources gsmarena --resume
     status=$?
     after=$(saved)
     echo "$(date -u +%FT%TZ) ingest.py exited $status; $((after - before)) new responses, $after in total"

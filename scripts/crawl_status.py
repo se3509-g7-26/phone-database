@@ -9,7 +9,7 @@ import subprocess
 import time
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[1]
 RAW = ROOT / "data" / "raw"
 WINDOW = 600  # seconds of recent saves used for the pace estimate
 
@@ -35,7 +35,7 @@ log = max((ROOT / "logs").glob("crawl-*.log"), default=None)
 text = log.read_text(encoding="utf-8", errors="replace") if log else ""
 lines = text.splitlines()
 # Anchored: the tmux server's own command line also names the script.
-running = subprocess.run(["pgrep", "-f", r"^bash \./crawl_gsmarena\.sh"],
+running = subprocess.run(["pgrep", "-f", r"^bash \S*crawl_gsmarena\.sh"],
                          capture_output=True).returncode == 0
 
 if "ingest.py exited 0" in text:
@@ -58,8 +58,9 @@ def progress(label: str, done: int, total: int) -> None:
 
 print(f"{'Crawl:':<20}{state}")
 if state.startswith("STOPPED"):
-    print(f"{'Restart:':<20}cd ~/projects/phone-database && tmux new-session -d -s phone-crawl "
-          "\"PYTHONUNBUFFERED=1 ./crawl_gsmarena.sh 2>&1 | tee -a logs/crawl-$(date -u +%Y%m%dT%H%M%SZ).log\"")
+    print(f"{'Restart:':<20}cd {ROOT} && mkdir -p logs && tmux new-session -d -s phone-crawl "
+          "\"PYTHONUNBUFFERED=1 scripts/crawl_gsmarena.sh 2>&1 "
+          "| tee -a logs/crawl-$(date -u +%Y%m%dT%H%M%SZ).log\"")
 progress("Wikidata-linked:", len(saved & first), len(first))
 progress("All phone pages:", len(saved), len(wanted))
 if pace:

@@ -1,6 +1,6 @@
 """Fetch unmodified responses from GSMArena, Wikidata and Wikipedia.
 
-Run from the repository root with ``python ingest.py``. A trial run can use
+Run from the repository root with ``python src/ingest.py``. A trial run can use
 ``--max-models 10``; the default fetches every discovered model detail page.
 """
 
@@ -25,7 +25,7 @@ import requests
 from bs4 import BeautifulSoup
 from dotenv import load_dotenv
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[1]
 RAW = ROOT / "data" / "raw"
 GSM = "https://www.gsmarena.com/"
 WDQS = "https://query.wikidata.org/sparql"

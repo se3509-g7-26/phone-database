@@ -3,10 +3,12 @@ import io
 import json
 import os
 from pathlib import Path
+import sys
 import tempfile
 import unittest
 from unittest.mock import MagicMock, Mock, patch
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'src'))
 import ingest
 
 
@@ -101,7 +103,7 @@ class IngestionRegressionTests(unittest.TestCase):
                 self.assertEqual(ingest.wikidata_gsm_ids(), {'11103'})
 
     def test_paths_are_inside_project(self):
-        self.assertEqual(ingest.ROOT, Path(ingest.__file__).resolve().parent)
+        self.assertEqual(ingest.ROOT, Path(__file__).resolve().parents[1])
         self.assertEqual(ingest.RAW, ingest.ROOT / 'data' / 'raw')
 
     def test_valid_dotenv_contact_and_independent_sources(self):
