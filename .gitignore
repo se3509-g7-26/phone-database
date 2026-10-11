@@ -4,6 +4,8 @@ venv/
 .vs/
 __pycache__/
 *.py[cod]
-data/raw/
-raw/
+data/raw/*
+!data/raw/.gitkeep
+/raw/
 data/discovery/
+logs/
