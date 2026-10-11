@@ -13,14 +13,19 @@ ROOT = Path(__file__).resolve().parents[1]
 RAW = ROOT / "data" / "raw"
 WINDOW = 600  # seconds of recent saves used for the pace estimate
 
+
+def phone_id(url: str) -> str:
+    return url.rsplit("-", 1)[-1].removesuffix(".php")
+
+
+# Compare by GSMArena ID: a page that was renamed keeps its ID but not its URL.
 inventory = max((ROOT / "data" / "discovery").glob("*_gsmarena_model_urls.txt"))
-wanted = set(inventory.read_text(encoding="utf-8").split())
+wanted = {phone_id(url) for url in inventory.read_text(encoding="utf-8").split()}
 saved, recent, now = set(), 0, time.time()
 for meta in (RAW / "gsmarena").glob("*.meta.json"):
     url = json.loads(meta.read_text(encoding="utf-8"))["url"]
-    url = url.replace("://m.gsmarena.com/", "://www.gsmarena.com/", 1)
-    if url in wanted and url not in saved:
-        saved.add(url)
+    if "-phones-" not in url and phone_id(url) in wanted and phone_id(url) not in saved:
+        saved.add(phone_id(url))
         recent += now - meta.stat().st_mtime < WINDOW
 
 # ingest.py fetches the phones that Wikidata links to (P4723) first.
@@ -29,7 +34,7 @@ for path in (RAW / "wikidata").glob("*.json"):
     if not path.name.endswith(".meta.json"):
         linked.update(row["gsmId"]["value"]
                       for row in json.loads(path.read_bytes())["results"]["bindings"])
-first = {url for url in wanted if url.rsplit("-", 1)[1].removesuffix(".php") in linked}
+first = wanted & linked
 
 log = max((ROOT / "logs").glob("crawl-*.log"), default=None)
 text = log.read_text(encoding="utf-8", errors="replace") if log else ""
