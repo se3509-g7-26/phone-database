@@ -19,7 +19,7 @@ from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
 from types import SimpleNamespace
-from urllib.parse import unquote, urljoin, urlparse
+from urllib.parse import unquote, urldefrag, urljoin, urlparse
 
 import requests
 from bs4 import BeautifulSoup
@@ -45,7 +45,8 @@ def anchors(html: bytes, base: str, selector: str) -> set[str]:
     result = set()
     for anchor in BeautifulSoup(html, "html.parser").select(selector):
         if anchor.get("href"):
-            url = urljoin(base, anchor["href"])
+            # Paging links come both as p2.php and p2.php#; they are one page.
+            url = urldefrag(urljoin(base, anchor["href"])).url
             if urlparse(url).netloc == "www.gsmarena.com":
                 result.add(url)
     return result

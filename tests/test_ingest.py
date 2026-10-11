@@ -38,6 +38,11 @@ class IngestionRegressionTests(unittest.TestCase):
             self.assertEqual(get.call_args.args[0], good.url)
         c.session.close()
 
+    def test_fragment_links_are_one_page(self):
+        html = b'<a href="acer-phones-f-59-0-p2.php">2</a><a href="acer-phones-f-59-0-p2.php#">2</a>'
+        self.assertEqual(ingest.anchors(html, 'https://www.gsmarena.com/acer-phones-59.php', 'a[href]'),
+                         {'https://www.gsmarena.com/acer-phones-f-59-0-p2.php'})
+
     def test_square_brackets_are_requested_unencoded(self):
         url = 'https://m.gsmarena.com/vivo_y20s_[g]-10847.php'
         reply = MagicMock(status=200, url=url, headers={'Content-Type': 'text/html'})
