@@ -1,0 +1,3 @@
+Independent parser comparison: PASS
+Deterministic sample: 100 model responses; 4118 specification cells
+Custom HTMLParser output agrees with BeautifulSoup on field IDs, cell count and text.

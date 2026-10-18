@@ -27,10 +27,11 @@ Found during the first full run:
 - **No API.** Discovery depends on the shape of links in the HTML, so a layout change would break it.
 - **Page addresses are irregular.** 931 model addresses contain punctuation such as `+`, `(`, `)`, `&` or `@`. One contains square brackets and only works when requested unencoded; the encoded form redirects without end.
 - **Listings hold links that look like models.** Brand pages link to filter pages such as `apple-phones-f-48-15.php`, which the script excludes.
-- **Pages are renamed.** One model page changed its address during the crawl. The raw folder can therefore hold two copies of one phone; M3 must keep one per phone ID.
-- **Duplicates in the raw folder.** Early runs fetched some brand listings more than once, and one early response is a 49-byte "please slow down" body (`20261009T131244120996Z_000621.html`) saved before the check existed. Raw files are never deleted, so M3 must pick the newest valid copy of each page.
+- **Pages may be renamed.** The stable model identifier is the numeric GSMArena ID, not its URL slug. M2 keeps one current entity per ID and retains each retrieval as a snapshot.
+- **Duplicates in the raw folder.** Early runs fetched some brand listings more than once, and one early response is a 49-byte "please slow down" body (`20261009T131244120996Z_000621.html`) saved before the check existed. Raw files are never deleted. M2 deduplicates model entities by numeric ID and latest retrieval time, retains snapshots and catalog provenance, and quarantines this slowdown body.
 - **The price is not a launch price.** Of the 2,542 models that Wikidata links to, 2,122 have a price. For 93% of those it is a rough estimate such as "About 140 EUR"; for the rest it is a current shop price in several currencies.
 - **Free text and gaps.** Every field is text written for readers, such as "146.7 x 71.5 x 7.7 mm (5.78 x 2.81 x 0.30 in)". Older phones lack many fields: among the linked models, 29% have no operating system entry.
+- **Invalid UTF-8 in page comments.** M2 found a page declaring UTF-8 with an invalid byte sequence in a visitor comment (Micromax X600, ID 3512). The loader counts invalid bytes, retains the raw response unchanged, and quarantines a model only when invalid bytes affect modeled fields. It does not substitute replacement characters into specifications.
 
 ## Wikipedia
 

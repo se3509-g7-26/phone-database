@@ -1,0 +1,5 @@
+has_price_text | has_wikidata_link | models
+0 | 0 | 4105
+0 | 1 | 420
+1 | 0 | 8230
+1 | 1 | 2122

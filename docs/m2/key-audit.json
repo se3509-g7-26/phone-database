@@ -1,0 +1,42 @@
+{
+  "raw_files": 15565,
+  "gsmarena_catalog_files": 604,
+  "gsmarena_model_responses": 14882,
+  "gsmarena_distinct_ids": 14877,
+  "gsmarena_refetched_copies": 5,
+  "duplicate_phone_snapshot_keys": 0,
+  "refetched_ids_with_changed_names": {},
+  "refetched_responses_without_model_heading": [
+    "gsmarena/20261009T131244120996Z_000621.html"
+  ],
+  "gsmarena_bodies_under_100_bytes": [
+    "gsmarena/20261009T131244120996Z_000621.html"
+  ],
+  "wikidata_rows": 2576,
+  "distinct_item_phone_pairs": 2576,
+  "duplicate_item_phone_pairs": 0,
+  "distinct_wikidata_items": 2539,
+  "distinct_linked_phone_ids": 2552,
+  "items_linking_multiple_phones": 37,
+  "phones_linking_multiple_items": 24,
+  "unknown_phone_references": [
+    "47",
+    "48",
+    "49",
+    "50",
+    "1827",
+    "2424",
+    "8710",
+    "8930",
+    "10756",
+    "13958"
+  ],
+  "wikipedia_page_records": 1806,
+  "distinct_wikipedia_page_ids": 1806,
+  "duplicate_page_ids": 0,
+  "duplicate_article_revision_keys": 0,
+  "wikipedia_missing_pages": 0,
+  "unknown_wikipedia_item_references": [],
+  "retrieval_min": "2026-10-09T13:02:22.074113Z",
+  "retrieval_max": "2026-10-11T00:13:23.874785Z"
+}

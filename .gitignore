@@ -9,3 +9,7 @@ data/raw/*
 /raw/
 data/discovery/
 logs/
+data/*.db
+data/*.db-*
+data/gsmarena/
+tmp/

@@ -1,0 +1,12 @@
+Duplicate natural key: PASS
+Orphan event: PASS
+NULL key: PASS
+Wrong type: PASS
+Idempotence: PASS
+Atomicity: PASS
+foreign_key_check: PASS
+All tables STRICT: PASS
+----------------------------------------------------------------------
+Ran 26 tests in 5.458s
+
+OK

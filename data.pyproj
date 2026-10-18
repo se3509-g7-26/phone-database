@@ -5,10 +5,10 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{6a0d0161-3e30-40c2-b186-937d7a1a16f5}</ProjectGuid>
     <ProjectHome />
-    <StartupFile>src\ingest.py</StartupFile>
+    <StartupFile>src\load.py</StartupFile>
     <SearchPath />
     <WorkingDirectory>.</WorkingDirectory>
-    <CommandLineArguments>--sources gsmarena --resume</CommandLineArguments>
+    <CommandLineArguments />
     <OutputPath>.</OutputPath>
     <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
     <LaunchProvider>Standard Python launcher</LaunchProvider>
@@ -25,6 +25,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="src\ingest.py" />
+    <Compile Include="src\db.py" />
+    <Compile Include="src\load.py" />
+    <Compile Include="src\checks.py" />
+    <Compile Include="src\profile_keys.py" />
+    <Compile Include="src\report.py" />
   </ItemGroup>
   <ItemGroup>
     <InterpreterReference Include="Global|PythonCore|3.14" />
