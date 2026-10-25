@@ -26,7 +26,7 @@ quarantine: 11 in database (+11 this run)
 catalog files: 604 (provenance only)
 values cleaned: 12,045 (empty specification cells -> NULL; other source text preserved)
 encoding issues: 1 HTML files / 3 invalid UTF-8 bytes (invalid modeled fields quarantined)
-quarantined this run: 11
+quarantined: 11 records
   reason: GSMArena slowdown response: 1
   reason: Unknown GSMArena phone ID: 10
 foreign_key_check: OK
