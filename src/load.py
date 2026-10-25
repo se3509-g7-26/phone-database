@@ -229,10 +229,15 @@ def load_gsm(con, f, file_key, body, stats):
     con.execute('''INSERT INTO phone_snapshot VALUES (?, ?, ?, ?)
         ON CONFLICT(phone_key,retrieved_at) DO UPDATE SET name=excluded.name,file_key=excluded.file_key''',
         (phone_key, f.retrieved_at, parser.name, file_key))
-    con.execute('DELETE FROM specification WHERE phone_key=? AND retrieved_at=?', (phone_key, f.retrieved_at))
-    con.executemany('INSERT INTO specification VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+    con.executemany('''INSERT INTO specification VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        ON CONFLICT(phone_key,retrieved_at,row_number) DO UPDATE SET
+        section=excluded.section, label=excluded.label, source_field=excluded.source_field,
+        value_text=excluded.value_text, file_key=excluded.file_key''',
                     ((phone_key, f.retrieved_at, i, section, label, field, value, file_key)
                      for i, (section, label, field, value) in enumerate(parser.rows, 1)))
+    # A winning payload with fewer cells must not keep the loser's trailing cells.
+    con.execute('DELETE FROM specification WHERE phone_key=? AND retrieved_at=? AND row_number>?',
+                (phone_key, f.retrieved_at, len(parser.rows)))
     stats['values_to_null'] += sum(value is None for _, _, _, value in parser.rows)
     stats['model_responses'] += 1
 
