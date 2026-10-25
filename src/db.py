@@ -7,6 +7,30 @@ DEFAULT_DB = ROOT / 'data' / 'phones.db'
 TABLES = ('raw_file', 'phone', 'phone_snapshot', 'specification', 'wikidata_item',
           'phone_item_link', 'wikipedia_article', 'article_revision', 'quarantine')
 
+# One fixed statement per table, so no SQL text is ever assembled at run time.
+COUNT_SQL = {
+    'raw_file': 'SELECT COUNT(*) FROM raw_file',
+    'phone': 'SELECT COUNT(*) FROM phone',
+    'phone_snapshot': 'SELECT COUNT(*) FROM phone_snapshot',
+    'specification': 'SELECT COUNT(*) FROM specification',
+    'wikidata_item': 'SELECT COUNT(*) FROM wikidata_item',
+    'phone_item_link': 'SELECT COUNT(*) FROM phone_item_link',
+    'wikipedia_article': 'SELECT COUNT(*) FROM wikipedia_article',
+    'article_revision': 'SELECT COUNT(*) FROM article_revision',
+    'quarantine': 'SELECT COUNT(*) FROM quarantine',
+}
+ROWS_SQL = {
+    'raw_file': 'SELECT * FROM raw_file',
+    'phone': 'SELECT * FROM phone',
+    'phone_snapshot': 'SELECT * FROM phone_snapshot',
+    'specification': 'SELECT * FROM specification',
+    'wikidata_item': 'SELECT * FROM wikidata_item',
+    'phone_item_link': 'SELECT * FROM phone_item_link',
+    'wikipedia_article': 'SELECT * FROM wikipedia_article',
+    'article_revision': 'SELECT * FROM article_revision',
+    'quarantine': 'SELECT * FROM quarantine',
+}
+
 
 def connect(path=DEFAULT_DB, *, read_only=False):
     """Connect to the SQLite database and enforce PRAGMA foreign_keys = ON immediately.
@@ -34,9 +58,8 @@ def create_schema(con):
 
 
 def counts(con):
-    # Identifiers are a closed list maintained here, never incoming values.
     existing = {r[0] for r in con.execute("SELECT name FROM sqlite_master WHERE type='table'")}
-    return {table: con.execute('SELECT COUNT(*) FROM "' + table + '"').fetchone()[0]
+    return {table: con.execute(COUNT_SQL[table]).fetchone()[0]
             if table in existing else 0 for table in TABLES}
 
 
@@ -47,7 +70,7 @@ def contents_digest(con):
     result = {}
     for table in TABLES:
         rows = (json.dumps(tuple(row), ensure_ascii=False, separators=(',', ':'))
-                for row in con.execute('SELECT * FROM "' + table + '"'))
+                for row in con.execute(ROWS_SQL[table]))
         digest = hashlib.sha256()
         for row in sorted(rows):
             digest.update(row.encode('utf-8') + b'\n')
