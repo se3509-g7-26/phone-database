@@ -99,8 +99,22 @@ python -m venv .venv
 .\.venv\Scripts\python.exe -m unittest discover -s tests -q
 ```
 
-On Linux/macOS use `.venv/bin/python`. The derived database is
-`data/phones.db`, ignored by Git. `--db PATH` and `--raw PATH` are available on
+The same steps on Linux or macOS:
+
+```sh
+python3 -m venv .venv
+.venv/bin/python -m pip install -r requirements.txt
+.venv/bin/python src/profile_keys.py > docs/m2/key-audit.json
+.venv/bin/python src/load.py
+.venv/bin/python src/load.py
+.venv/bin/python src/checks.py
+.venv/bin/python src/report.py
+.venv/bin/python -m unittest discover -s tests -q
+```
+
+On the full landed data one load takes about two and a half minutes and
+`checks.py` about five (it loads a temporary copy twice). The derived database
+is `data/phones.db` (about 140 MB), ignored by Git. `--db PATH` and `--raw PATH` are available on
 `load.py` and `checks.py`; the raw root must contain the three source folders.
 The loader creates a missing database directory and applies `sql/schema.sql`
 inside the same transaction as the data. An empty or incomplete raw folder is
@@ -236,7 +250,10 @@ command above; the output is saved in `docs/m2/key-audit.json`.
 **Deduplication and change over time.** Current entity attributes use type 1:
 the greatest normalized `retrieved_at` wins. On a timestamp tie the greatest
 relative source path wins, consistently across incremental and fresh loads.
-Existing surrogate keys remain stable through `ON CONFLICT ... DO UPDATE`.
+Existing surrogate keys remain stable through `ON CONFLICT ... DO UPDATE`,
+which every table uses, specification cells included (`raw_file` rows never
+change, so they use `DO NOTHING`). Nothing is written with `to_sql` or
+`INSERT OR REPLACE`.
 Model snapshots and article revisions retain their history. Links describe
 observed associations; absence from a later query page does not imply deletion.
 An article revision is keyed by page ID and revision timestamp because M1 did
@@ -348,10 +365,9 @@ complete row contents, not only counts; the failed-load check does the same.
 All 26 offline regression tests also pass. An independent 100-page sample
 matched BeautifulSoup on all 4,118 specification cells' field IDs and text.
 
-For submission, the team must review the results, make its own meaningful
-commits, push the reviewed state and the `m2` tag, and upload the derived
-database and load/check outputs to the course system. Raw responses and the
-database remain excluded from Git.
+Raw responses and the database file are excluded from Git. The database built
+by `load.py` and the saved load and check outputs are submitted through the
+course system.
 
 ## Status
 
