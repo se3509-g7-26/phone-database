@@ -9,6 +9,10 @@ TABLES = ('raw_file', 'phone', 'phone_snapshot', 'specification', 'wikidata_item
 
 
 def connect(path=DEFAULT_DB, *, read_only=False):
+    """Connect to the SQLite database and enforce PRAGMA foreign_keys = ON immediately.
+
+    Requires SQLite 3.37 or later to ensure STRICT table support.
+    """
     if sqlite3.sqlite_version_info < (3, 37):
         raise RuntimeError('SQLite 3.37 or later is required for STRICT tables')
     path = Path(path)

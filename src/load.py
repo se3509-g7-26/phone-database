@@ -358,11 +358,13 @@ def load(raw=ROOT / 'data' / 'raw', database=DEFAULT_DB, *, verbose=True):
         if verbose:
             print(f"files read: {stats['files_read']:,} raw files ({min(f.retrieved_at for f in files)} .. {max(f.retrieved_at for f in files)})")
             for table, total in after.items():
-                print(f'{table}: {total:,} in database ({total-before[table]:+,} this run)')
+                diff = total - before[table]
+                change = f"{diff:+,} this run" if diff != 0 else "0 new this run"
+                print(f'{table}: {total:,} in database ({change})')
             print(f"catalog files: {stats['catalog_files']:,} (provenance only)")
             print(f"values cleaned: {stats['values_to_null']:,} (empty specification cells -> NULL; other source text preserved)")
             print(f"encoding issues: {stats['encoding_issue_files']:,} HTML files / {stats['invalid_utf8_bytes']:,} invalid UTF-8 bytes (invalid modeled fields quarantined)")
-            print(f"quarantined this run: {stats['quarantined_this_run']:,}")
+            print(f"quarantined: {stats['quarantined_this_run']:,} records")
             for key, value in sorted(stats.items()):
                 if key.startswith('reason: '):
                     print(f'  {key}: {value}')
