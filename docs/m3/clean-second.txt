@@ -1,0 +1,53 @@
+{
+  "phone_clean": {
+    "rows": 14877,
+    "name_flag": {
+      "ok": 14877
+    }
+  },
+  "specification_clean": {
+    "rows": 598283,
+    "value_flag": {
+      "ok": 583195,
+      "missing_not_reported": 12045,
+      "missing_token": 3043
+    },
+    "number_flag": {
+      "not_applicable": 515358,
+      "ok": 64754,
+      "unparsed": 3686,
+      "ambiguous": 6290,
+      "unusual_high": 4155,
+      "missing_token": 1135,
+      "unit_converted": 1309,
+      "unusual_low": 258,
+      "missing_not_reported": 1333,
+      "invalid_year": 5
+    },
+    "category_flag": {
+      "not_applicable": 587235,
+      "mapped": 10604,
+      "unmapped": 444
+    }
+  },
+  "mappings_loaded": {
+    "field_rules": 6,
+    "os_categories": 11,
+    "currencies": 7,
+    "phone_identity": 0
+  },
+  "unmatched_mapping_entries": {
+    "os_categories": [
+      "iPhone OS"
+    ],
+    "field_rules": [],
+    "currencies": [
+      "USD",
+      "GBP"
+    ],
+    "phone_identity": []
+  },
+  "robust_cohorts": 56,
+  "status": "COMPLETE"
+}
+STATUS: COMPLETE

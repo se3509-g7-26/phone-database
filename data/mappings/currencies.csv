@@ -1,0 +1,8 @@
+alias,currency,decided_by,decided_at,note
+EUR,EUR,M3 reproducible rule,2026-10-31,Explicit EUR token; no exchange conversion
+USD,USD,M3 reproducible rule,2026-10-31,Explicit USD token; dollar symbol alone has unknown market
+GBP,GBP,M3 reproducible rule,2026-10-31,Explicit GBP token
+INR,INR,M3 reproducible rule,2026-10-31,Explicit INR token
+€,EUR,M3 reproducible rule,2026-10-31,Euro symbol
+£,GBP,M3 reproducible rule,2026-10-31,Pound symbol on source offers; market and configuration unverified
+₹,INR,M3 reproducible rule,2026-10-31,Indian rupee symbol

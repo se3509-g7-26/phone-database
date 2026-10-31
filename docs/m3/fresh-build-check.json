@@ -1,0 +1,16 @@
+{
+  "fresh_database": "tmp/m3-fresh.db",
+  "fresh_m2_hashes": {
+    "raw_file": "9e7cbd777ec37d0316095045fc1340d978b7854dbb45970da10ee370f9dcb31d",
+    "phone": "e59c70712affb8dd7fa94e93f2f5e4c50a8725f91792df6fed6f635b4882a50a",
+    "phone_snapshot": "260762d46e3e87c97e243f577ebf365ef6745af42186ac5a3b2a4d4873d1821e",
+    "specification": "5e3620ee9c7c6b8a21c1f59bc440ffbfa38067d5f2c97d5239ed9633672ff4de",
+    "wikidata_item": "f84ce28a02e2f8faf6804cb896ee358928ebb5423aa8b4164766035485394d57",
+    "phone_item_link": "024dfc3e2caed541f146699dd6f437c5d8a18dbb557fb723d643f2e2d3b29c15",
+    "wikipedia_article": "aa32f4583ac63fdbc12fe279754fad8c9bce4964703bf753fdaa3fb9fc64a506",
+    "article_revision": "e5546a32643ee19b2805087f9eeaaf247e4740130d3a5af96aad7f10e4ebd01a",
+    "quarantine": "1ffad2b6b74af305173d1aeeb43918e8c725597adb51ccc8e7f475a536bd449d"
+  },
+  "matches_original_m2": true,
+  "notebook_executed_against_fresh_m2": true
+}

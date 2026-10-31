@@ -1,0 +1,13 @@
+PASS  same grain and row counts  (14877, 14877, 598283, 598283)
+PASS  raw keys preserved  0
+PASS  no impossible numeric values  0
+PASS  all foreign keys resolve  0
+PASS  all tables STRICT  []
+PASS  raw companions exact  0
+PASS  flags agree with cleaned values  0
+WARN  numeric missing share per catalog field <=30%  price=33.5%, internalmemory=62.1%
+WARN  numeric missing share per entity <=30%  4872 models exceed threshold
+PASS  resolved entities covered in latest snapshot window  0 outside 30 days; anchor=2026-10-11T00:13:23.874785Z
+WARN  price strings have one interpretable amount  460 unresolved current price cells
+WARN  model to Wikidata identity unambiguous  24 models have multiple QIDs; no automatic merge
+WARN  launch MSRP evidence available  catalog prices only; no verified launch/configuration/market linkage

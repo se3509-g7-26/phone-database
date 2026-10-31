@@ -1,0 +1,12 @@
+alias,category,decided_by,decided_at,note
+Android,Android,M3 reproducible rule,2026-10-31,Explicit source OS prefix; includes tablets and watches
+iOS,iOS,M3 reproducible rule,2026-10-31,Explicit source OS prefix
+iPhone OS,iOS,M3 reproducible rule,2026-10-31,Historical iPhone OS naming; retain original string
+Microsoft Windows,Windows,M3 reproducible rule,2026-10-31,Explicit Windows prefix; includes mobile and desktop editions
+Windows,Windows,M3 reproducible rule,2026-10-31,Explicit Windows prefix
+Symbian,Symbian,M3 reproducible rule,2026-10-31,Explicit Symbian prefix
+BlackBerry,BlackBerry,M3 reproducible rule,2026-10-31,Explicit BlackBerry prefix
+Tizen,Tizen,M3 reproducible rule,2026-10-31,Explicit Tizen prefix
+HarmonyOS,HarmonyOS,M3 reproducible rule,2026-10-31,Explicit HarmonyOS prefix
+KaiOS,KaiOS,M3 reproducible rule,2026-10-31,Explicit KaiOS prefix
+watchOS,watchOS,M3 reproducible rule,2026-10-31,Explicit watchOS prefix

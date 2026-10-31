@@ -1,0 +1,7 @@
+source_field,kind,unit,decided_by,decided_at,note
+price,price,,M3 reproducible rule,2026-10-31,Single explicit currency amount only; estimate or offer is not launch MSRP
+year,year,year,M3 reproducible rule,2026-10-31,Leading announcement year; not a release date
+internalmemory,memory,GB,M3 reproducible rule,2026-10-31,Exactly one explicit storage and RAM pair; no configuration selection
+weight,weight,g,M3 reproducible rule,2026-10-31,Leading gram measurement; alternate variant weights remain ambiguous
+displaysize,display,inch,M3 reproducible rule,2026-10-31,One inch diagonal; not a device class
+batdescription1,battery,mAh,M3 reproducible rule,2026-10-31,One explicit mAh capacity; no inference from Wh

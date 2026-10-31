@@ -30,6 +30,10 @@
     <Compile Include="src\checks.py" />
     <Compile Include="src\profile_keys.py" />
     <Compile Include="src\report.py" />
+    <Compile Include="src\profile_m3.py" />
+    <Compile Include="src\clean_config.py" />
+    <Compile Include="src\clean.py" />
+    <Compile Include="src\validate.py" />
   </ItemGroup>
   <ItemGroup>
     <InterpreterReference Include="Global|PythonCore|3.14" />

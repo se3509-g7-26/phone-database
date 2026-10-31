@@ -369,9 +369,47 @@ Raw responses and the database file are excluded from Git. The database built
 by `load.py` and the saved load and check outputs are submitted through the
 course system.
 
+## Data Quality (M3)
+
+M3 preserves all 14,877 models and 598,283 specification cells in a separate
+cleaned layer with source values and constrained flags. Five chronology conflicts
+are flagged; unusual measurements are retained, and ambiguous configurations are
+not reduced to an invented single variant. About 33.5% of models lack a usable
+single catalog price and 62.1% lack a usable storage/RAM pair under the supported
+grammar; catalog prices still do not establish launch MSRP.
+See the [cleaning report](docs/cleaning_report.md),
+[executed profile](notebooks/m3_profile.ipynb), and
+[evidence and group handoff](docs/m3/README.md).
+
+With Python 3.10+, installed `requirements.txt`, and landed M1 files, build and
+check from the repository root:
+
+```sh
+python src/load.py
+python src/clean.py
+python src/validate.py
+```
+
+Cleaning is offline, atomic and idempotent. Validation exits nonzero on STOP;
+WARNs document coverage and evidence limits. For profiling, two-run hash checks,
+and regressions:
+
+```sh
+python scripts/run_m3_profile.py
+python scripts/verify_m3.py
+python -m unittest discover -s tests -q
+```
+
+Every cleaned cell retains its original composite key. Numeric values use g,
+inches, mAh and SI GB; prices retain their explicit currency. Query
+`specification_current` for latest cells, or `specification_resolved` for all
+observations with canonical identity keys. Neither view selects an eligible
+smartphone cohort or supplies a verified launch price.
+
 ## Status
 
-M2 — schema and load complete. Full-data checks and 26 regression tests pass.
+M3 — cleaned layer and quality report complete. Group attribution, M2-feedback
+notes, review, individual commits and submission remain for the team.
 
 ## Team
 

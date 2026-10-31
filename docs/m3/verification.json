@@ -1,0 +1,54 @@
+{
+  "m2_before": {
+    "raw_file": "9e7cbd777ec37d0316095045fc1340d978b7854dbb45970da10ee370f9dcb31d",
+    "phone": "e59c70712affb8dd7fa94e93f2f5e4c50a8725f91792df6fed6f635b4882a50a",
+    "phone_snapshot": "260762d46e3e87c97e243f577ebf365ef6745af42186ac5a3b2a4d4873d1821e",
+    "specification": "5e3620ee9c7c6b8a21c1f59bc440ffbfa38067d5f2c97d5239ed9633672ff4de",
+    "wikidata_item": "f84ce28a02e2f8faf6804cb896ee358928ebb5423aa8b4164766035485394d57",
+    "phone_item_link": "024dfc3e2caed541f146699dd6f437c5d8a18dbb557fb723d643f2e2d3b29c15",
+    "wikipedia_article": "aa32f4583ac63fdbc12fe279754fad8c9bce4964703bf753fdaa3fb9fc64a506",
+    "article_revision": "e5546a32643ee19b2805087f9eeaaf247e4740130d3a5af96aad7f10e4ebd01a",
+    "quarantine": "1ffad2b6b74af305173d1aeeb43918e8c725597adb51ccc8e7f475a536bd449d"
+  },
+  "m2_after_first": {
+    "raw_file": "9e7cbd777ec37d0316095045fc1340d978b7854dbb45970da10ee370f9dcb31d",
+    "phone": "e59c70712affb8dd7fa94e93f2f5e4c50a8725f91792df6fed6f635b4882a50a",
+    "phone_snapshot": "260762d46e3e87c97e243f577ebf365ef6745af42186ac5a3b2a4d4873d1821e",
+    "specification": "5e3620ee9c7c6b8a21c1f59bc440ffbfa38067d5f2c97d5239ed9633672ff4de",
+    "wikidata_item": "f84ce28a02e2f8faf6804cb896ee358928ebb5423aa8b4164766035485394d57",
+    "phone_item_link": "024dfc3e2caed541f146699dd6f437c5d8a18dbb557fb723d643f2e2d3b29c15",
+    "wikipedia_article": "aa32f4583ac63fdbc12fe279754fad8c9bce4964703bf753fdaa3fb9fc64a506",
+    "article_revision": "e5546a32643ee19b2805087f9eeaaf247e4740130d3a5af96aad7f10e4ebd01a",
+    "quarantine": "1ffad2b6b74af305173d1aeeb43918e8c725597adb51ccc8e7f475a536bd449d"
+  },
+  "m2_after_second": {
+    "raw_file": "9e7cbd777ec37d0316095045fc1340d978b7854dbb45970da10ee370f9dcb31d",
+    "phone": "e59c70712affb8dd7fa94e93f2f5e4c50a8725f91792df6fed6f635b4882a50a",
+    "phone_snapshot": "260762d46e3e87c97e243f577ebf365ef6745af42186ac5a3b2a4d4873d1821e",
+    "specification": "5e3620ee9c7c6b8a21c1f59bc440ffbfa38067d5f2c97d5239ed9633672ff4de",
+    "wikidata_item": "f84ce28a02e2f8faf6804cb896ee358928ebb5423aa8b4164766035485394d57",
+    "phone_item_link": "024dfc3e2caed541f146699dd6f437c5d8a18dbb557fb723d643f2e2d3b29c15",
+    "wikipedia_article": "aa32f4583ac63fdbc12fe279754fad8c9bce4964703bf753fdaa3fb9fc64a506",
+    "article_revision": "e5546a32643ee19b2805087f9eeaaf247e4740130d3a5af96aad7f10e4ebd01a",
+    "quarantine": "1ffad2b6b74af305173d1aeeb43918e8c725597adb51ccc8e7f475a536bd449d"
+  },
+  "m3_first": [
+    "3a4c4a8503b7993fee94bc7a0a82c014ccffafeed8e8c488238158e3486cfb55",
+    "435af20b3a3aa3dfc424d4ae8ee17c12bba102356095aabc8f7e5fa392660316",
+    "7d12c097ff6124607de05d3f23d1b16fcdf58ef30d7fe42078bad60b2c488eed",
+    "9d2de7a70446e04e63c1295141452027ebba2782c024d8e8ddc08cb7a614c92c",
+    "3458b8fc7fa271857c8d86d16864d6ef22bec5b904361ea63040869d9254be0a",
+    "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  ],
+  "m3_second": [
+    "3a4c4a8503b7993fee94bc7a0a82c014ccffafeed8e8c488238158e3486cfb55",
+    "435af20b3a3aa3dfc424d4ae8ee17c12bba102356095aabc8f7e5fa392660316",
+    "7d12c097ff6124607de05d3f23d1b16fcdf58ef30d7fe42078bad60b2c488eed",
+    "9d2de7a70446e04e63c1295141452027ebba2782c024d8e8ddc08cb7a614c92c",
+    "3458b8fc7fa271857c8d86d16864d6ef22bec5b904361ea63040869d9254be0a",
+    "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  ],
+  "raw_untouched": true,
+  "cleaned_idempotent": true,
+  "validation_no_stop": true
+}
