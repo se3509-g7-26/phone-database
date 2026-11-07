@@ -10,3 +10,35 @@ Tizen,Tizen,M3 reproducible rule,2026-10-31,Explicit Tizen prefix
 HarmonyOS,HarmonyOS,M3 reproducible rule,2026-10-31,Explicit HarmonyOS prefix
 KaiOS,KaiOS,M3 reproducible rule,2026-10-31,Explicit KaiOS prefix
 watchOS,watchOS,M3 reproducible rule,2026-10-31,Explicit watchOS prefix
+iPadOS,iPadOS,Onur Atıcı,2026-11-07,Apple tablet OS named in the source; kept apart from iOS so iPads do not join iPhone cohorts
+Wear OS,Android,Onur Atıcı,2026-11-07,Rebranded Android Wear; matches the existing Android rule for Android Wear watches
+Customized Android,Android,Onur Atıcı,2026-11-07,Source names Android before the Fire UI version
+Amazon Fire,Android,Onur Atıcı,2026-11-07,Source states the Fire release is Android based
+Sonim OS,Android,Onur Atıcı,2026-11-07,Source states an AOSP Android base in parentheses
+OPhone OS,Android,Onur Atıcı,2026-11-07,China Mobile OPhone; same family as the Android-based OPhone rows
+Harmony OS,HarmonyOS,Onur Atıcı,2026-11-07,Spelling variant with a space; same vendor OS name
+Microsoft Smartphone,Windows,Onur Atıcı,2026-11-07,Smartphone 2002/2003 editions of Windows Mobile
+Microsoft PocketPC,Windows,Onur Atıcı,2026-11-07,Pocket PC 2003 edition of Windows Mobile
+MS Windows Mobile,Windows,Onur Atıcı,2026-11-07,Abbreviated Microsoft prefix before Windows Mobile
+WinCE,Windows,Onur Atıcı,2026-11-07,Abbreviated Windows CE
+Nokia Belle OS,Symbian,Onur Atıcı,2026-11-07,Nokia Belle is the renamed Symbian^3 release
+Open Symbian,Symbian,Onur Atıcı,2026-11-07,Source states it is based on Symbian v6.0
+bada,bada,Onur Atıcı,2026-11-07,Samsung bada named in the source; case-insensitive key also covers Bada
+Firefox OS,Firefox OS,Onur Atıcı,2026-11-07,Mozilla Firefox OS named in the source
+Firefox,Firefox OS,Onur Atıcı,2026-11-07,Source writes Firefox 2.0 for Firefox OS 2.0 devices; the field is the OS
+Palm webOS,webOS,Onur Atıcı,2026-11-07,Palm-era webOS named in the source
+HP webOS,webOS,Onur Atıcı,2026-11-07,HP-era webOS named in the source
+Palm,Palm OS,Onur Atıcı,2026-11-07,Palm 3.x/5.x version strings are Palm OS; the longer webOS aliases win for webOS
+Nokia Asha software platform,Asha,Onur Atıcı,2026-11-07,Nokia Asha platform named in the source; not Symbian
+Sailfish,Sailfish OS,Onur Atıcı,2026-11-07,Jolla Sailfish named in the source; Android app support does not make it Android
+MeeGo,MeeGo,Onur Atıcı,2026-11-07,MeeGo named in the source
+Maemo,Maemo,Onur Atıcı,2026-11-07,Maemo named in the source
+Internet Tablet OS,Maemo,Onur Atıcı,2026-11-07,Nokia Internet Tablet OS 2007/2008 editions are Maemo releases
+Linux,Linux,Onur Atıcı,2026-11-07,Source names Linux; includes MOTOMAGX and LiMo builds that state a Linux base
+LiMo OS,Linux,Onur Atıcı,2026-11-07,LiMo is a Linux Mobile platform; same group as the Linux-based LiMo rows
+Danger,Danger OS,Onur Atıcı,2026-11-07,Danger OS of the Sidekick devices named in the source
+Chrome OS,ChromeOS,Onur Atıcı,2026-11-07,Google ChromeOS named in the source
+Blue OS,BlueOS,Onur Atıcı,2026-11-07,vivo BlueOS named in the source
+Huawei Lite OS,LiteOS,Onur Atıcı,2026-11-07,Huawei LiteOS named in the source
+RTOS,RTOS,Onur Atıcı,2026-11-07,Source states a real-time OS without naming a vendor product
+Proprietary,Proprietary,Onur Atıcı,2026-11-07,Source states a vendor-proprietary OS; this is not a device class or a feature-phone label
