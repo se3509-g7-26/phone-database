@@ -2,7 +2,7 @@
 
 ## 1. Summary
 
-This investigation uses the offline M2 database containing 14,877 GSMArena catalog models, 598,283 specification cells, and supporting Wikidata and Wikipedia records. The main problems are absent price evidence, configuration lists that cannot be reduced to one memory measurement, catalog prices without verified launch context, and identities that are not one-to-one across sources. Five announcement strings also contain a release year earlier than their announcement year. The M3 layer retains every model and specification cell, preserves its source value, and adds normalized text, conservative numeric measurements, OS categories, and constrained flags without imputing values. All M2 table-content hashes remain unchanged, repeated cleaning produces identical contents, and validation passes its STOP checks while reporting coverage and interpretation warnings. Team investigation attribution and the M2-feedback section are intentionally deferred for the group to complete; no claim of member ownership or feedback resolution is made here.
+This investigation uses the offline M2 database containing 14,877 GSMArena catalog models, 598,283 specification cells, and supporting Wikidata and Wikipedia records. The main problems are absent price evidence, configuration lists that cannot be reduced to one memory measurement, catalog prices without verified launch context, and identities that are not one-to-one across sources. Five announcement strings also contain a release year earlier than their announcement year. The M3 layer retains every model and specification cell, preserves its source value, and adds normalized text, conservative numeric measurements, OS categories, and constrained flags without imputing values. All M2 table-content hashes remain unchanged, repeated cleaning produces identical contents, and validation passes its STOP checks while reporting coverage and interpretation warnings. The issues register names a member only where that member has reviewed the issue; the remaining attribution and the M2-feedback section are still for the group to complete, and no feedback resolution is claimed here.
 
 ## 2. Profile highlights
 
@@ -23,7 +23,7 @@ The executable investigation is [m3_profile.ipynb](../notebooks/m3_profile.ipynb
 |---|---:|---:|---:|---:|
 | price | 10,352 | 4,525 | 0 | 9,892 |
 | year | 14,877 | 0 | 14 | 14,745 |
-| internalmemory | 13,041 | 1,836 | 0 | 5,637 |
+| internalmemory | 13,041 | 1,836 | 0 | 6,100 |
 | weight | 14,877 | 0 | 91 | 13,118 |
 | displaysize | 14,877 | 0 | 1,213 | 13,645 |
 | batdescription1 | 14,877 | 0 | 15 | 13,419 |
@@ -35,7 +35,7 @@ The profile deliberately uses the complete catalog as its coverage denominator r
 
 ## 3. Issues register
 
-The Investigated by column is deliberately pending, as requested. Counts in this register use current model cells unless identified as all observations.
+The Investigated by column names the member who reviewed an issue; Pending rows are still open for the group. Counts in this register use current model cells unless identified as all observations.
 
 | ID | Family | Table.column | Finding and extent | Evidence | Cause | Decision / flag | Investigated by |
 |---|---|---|---|---|---|---|---|
@@ -43,13 +43,14 @@ The Investigated by column is deliberately pending, as requested. Counts in this
 | I-02 | Missing | specification.value_text | 12,045 NULL cells; 3,043 explicit tokens across all snapshots | `N/A`: 1,499; `-`: 1,544 | Confirmed representation in M2; reason unknown | NULL with separate missing_not_reported / missing_token flags | Pending |
 | I-03 | Invalid / across fields | specification.year | Five release-before-announcement year conflicts | Source IDs 2893, 10619, 7098, 4783, 4784 | Unknown; contradictory chronology, not a proven corrected date | Numeric year NULL, invalid_year; text retained | Pending |
 | I-04 | Unusual | specification numeric fields | Positive extremes include large tablets and rugged devices | HP Slate 17: 2,005 g and 17.3 inches; Ulefone Armor Pad 3 Pro: 33,280 mAh | Inferred product heterogeneity from names and specifications | IQR flag; keep measurement | Pending |
-| I-05 | Text / units | specification.internalmemory | 4,881 ambiguous lists and 2,523 unsupported current strings | Configuration separators and storage-only/legacy forms | Confirmed source structure; individual interpretation unresolved | NULL numeric pair; ambiguous or unparsed | Pending |
+| I-05 | Text / units | specification.internalmemory | 4,418 ambiguous lists and 2,523 unsupported current strings; 463 labelled RAM/ROM pairs were first miscounted as ambiguous | Configuration separators and storage-only/legacy forms; `256MB RAM, 512MB ROM`, `128MB ROM, 64MB RAM`, `16GB (12.9GB user available), 2GB RAM` | Confirmed source structure; a comma was treated as a configuration separator even when both roles are labelled | Labelled pairs parsed; other lists keep a NULL numeric pair, ambiguous or unparsed | Onur Atıcı |
 | I-06 | Text / units | specification.price | 460 current strings cannot establish one supported amount/currency | Multiple offers or unsupported/ambiguous monetary notation | Confirmed source syntax; offer context unknown | Numeric NULL; ambiguous/unparsed | Pending |
 | I-07 | Identity | phone_item_link | 24 models link to multiple QIDs; 37 QIDs link to multiple models | Grouped source-ID counts | Inferred entity/family granularity differences; specific causes unknown | Preserve links, no automatic identity merge | Pending |
 | I-08 | Identity | phone.name | Normalized `vivo y11` occurs under IDs 7219 and 14564 | Exact normalized-name collision | Unknown from name alone | Keep both IDs; empty identity decision file | Pending |
 | I-09 | Across rows | phone_snapshot | One model has five snapshots; 14,876 have one | Sorted observations and first/last timestamps | Confirmed collection pattern | No unsupported stuck/spike/level-shift correction | Pending |
 | I-10 | Identity / coverage | article_revision.content | 237 redirect revisions | Case-insensitive leading `#redirect` check | Confirmed redirect syntax | Keep M2 text; do not treat redirect as price evidence | Pending |
 | I-11 | Interpretation | specification.price | No source-verified launch/market/configuration linkage | M2 schema and price text | Unknown price reference date and context | Catalog amount only; persistent MSRP warning | Pending |
+| I-12 | Text / category | specification.os | 444 OS cells (all observations) were unmapped: 51 because of a prefix-boundary defect, 305 that name an OS family without an alias, and 88 that remain | `Symbian, S60 rel. 3.2`, `Android-based OPhone 2.0`; `Proprietary OS` (111), `iPadOS 17.5.1`, `Firefox OS 1.3`; remaining `HyperOS`, `EMUI 14.2 (International), HarmonyOS 4.2 (China)` | Confirmed: the prefix rule required a space after the alias, and the alias list covered eleven families | Boundary fix and 32 reviewed aliases; vendor skins, UI names and non-OS strings stay unmapped | Onur Atıcı |
 
 ### Checked and not found
 
@@ -62,15 +63,15 @@ The Investigated by column is deliberately pending, as requested. Counts in this
 | Across rows | `PRAGMA foreign_key_check` | 0 violations |
 | Missing coverage | All resolved models observed within 30 days of latest landed observation | 0 outside window |
 
-The initially apparent zero battery was a parser defect: `16,000 mAh` must parse as 16,000, not as its final digits. A regression test now covers this case and rejects malformed grouping. It is not reported as a source error.
+The initially apparent zero battery was a parser defect: `16,000 mAh` must parse as 16,000, not as its final digits. A regression test now covers this case and rejects malformed grouping. It is not reported as a source error. Likewise, 51 OS cells such as `Symbian, S60 rel. 3.2` and `Android-based OPhone 2.0` were unmapped only because the prefix rule required a space after the alias; the prefix now ends at any non-alphanumeric character, and a regression test keeps `Androidx` from matching `Android`.
 
 ## 4. Missing values
 
-Price absence is strongly associated with observable cohorts. All 82 models with a usable 2000 announcement year lack price text, compared with 61 of 669 in 2020. OS grouping also differs: 1,872 of 9,572 Android-group models lack price text, compared with 2,424 of 4,277 models with absent or unmapped OS. These patterns oppose an MCAR interpretation. MAR conditional on observed age/product characteristics is an inference worth testing, not an established mechanism. MNAR remains possible if difficult-to-price, obscure or discontinued products are preferentially omitted; this extract cannot distinguish those explanations. M4 must show cohort-specific denominators and cannot generalize a complete-case price distribution to the whole catalog.
+Price absence is strongly associated with observable cohorts. All 82 models with a usable 2000 announcement year lack price text, compared with 61 of 669 in 2020. OS grouping also differs: 1,878 of 9,604 Android-group models lack price text, compared with 2,322 of 3,921 models with absent or unmapped OS. These patterns oppose an MCAR interpretation. MAR conditional on observed age/product characteristics is an inference worth testing, not an established mechanism. MNAR remains possible if difficult-to-price, obscure or discontinued products are preferentially omitted; this extract cannot distinguish those explanations. M4 must show cohort-specific denominators and cannot generalize a complete-case price distribution to the whole catalog.
 
 Explicit tokens and NULL cells describe different observed representations, not known maintenance or collection causes. Their underlying mechanism is unknown; neither MCAR nor a substantive failure cause is assumed. The text `No` occurs 47,859 times and remains meaningful, rather than becoming NULL. Absent fields are counted separately from present empty cells. No missing sensor or maintenance mechanism is invented for this catalog.
 
-Memory availability combines source absence with deliberate parser restraint. A single explicit storage/RAM pair supplies two measurements, while multiple configurations supply no chosen pair. Storage-only or legacy forms do not establish both quantities under this rule. All 81 mapped iOS models fail the joint pair rule, illustrating that parser-induced missingness depends on observed source format and OS. This is a deterministic selection mechanism resembling MAR conditional on format, with additional source omissions of unknown mechanism. It is not evidence that those devices lack RAM or storage. Future extraction can expand supported grammars with tests, but M4 must not compare the retained subset as if it were representative.
+Memory availability combines source absence with deliberate parser restraint. A single explicit storage/RAM pair supplies two measurements, while multiple configurations supply no chosen pair. A pair may also be written with both roles labelled (`256MB RAM, 512MB ROM` in either order) or with a user-available note on storage (`16GB (12.9GB user available), 2GB RAM`, nominal storage kept); these 463 current cells are parsed because the comma there separates roles, not configurations. Storage-only or legacy forms do not establish both quantities under this rule. All 81 mapped iOS models fail the joint pair rule, illustrating that parser-induced missingness depends on observed source format and OS. This is a deterministic selection mechanism resembling MAR conditional on format, with additional source omissions of unknown mechanism. It is not evidence that those devices lack RAM or storage. Future extraction can expand supported grammars with tests, but M4 must not compare the retained subset as if it were representative.
 
 ## 5. Flags and rules
 
@@ -83,14 +84,14 @@ Cleaning first loads reviewable mappings, resolves supplied identity decisions, 
 | 3 | text_normalized | NFC/whitespace change; normalized text | 0 |
 | 4 | not_applicable | No numeric field rule; numeric NULL | 515,358 |
 | 5 | unparsed | Unsupported measurement grammar; numeric NULL | 3,686 |
-| 5 | ambiguous | Multiple/ambiguous configurations or amounts; numeric NULL | 6,290 |
+| 5 | ambiguous | Multiple/ambiguous configurations or amounts; numeric NULL | 5,827 |
 | 6 | invalid_year | Outside calendar bounds, invalid exact day, future exact date, or contradictory chronology; numeric NULL | 5 |
 | 6 | invalid_nonpositive | Nonpositive parsed measurement; numeric NULL | 0 |
-| 7 | unit_converted | Explicit MB/TB converted to GB; value retained | 1,309 |
-| 8 | unusual_low / unusual_high | Outside cohort IQR fence; measurements retained | 258 / 4,155 |
-| Otherwise | ok | Trusted under supported grammar | 64,754 numeric cells |
+| 7 | unit_converted | Explicit MB/TB converted to GB; value retained | 1,698 |
+| 8 | unusual_low / unusual_high | Outside cohort IQR fence; measurements retained | 186 / 3,960 |
+| Otherwise | ok | Trusted under supported grammar | 65,095 numeric cells |
 
-Numeric missing_not_reported and missing_token counts are respectively 1,333 and 1,135, subsets of the text missingness above. Category flags are mapped (10,604), unmapped (444), or not_applicable (587,235). Name flags are ok for all 14,877 models. These columns have independent denominators; their counts should not be added together.
+Numeric missing_not_reported and missing_token counts are respectively 1,333 and 1,135, subsets of the text missingness above. Category flags are mapped (10,960), unmapped (88), or not_applicable (587,235). Name flags are ok for all 14,877 models. These columns have independent denominators; their counts should not be added together.
 
 `phone_clean` has the phone key and grain; `specification_clean` has the full specification composite key and grain. Text, numeric and category groups each retain their exact M2 source string. `number_raw` and `number_flag` jointly cover the parsed number, optional RAM measurement and unit because they come from one indivisible source cell; this is the justified group-level flag permitted by the brief. Other M2 tables are not transformed, so no redundant clean copies are created. Every M3 table is STRICT; entity-bearing tables declare foreign keys. Mapping dictionaries are loaded from CSVs, not embedded identity/category decisions.
 
@@ -108,23 +109,23 @@ Numeric missing_not_reported and missing_token counts are respectively 1,333 and
 | MISSING_TOKENS | Empty, -, n/a, na, unknown after comparison normalization; No is intentionally excluded |
 | NUMERIC_FIELDS | The six project-relevant measurement fields; other specifications remain normalized text |
 
-The 56 supported cohorts separate field, currency/unit and observed OS family; RAM gets separate fences from storage. Zero-IQR cohorts receive no fence. Canonical representatives are chosen before estimating fences if an identity map is supplied. Flagged examples include tablets and rugged hardware; their source strings support retaining extremes, while their exact correctness remains unverified. These cohorts still mix years, manufacturers and form factors, so unusual means review, not error. A threshold-change test widens the fence, checks that only numeric flags change, then restores the original complete contents.
+The 67 supported cohorts separate field, currency/unit and observed OS family; RAM gets separate fences from storage. Mapping the explicit Proprietary, Linux and iPadOS strings moved those models out of the unknown-OS cohort and gave them their own fences (56 cohorts before the OS review). Zero-IQR cohorts receive no fence. Canonical representatives are chosen before estimating fences if an identity map is supplied. Flagged examples include tablets and rugged hardware; their source strings support retaining extremes, while their exact correctness remains unverified. These cohorts still mix years, manufacturers and form factors, so unusual means review, not error. A threshold-change test widens the fence, checks that only numeric flags change, then restores the original complete contents.
 
 ## 6. Mapping and identity decisions
 
-The committed [mapping CSVs](../data/mappings/) contain six field rules, eleven OS aliases, seven currency aliases, and no accepted identity merges. Metadata identifies the decisions as automated reproducible rules; human review attribution remains for the group. OS matching uses exact normalized keys, then a boundary-delimited prefix, with the longest matching alias winning. Normalization is NFC, explicit Turkish-letter folding, then casefold. Currency amounts require a complete single-amount grammar; a bare dollar symbol does not establish currency or market.
+The committed [mapping CSVs](../data/mappings/) contain six field rules, 43 OS aliases, seven currency aliases, and no accepted identity merges. The field rules, currency aliases and first eleven OS aliases are recorded as automated reproducible rules; the 32 OS aliases added after a review of every unmapped OS string name their reviewer and date. Human review attribution for the other rows remains for the group. OS matching uses exact normalized keys, then a boundary-delimited prefix, with the longest matching alias winning. Normalization is NFC, explicit Turkish-letter folding, then casefold. Currency amounts require a complete single-amount grammar; a bare dollar symbol does not establish currency or market.
 
-Across all observations, 10,604 OS cells map and 444 remain unmapped. No fuzzy proposals are accepted. The configured iPhone OS alias has no match, and literal USD and GBP tokens do not occur; the pound symbol does occur. All six field rules match observed fields. Empty phone_identity.csv is intentional: matching names or a shared QID is insufficient merge evidence. The resolved views retain original keys and expose canonical keys without dropping rows; source IDs in CSV are looked up at load time. Identity chains/cycles and unmatched identity IDs fail visibly rather than creating parents.
+Across all observations, 10,960 OS cells map and 88 remain unmapped. An alias is added only when the source string names the OS family itself; iPadOS is its own category so tablets do not join iPhone cohorts, and `Proprietary OS` is a source statement, not a feature-phone label. The 88 remaining cells are vendor skins whose base OS depends on the product or market (HyperOS, MagicOS, Flyme, EMUI listed with a HarmonyOS China build, and the ColorOS, OxygenOS, MIUI and Moto watch systems), UI names, a chipset name and `Unspecified`; they stay unmapped rather than guessed. No fuzzy proposals are accepted. The configured iPhone OS alias has no match, and literal USD and GBP tokens do not occur; the pound symbol does occur. All six field rules match observed fields. Empty phone_identity.csv is intentional: matching names or a shared QID is insufficient merge evidence. The resolved views retain original keys and expose canonical keys without dropping rows; source IDs in CSV are looked up at load time. Identity chains/cycles and unmatched identity IDs fail visibly rather than creating parents.
 
 ## 7. Counts and validation
 
-The complete final outputs are [first cleaning run](m3/clean-first.txt), [second cleaning run](m3/clean-second.txt), and [validation](m3/validate.txt). Both clean runs report COMPLETE. The [hash evidence](m3/verification.json) compares every complete M2 table before/after and all six M3 tables between runs; both comparisons pass. [Regression results](m3/tests.txt) record 35 passing tests. The notebook is also executed against a newly built full M2 database, rather than relying on existing clean tables; the [fresh-build comparison](m3/fresh-build-check.json) confirms all nine rebuilt M2 tables match the original hashes.
+The complete final outputs are [first cleaning run](m3/clean-first.txt), [second cleaning run](m3/clean-second.txt), and [validation](m3/validate.txt). Both clean runs report COMPLETE. The [hash evidence](m3/verification.json) compares every complete M2 table before/after and all six M3 tables between runs; both comparisons pass. [Regression results](m3/tests.txt) record 37 passing tests. The notebook is also executed against a newly built full M2 database, rather than relying on existing clean tables; the [fresh-build comparison](m3/fresh-build-check.json) confirms all nine rebuilt M2 tables match the original hashes. After the OS and memory rule changes the notebook and evidence were regenerated on the M2 submission database, whose nine table hashes in the hash evidence equal the rebuilt ones; the loader did not change, so the rebuild was not repeated.
 
 | Final result | Interpretation |
 |---|---|
 | All seven STOP expectations pass | Counts/grain, raw keys, numeric rules, foreign keys, STRICT tables, exact source companions, flag/value consistency |
-| Price unavailable 33.5%; joint memory unavailable 62.1% | Measurement/source-format coverage problem; no imputation |
-| 4,872 models exceed 30% unavailable numeric fields | Measurement/heterogeneous-product coverage; diagnostic, not deletion criterion |
+| Price unavailable 33.5%; joint memory unavailable 59.0% | Measurement/source-format coverage problem; no imputation |
+| 4,717 models exceed 30% unavailable numeric fields | Measurement/heterogeneous-product coverage; diagnostic, not deletion criterion |
 | 460 price strings unresolved | Source interpretation / conservative parser limitation |
 | 24 models have multiple QIDs | Source identity granularity uncertainty |
 | No verified launch MSRP linkage | Evidence limitation, not pipeline failure |

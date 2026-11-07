@@ -375,8 +375,9 @@ M3 preserves all 14,877 models and 598,283 specification cells in a separate
 cleaned layer with source values and constrained flags. Five chronology conflicts
 are flagged; unusual measurements are retained, and ambiguous configurations are
 not reduced to an invented single variant. About 33.5% of models lack a usable
-single catalog price and 62.1% lack a usable storage/RAM pair under the supported
-grammar; catalog prices still do not establish launch MSRP.
+single catalog price and 59.0% lack a usable storage/RAM pair under the supported
+grammar; catalog prices still do not establish launch MSRP. OS strings map to
+reviewed families; 88 vendor-skin and non-OS cells stay unmapped rather than guessed.
 See the [cleaning report](docs/cleaning_report.md),
 [executed profile](notebooks/m3_profile.ipynb), and
 [evidence and group handoff](docs/m3/README.md).

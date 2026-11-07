@@ -44,3 +44,20 @@ notebook retains aggregate outputs and a small number of representative examples
 The local database remains `data/phones.db`, excluded from Git. Submit that built
 database and the required raw-data zip through the course system after the group
 finishes its review, attribution, commits, and exact-state tag.
+
+## Review: OS mapping, memory grammar and regenerated evidence
+
+Onur Atıcı, 2026-11-07; parts of work packages 2 and 3.
+
+- `src/clean.py`: an OS alias prefix now ends at any non-alphanumeric
+  character (51 cells such as `Symbian, S60 rel. 3.2` were unmapped), and
+  labelled RAM/ROM pairs or a user-available storage note give one
+  storage/RAM pair (463 more current models).
+- `data/mappings/os_categories.csv`: 32 aliases added after reviewing every
+  unmapped OS string; each new row names its reviewer. Vendor skins stay
+  unmapped. Report issues I-05 and I-12 record the findings.
+- Two regression tests were added (37 in total).
+- `clean-first.txt`, `clean-second.txt`, `validate.txt`, `verification.json`,
+  `tests.txt` and the notebook were regenerated on the M2 submission database.
+  Its nine M2 table hashes equal those in `fresh-build-check.json`; the loader
+  did not change, so the fresh rebuild was not repeated.
