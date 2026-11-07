@@ -13,7 +13,7 @@ import unittest
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'src'))
 import clean_config as cfg
 from checks import fixture
-from clean import clean, match_key, numeric, read_mappings, text_value
+from clean import category, clean, match_key, numeric, read_mappings, text_value
 from db import ROOT, connect as db_connect, contents_digest
 from load import load
 from validate import validate
@@ -110,6 +110,21 @@ class CleanTests(unittest.TestCase):
         self.assertEqual((None,'missing_token'),text_value(' n/a '))
         self.assertEqual(('No','ok'),text_value('No'))
         self.assertEqual('istanbul',match_key('İSTANBUL'))
+
+    def test_os_alias_prefix_ends_at_word_boundary(self):
+        categories = read_mappings(cfg.MAPPINGS)['os_categories']
+        def os_category(value):
+            match = category(value, categories)
+            return match['category'] if match else None
+        self.assertEqual('Symbian',os_category('Symbian, S60 rel. 3.2'))
+        self.assertEqual('Symbian',os_category('Symbian^3, upgradable to Nokia Belle OS'))
+        self.assertEqual('Android',os_category('Android-based OPhone 2.0'))
+        self.assertEqual('Android',os_category('Android 14, One UI 6.1'))
+        self.assertEqual('Android',os_category('android'))
+        self.assertEqual('Windows',os_category('Microsoft Windows Mobile 6.1 Professional'))
+        self.assertIsNone(os_category('Androidx 1.0'))
+        self.assertIsNone(os_category('Symbianesque'))
+        self.assertIsNone(os_category(None))
 
     def test_mapping_changes_and_restoration_are_idempotent(self):
         mapped = self.root/'mappings'

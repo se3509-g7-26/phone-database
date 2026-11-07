@@ -48,11 +48,18 @@ def read_mappings(directory):
 
 
 def category(value, categories):
+    """Longest alias equal to the key or followed by a non-alphanumeric boundary."""
     if value is None:
         return None
     key = match_key(value)
-    matches = [r for r in categories if key == match_key(r['alias']) or
-               key.startswith(match_key(r['alias']) + ' ')]
+
+    # 'Symbian, S60' and 'Android-based' end the alias with punctuation, not a space;
+    # 'Androidx' must still not match 'Android'.
+    def prefix(alias):
+        alias = match_key(alias)
+        return key.startswith(alias) and (len(key) == len(alias) or not key[len(alias)].isalnum())
+
+    matches = [r for r in categories if prefix(r['alias'])]
     return max(matches, key=lambda r: len(r['alias'])) if matches else None
 
 
