@@ -105,14 +105,25 @@ def numeric(value, kind, retrieved_at, currencies):
             if observed_date.isoformat() > retrieved_at[:10]:
                 return None, None, unit, 'invalid_year'
     elif kind == 'memory':
-        m = re.fullmatch(r'(-?\d+(?:\.\d+)?)(MB|GB|TB)\s+(-?\d+(?:\.\d+)?)(MB|GB|TB)\s+RAM', value, re.I)
-        if not m:
+        amount = r'(-?\d+(?:\.\d+)?)(MB|GB|TB)'
+        # Each form states exactly one storage and one RAM amount; the group numbers say
+        # which is which. Labelled ROM/RAM pairs and a user-available storage note contain
+        # a comma, but unlike configuration lists they never offer a choice.
+        forms = ((amount + r'\s+' + amount + r'\s+RAM', 1, 3),
+                 (amount + r'\s+ROM,\s+' + amount + r'\s+RAM', 1, 3),
+                 (amount + r'\s+RAM,\s+' + amount + r'\s+ROM', 3, 1),
+                 (amount + r'\s+\(\d+(?:\.\d+)?(?:MB|GB)\s+user available\),\s+' + amount + r'\s+RAM', 1, 3))
+        for pattern, storage, ram in forms:
+            m = re.fullmatch(pattern, value, re.I)
+            if m:
+                break
+        else:
             return None, None, 'GB', 'ambiguous' if ',' in value or '/' in value else 'unparsed'
         # SI byte prefixes; MB / 1000 and TB * 1000; retain original units in raw text.
         def gigabytes(amount, prefix):
             return float(amount) * (cfg.MEMORY_UNIT_BASE ** ('MB', 'GB', 'TB').index(prefix.upper())) / cfg.MEMORY_UNIT_BASE
-        number, secondary, unit = gigabytes(m[1], m[2]), gigabytes(m[3], m[4]), 'GB'
-        if m[2].upper() != 'GB' or m[4].upper() != 'GB':
+        number, secondary, unit = gigabytes(m[storage], m[storage + 1]), gigabytes(m[ram], m[ram + 1]), 'GB'
+        if m[storage + 1].upper() != 'GB' or m[ram + 1].upper() != 'GB':
             flag = 'unit_converted'
     else:
         pattern, unit = {

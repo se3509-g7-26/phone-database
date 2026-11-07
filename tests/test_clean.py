@@ -111,6 +111,22 @@ class CleanTests(unittest.TestCase):
         self.assertEqual(('No','ok'),text_value('No'))
         self.assertEqual('istanbul',match_key('İSTANBUL'))
 
+    def test_labelled_memory_pairs_parse_without_choosing_a_configuration(self):
+        def parse(value):
+            return numeric(value,'memory','2026-10-09T00:00:00.000000Z',[])
+        self.assertEqual((.512,.256,'GB','unit_converted'),parse('256MB RAM, 512MB ROM'))
+        self.assertEqual((.128,.064,'GB','unit_converted'),parse('128MB ROM, 64MB RAM'))
+        self.assertEqual((1.,.512,'GB','unit_converted'),parse('1GB ROM, 512MB RAM'))
+        self.assertEqual((16.,2.,'GB','ok'),parse('16GB (12.9GB user available), 2GB RAM'))
+        self.assertEqual((8.,1.,'GB','ok'),parse('8GB ROM, 1GB RAM'))
+        # Unlabelled, repeated or three-amount forms still give no single pair.
+        self.assertEqual('ambiguous',parse('256MB RAM, 256MB')[-1])
+        self.assertEqual('ambiguous',parse('256MB RAM, 512MB ROM, 1GB ROM')[-1])
+        self.assertEqual('ambiguous',parse('16GB (12.5 user available), 2GB RAM')[-1])
+        self.assertEqual('unparsed',parse('15MB 32MB RAM 128MB ROM')[-1])
+        self.assertEqual('unparsed',parse('256MB ROM')[-1])
+        self.assertEqual('invalid_nonpositive',parse('0MB RAM, 512MB ROM')[-1])
+
     def test_os_alias_prefix_ends_at_word_boundary(self):
         categories = read_mappings(cfg.MAPPINGS)['os_categories']
         def os_category(value):
