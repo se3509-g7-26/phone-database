@@ -5,14 +5,14 @@ No Jupyter dependency is needed. The notebook also runs normally in Jupyter.
 import contextlib
 import io
 import json
-from pathlib import Path
 import os
+from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 
 
 def run():
-    path = ROOT/'notebooks'/'m3_profile.ipynb'
+    path = ROOT / 'notebooks' / 'm3_profile.ipynb'
     notebook = json.loads(path.read_text(encoding='utf-8'))
     namespace = {'__name__':'__main__'}
     old = Path.cwd()

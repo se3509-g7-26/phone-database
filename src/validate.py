@@ -5,6 +5,7 @@ from pathlib import Path
 import sys
 
 import clean_config as cfg
+from clean import numeric
 from db import DEFAULT_DB, connect
 
 
@@ -27,9 +28,8 @@ def validate(database=DEFAULT_DB, *, verbose=True):
                               "(source_field='year' AND (number<? OR number>CAST(substr(retrieved_at,1,4) AS INTEGER) OR number<>CAST(number AS INTEGER))) "
                               "OR (number IS NOT NULL AND (abs(number)>? OR (source_field='price' AND unit IS NULL)))",
                               (cfg.MIN_YEAR, sys.float_info.max)).fetchone()[0]
-        from clean import numeric
         for row in con.execute("SELECT value_raw,number,retrieved_at FROM specification_clean WHERE source_field='year' AND number IS NOT NULL"):
-            if numeric(row['value_raw'],'year',row['retrieved_at'],[])[-1] == 'invalid_year':
+            if numeric(row['value_raw'], 'year', row['retrieved_at'], [])[-1] == 'invalid_year':
                 invalid += 1
         result('no impossible numeric values', invalid == 0, invalid)
         foreign = con.execute('PRAGMA foreign_key_check').fetchall()

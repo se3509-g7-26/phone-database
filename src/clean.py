@@ -140,7 +140,7 @@ def numeric(value, kind, retrieved_at, currencies):
             return None, None, unit, 'ambiguous'
         number = float(m[1].replace(',', ''))
     if number is not None and (not math.isfinite(number) or number <= 0 or
-                              (secondary is not None and secondary <= 0)):
+                              (secondary is not None and (not math.isfinite(secondary) or secondary <= 0))):
         return None, None, unit, 'invalid_nonpositive'
     return number, secondary, unit, flag
 
@@ -183,7 +183,7 @@ def prepared(con, mappings):
             if r['secondary'] is not None:
                 ram_key = (resolved, 'ram_gb')
                 if ram_key not in representatives or order > representatives[ram_key][0]:
-                    representatives[ram_key] = (order, ('ram_gb',r['unit'],cohort[2]), r['secondary'])
+                    representatives[ram_key] = (order, ('ram_gb', r['unit'], cohort[2]), r['secondary'])
     for _, cohort, number in representatives.values():
         groups[cohort].append(number)
     fences = {}
@@ -200,9 +200,9 @@ def prepared(con, mappings):
                 r['number_flag'] = 'unusual_low'
             elif r['number'] > high:
                 r['number_flag'] = 'unusual_high'
-        ram_key = ('ram_gb', r['unit'], os_by_snapshot.get((r['phone_key'],r['retrieved_at']), 'unknown'))
+        ram_key = ('ram_gb', r['unit'], os_by_snapshot.get((r['phone_key'], r['retrieved_at']), 'unknown'))
         if r['secondary'] is not None and ram_key in fences and not r['number_flag'].startswith('unusual'):
-            low,high = fences[ram_key]
+            low, high = fences[ram_key]
             if r['secondary'] < low:
                 r['number_flag'] = 'unusual_low'
             elif r['secondary'] > high:
@@ -228,11 +228,11 @@ def clean(database=DEFAULT_DB, mappings_dir=cfg.MAPPINGS, *, verbose=True, fail_
         con.execute('DELETE FROM os_category_map')
         con.execute('DELETE FROM currency_map')
         con.executemany('INSERT INTO field_rule_map VALUES (?,?,?,?,?,?)',
-                        [tuple(r[k] for k in ('source_field','kind','unit','decided_by','decided_at','note')) for r in mappings['field_rules']])
+                        [tuple(r[k] for k in ('source_field', 'kind', 'unit', 'decided_by', 'decided_at', 'note')) for r in mappings['field_rules']])
         con.executemany('INSERT INTO os_category_map VALUES (?,?,?,?,?)',
-                        [tuple(r[k] for k in ('alias','category','decided_by','decided_at','note')) for r in mappings['os_categories']])
+                        [tuple(r[k] for k in ('alias', 'category', 'decided_by', 'decided_at', 'note')) for r in mappings['os_categories']])
         con.executemany('INSERT INTO currency_map VALUES (?,?,?,?,?)',
-                        [tuple(r[k] for k in ('alias','currency','decided_by','decided_at','note')) for r in mappings['currencies']])
+                        [tuple(r[k] for k in ('alias', 'currency', 'decided_by', 'decided_at', 'note')) for r in mappings['currencies']])
         ids = {r['source_id']: r['phone_key'] for r in con.execute('SELECT phone_key,source_id FROM phone')}
         aliases = {r['source_id'] for r in mappings['phone_identity']}
         for row in mappings['phone_identity']:

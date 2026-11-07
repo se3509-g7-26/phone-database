@@ -126,6 +126,7 @@ class CleanTests(unittest.TestCase):
         self.assertEqual('unparsed',parse('15MB 32MB RAM 128MB ROM')[-1])
         self.assertEqual('unparsed',parse('256MB ROM')[-1])
         self.assertEqual('invalid_nonpositive',parse('0MB RAM, 512MB ROM')[-1])
+        self.assertEqual('invalid_nonpositive',parse('512MB ROM, 0MB RAM')[-1])
 
     def test_os_alias_prefix_ends_at_word_boundary(self):
         categories = read_mappings(cfg.MAPPINGS)['os_categories']

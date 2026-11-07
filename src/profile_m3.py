@@ -1,13 +1,15 @@
 """Read-only M3 investigation; notebook and exports use this same code."""
 from collections import Counter, defaultdict
 import csv
+from datetime import datetime
 import json
 from pathlib import Path
+import re
 import statistics
 
 import clean_config as cfg
 from clean import match_key, normal_text, prepared, read_mappings
-from db import DEFAULT_DB, ROOT, TABLES, connect
+from db import DEFAULT_DB, ROOT, TABLES, connect, counts as table_counts
 
 
 def write_csv(path, header, rows):
@@ -21,7 +23,6 @@ def profile(database=DEFAULT_DB, output=None):
     con = connect(database, read_only=True)
     try:
         # Raw observations precede all hypothetical cleaning measurements below.
-        from db import counts as table_counts
         counts = table_counts(con)
         text_columns = list(con.execute('SELECT source_field,section,label,value_text FROM specification'))
         distinct = Counter((r['source_field'], r['section'], r['label'], repr(r['value_text'])) for r in text_columns)
@@ -87,8 +88,6 @@ def profile(database=DEFAULT_DB, output=None):
                                      for r in latest if r['number_flag'].startswith('invalid')]
         summary['cross_field']['release_before_announcement'] = []
         summary['cross_field']['future_exact_announcement'] = []
-        import re
-        from datetime import datetime
         for r in by_field['year']:
             raw = r['value_text'] or ''
             m = re.match(r'^(\d{4}), ([A-Za-z]+) (\d{1,2})\b', raw)
@@ -96,18 +95,18 @@ def profile(database=DEFAULT_DB, output=None):
                 try:
                     announced = datetime.strptime(' '.join(m.groups()), '%Y %B %d').date()
                     if announced.isoformat() > r['retrieved_at'][:10]:
-                        summary['cross_field']['future_exact_announcement'].append({'source_id': current[r['phone_key']]['source_id'], 'raw':raw})
+                        summary['cross_field']['future_exact_announcement'].append({'source_id': current[r['phone_key']]['source_id'], 'raw': raw})
                 except ValueError:
                     pass
             m = re.search(r'Released\s+(\d{4})', raw)
-            leading = re.match(r'^(\d{4})',raw)
+            leading = re.match(r'^(\d{4})', raw)
             if m and leading and int(m[1]) < int(leading[1]):
-                summary['cross_field']['release_before_announcement'].append({'source_id': current[r['phone_key']]['source_id'], 'raw':raw})
+                summary['cross_field']['release_before_announcement'].append({'source_id': current[r['phone_key']]['source_id'], 'raw': raw})
         for r in latest:
             if r['number_flag'].startswith('unusual'):
-                summary['unusual_examples'].append({'source_id': current[r['phone_key']]['source_id'], 'name':current[r['phone_key']]['name'],
-                                                   'field':r['source_field'], 'raw':r['value_text'], 'number':r['number'], 'unit':r['unit'], 'flag':r['number_flag']})
-        summary['robust_fences'] = [{'field': k[0], 'unit': k[1], 'os': k[2], 'low':v[0], 'high':v[1]} for k,v in sorted(fences.items())]
+                summary['unusual_examples'].append({'source_id': current[r['phone_key']]['source_id'], 'name': current[r['phone_key']]['name'],
+                                                   'field': r['source_field'], 'raw': r['value_text'], 'number': r['number'], 'unit': r['unit'], 'flag': r['number_flag']})
+        summary['robust_fences'] = [{'field': k[0], 'unit': k[1], 'os': k[2], 'low': v[0], 'high': v[1]} for k, v in sorted(fences.items())]
         if output:
             output = Path(output)
             output.mkdir(parents=True, exist_ok=True)
