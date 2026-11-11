@@ -34,6 +34,8 @@
     <Compile Include="src\clean_config.py" />
     <Compile Include="src\clean.py" />
     <Compile Include="src\validate.py" />
+    <Compile Include="src\explore.py" />
+    <Compile Include="src\explore_report.py" />
   </ItemGroup>
   <ItemGroup>
     <InterpreterReference Include="Global|PythonCore|3.14" />

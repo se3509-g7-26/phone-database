@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="740" viewBox="0 0 1200 740" role="img">
+<rect width="100%" height="100%" fill="#f8fafc"/>
+<style>text{font-family:Arial,sans-serif;fill:#24364b} .grid{stroke:#dde5ed;stroke-width:1}</style>
+<title>Samsung minus Xiaomi: equal-year median contrast -14 EUR</title>
+<text x="35.00" y="38.00" font-size="23" text-anchor="start" font-weight="bold">Samsung minus Xiaomi: equal-year median contrast -14 EUR</text>
+<text x="35.00" y="66.00" font-size="14" text-anchor="start" font-weight="normal">Question: how does the comparison change after giving common cohort years equal weight?</text>
+<text x="35.00" y="699.00" font-size="12" text-anchor="start" font-weight="normal">n=499 current catalog IDs; Android; 2010-2025 announcement cohorts; EUR. 7 paired years; 95% interval; 2-year circular blocks.</text>
+<text x="35.00" y="718.00" font-size="12" text-anchor="start" font-weight="normal">Numeric flags: ok, unit_converted, unusual_low, unusual_high. OS: mapped; year: ok. Catalog amounts, not verified launch MSRP.</text>
+<text x="95.00" y="145.00" font-size="14" text-anchor="start" font-weight="bold">Samsung - Xiaomi; zero = no difference</text>
+<line x1="95.00" y1="540.00" x2="765.00" y2="540.00" stroke="#ccd7e2" stroke-width="1"/>
+<text x="86.00" y="544.00" font-size="11" text-anchor="end" font-weight="normal">-100</text>
+<line x1="95.00" y1="445.00" x2="765.00" y2="445.00" stroke="#ccd7e2" stroke-width="1"/>
+<text x="86.00" y="449.00" font-size="11" text-anchor="end" font-weight="normal">-39</text>
+<line x1="95.00" y1="350.00" x2="765.00" y2="350.00" stroke="#ccd7e2" stroke-width="1"/>
+<text x="86.00" y="354.00" font-size="11" text-anchor="end" font-weight="normal">22</text>
+<line x1="95.00" y1="255.00" x2="765.00" y2="255.00" stroke="#ccd7e2" stroke-width="1"/>
+<text x="86.00" y="259.00" font-size="11" text-anchor="end" font-weight="normal">84</text>
+<line x1="95.00" y1="160.00" x2="765.00" y2="160.00" stroke="#ccd7e2" stroke-width="1"/>
+<text x="86.00" y="164.00" font-size="11" text-anchor="end" font-weight="normal">145</text>
+<text x="178.75" y="560.00" font-size="11" text-anchor="middle" font-weight="normal">2018</text>
+<text x="262.50" y="560.00" font-size="11" text-anchor="middle" font-weight="normal">2019</text>
+<text x="346.25" y="560.00" font-size="11" text-anchor="middle" font-weight="normal">2020</text>
+<text x="430.00" y="560.00" font-size="11" text-anchor="middle" font-weight="normal">2021</text>
+<text x="513.75" y="560.00" font-size="11" text-anchor="middle" font-weight="normal">2022</text>
+<text x="597.50" y="560.00" font-size="11" text-anchor="middle" font-weight="normal">2023</text>
+<text x="681.25" y="560.00" font-size="11" text-anchor="middle" font-weight="normal">2024</text>
+<line x1="95.00" y1="540.00" x2="765.00" y2="540.00" stroke="#8292a5" stroke-width="1"/>
+<text x="430.00" y="583.00" font-size="12" text-anchor="middle" font-weight="normal">Announcement year</text>
+<text x="95.00" y="126.00" font-size="11" text-anchor="start" font-weight="normal">Median difference (EUR)</text>
+<line x1="95.00" y1="384.90" x2="765.00" y2="384.90" stroke="#8292a5" stroke-width="1" stroke-dasharray="5 4"/>
+<rect x="160.75" y="384.90" width="36.00" height="93.06" fill="#2463a5" opacity="1"/>
+<text x="178.75" y="467.96" font-size="12" text-anchor="middle" font-weight="normal">-60</text>
+<rect x="244.50" y="384.90" width="36.00" height="0.00" fill="#2463a5" opacity="1"/>
+<text x="262.50" y="374.90" font-size="12" text-anchor="middle" font-weight="normal">+0</text>
+<rect x="328.25" y="222.04" width="36.00" height="162.86" fill="#2463a5" opacity="1"/>
+<text x="346.25" y="212.04" font-size="12" text-anchor="middle" font-weight="normal">+105</text>
+<rect x="412.00" y="384.90" width="36.00" height="85.31" fill="#2463a5" opacity="1"/>
+<text x="430.00" y="460.20" font-size="12" text-anchor="middle" font-weight="normal">-55</text>
+<rect x="495.75" y="384.90" width="36.00" height="93.06" fill="#2463a5" opacity="1"/>
+<text x="513.75" y="467.96" font-size="12" text-anchor="middle" font-weight="normal">-60</text>
+<rect x="579.50" y="384.90" width="36.00" height="15.51" fill="#2463a5" opacity="1"/>
+<text x="597.50" y="390.41" font-size="12" text-anchor="middle" font-weight="normal">-10</text>
+<rect x="663.25" y="384.90" width="36.00" height="29.59" fill="#2463a5" opacity="1"/>
+<text x="681.25" y="404.49" font-size="12" text-anchor="middle" font-weight="normal">-19</text>
+<text x="900.00" y="145.00" font-size="14" text-anchor="start" font-weight="bold">Paired block bootstrap</text>
+<line x1="900.00" y1="540.00" x2="1100.00" y2="540.00" stroke="#ccd7e2" stroke-width="1"/>
+<text x="891.00" y="544.00" font-size="11" text-anchor="end" font-weight="normal">-100</text>
+<line x1="900.00" y1="445.00" x2="1100.00" y2="445.00" stroke="#ccd7e2" stroke-width="1"/>
+<text x="891.00" y="449.00" font-size="11" text-anchor="end" font-weight="normal">-39</text>
+<line x1="900.00" y1="350.00" x2="1100.00" y2="350.00" stroke="#ccd7e2" stroke-width="1"/>
+<text x="891.00" y="354.00" font-size="11" text-anchor="end" font-weight="normal">22</text>
+<line x1="900.00" y1="255.00" x2="1100.00" y2="255.00" stroke="#ccd7e2" stroke-width="1"/>
+<text x="891.00" y="259.00" font-size="11" text-anchor="end" font-weight="normal">84</text>
+<line x1="900.00" y1="160.00" x2="1100.00" y2="160.00" stroke="#ccd7e2" stroke-width="1"/>
+<text x="891.00" y="164.00" font-size="11" text-anchor="end" font-weight="normal">145</text>
+<line x1="900.00" y1="540.00" x2="1100.00" y2="540.00" stroke="#8292a5" stroke-width="1"/>
+<text x="1000.00" y="583.00" font-size="12" text-anchor="middle" font-weight="normal">Equal-year estimate</text>
+<text x="900.00" y="126.00" font-size="11" text-anchor="start" font-weight="normal">EUR difference</text>
+<line x1="900.00" y1="384.90" x2="1100.00" y2="384.90" stroke="#8292a5" stroke-width="1" stroke-dasharray="5 4"/>
+<line x1="1000.00" y1="455.60" x2="1000.00" y2="342.80" stroke="#cf661c" stroke-width="4"/>
+<circle cx="1000.00" cy="406.85" r="7" fill="#cf661c" opacity="1"/>
+<line x1="980.00" y1="455.60" x2="1020.00" y2="455.60" stroke="#cf661c" stroke-width="2"/>
+<line x1="980.00" y1="342.80" x2="1020.00" y2="342.80" stroke="#cf661c" stroke-width="2"/>
+<text x="95.00" y="615.00" font-size="14" text-anchor="start" font-weight="normal">95% interval: [-45.6, +27.1] EUR; 5,000 replicates, seed 20261111.</text>
+</svg>

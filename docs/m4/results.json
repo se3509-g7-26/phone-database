@@ -1,0 +1,1856 @@
+{
+  "params": {
+    "brands": [
+      "Samsung",
+      "Xiaomi",
+      "Huawei",
+      "Sony"
+    ],
+    "os": "Android",
+    "currency": "EUR",
+    "start_year": 2010,
+    "end_year": 2025,
+    "flags": [
+      "ok",
+      "unit_converted",
+      "unusual_low",
+      "unusual_high"
+    ],
+    "strict_flags": [
+      "ok",
+      "unit_converted"
+    ],
+    "min_models": 20,
+    "min_prices": 10,
+    "min_coverage": 0.5,
+    "min_joint": 10,
+    "bin_trials": [
+      50,
+      100,
+      200
+    ],
+    "bin_width": 100,
+    "comparison": [
+      "Samsung",
+      "Xiaomi"
+    ],
+    "comparison_start": 2015,
+    "bootstrap_reps": 5000,
+    "block_length": 2,
+    "seed": 20261111
+  },
+  "catalog_n": 14877,
+  "cohort_n": 1625,
+  "raw": [
+    {
+      "brand": "Huawei",
+      "catalog_n": 303,
+      "n": 298,
+      "mean_price": 283.0536912751678
+    },
+    {
+      "brand": "Samsung",
+      "catalog_n": 715,
+      "n": 619,
+      "mean_price": 266.6397415185784
+    },
+    {
+      "brand": "Sony",
+      "catalog_n": 156,
+      "n": 144,
+      "mean_price": 252.01388888888889
+    },
+    {
+      "brand": "Xiaomi",
+      "catalog_n": 451,
+      "n": 360,
+      "mean_price": 284.8611111111111
+    }
+  ],
+  "groups": [
+    {
+      "brand": "Huawei",
+      "catalog_n": 303,
+      "price_n": 298,
+      "joint_n": 136,
+      "price_coverage": 0.9834983498349835,
+      "ram_price_coverage": 0.44884488448844884,
+      "mean": 283.0536912751678,
+      "median": 200.0,
+      "p95": 764.4999999999993,
+      "min": 50.0,
+      "max": 2300.0,
+      "eligible": true
+    },
+    {
+      "brand": "Samsung",
+      "catalog_n": 715,
+      "price_n": 624,
+      "joint_n": 276,
+      "price_coverage": 0.8727272727272727,
+      "ram_price_coverage": 0.386013986013986,
+      "mean": 266.1773237179487,
+      "median": 200.0,
+      "p95": 658.5000000000002,
+      "min": 50.0,
+      "max": 2900.0,
+      "eligible": true
+    },
+    {
+      "brand": "Sony",
+      "catalog_n": 156,
+      "price_n": 145,
+      "joint_n": 110,
+      "price_coverage": 0.9294871794871795,
+      "ram_price_coverage": 0.7051282051282052,
+      "mean": 256.45510344827585,
+      "median": 210.0,
+      "p95": 541.9999999999993,
+      "min": 70.0,
+      "max": 2000.0,
+      "eligible": true
+    },
+    {
+      "brand": "Xiaomi",
+      "catalog_n": 451,
+      "price_n": 375,
+      "joint_n": 38,
+      "price_coverage": 0.8314855875831486,
+      "ram_price_coverage": 0.08425720620842572,
+      "mean": 283.15421333333336,
+      "median": 220.0,
+      "p95": 673.0000000000001,
+      "min": 60.0,
+      "max": 2500.0,
+      "eligible": true
+    }
+  ],
+  "strict_groups": [
+    {
+      "brand": "Huawei",
+      "catalog_n": 303,
+      "price_n": 274,
+      "joint_n": 131,
+      "price_coverage": 0.9042904290429042,
+      "ram_price_coverage": 0.43234323432343236,
+      "mean": 212.1167883211679,
+      "median": 200.0,
+      "p95": 403.49999999999966,
+      "min": 50.0,
+      "max": 550.0,
+      "eligible": true
+    },
+    {
+      "brand": "Samsung",
+      "catalog_n": 715,
+      "price_n": 584,
+      "joint_n": 259,
+      "price_coverage": 0.8167832167832167,
+      "ram_price_coverage": 0.3622377622377622,
+      "mean": 219.25453767123287,
+      "median": 200.0,
+      "p95": 448.5000000000002,
+      "min": 50.0,
+      "max": 550.0,
+      "eligible": true
+    },
+    {
+      "brand": "Sony",
+      "catalog_n": 156,
+      "price_n": 139,
+      "joint_n": 108,
+      "price_coverage": 0.8910256410256411,
+      "ram_price_coverage": 0.6923076923076923,
+      "mean": 225.25179856115108,
+      "median": 210.0,
+      "p95": 432.99999999999983,
+      "min": 70.0,
+      "max": 560.0,
+      "eligible": true
+    },
+    {
+      "brand": "Xiaomi",
+      "catalog_n": 451,
+      "price_n": 344,
+      "joint_n": 29,
+      "price_coverage": 0.7627494456762749,
+      "ram_price_coverage": 0.06430155210643015,
+      "mean": 231.49668604651163,
+      "median": 200.0,
+      "p95": 460.0,
+      "min": 60.0,
+      "max": 570.0,
+      "eligible": true
+    }
+  ],
+  "annual": [
+    {
+      "brand": "Huawei",
+      "year": 2010,
+      "catalog_n": 8,
+      "price_n": 8,
+      "joint_n": 4,
+      "price_coverage": 1.0,
+      "ram_price_coverage": 0.5,
+      "mean": 80.0,
+      "median": 80.0,
+      "p95": 96.5,
+      "min": 60.0,
+      "max": 100.0,
+      "eligible": false
+    },
+    {
+      "brand": "Huawei",
+      "year": 2011,
+      "catalog_n": 15,
+      "price_n": 15,
+      "joint_n": 12,
+      "price_coverage": 1.0,
+      "ram_price_coverage": 0.8,
+      "mean": 111.33333333333333,
+      "median": 100.0,
+      "p95": 174.99999999999994,
+      "min": 70.0,
+      "max": 210.0,
+      "eligible": false
+    },
+    {
+      "brand": "Huawei",
+      "year": 2012,
+      "catalog_n": 25,
+      "price_n": 25,
+      "joint_n": 19,
+      "price_coverage": 1.0,
+      "ram_price_coverage": 0.76,
+      "mean": 159.6,
+      "median": 130.0,
+      "p95": 321.9999999999999,
+      "min": 50.0,
+      "max": 350.0,
+      "eligible": true
+    },
+    {
+      "brand": "Huawei",
+      "year": 2013,
+      "catalog_n": 22,
+      "price_n": 22,
+      "joint_n": 19,
+      "price_coverage": 1.0,
+      "ram_price_coverage": 0.8636363636363636,
+      "mean": 167.72727272727272,
+      "median": 165.0,
+      "p95": 259.5,
+      "min": 50.0,
+      "max": 310.0,
+      "eligible": true
+    },
+    {
+      "brand": "Huawei",
+      "year": 2014,
+      "catalog_n": 27,
+      "price_n": 26,
+      "joint_n": 21,
+      "price_coverage": 0.9629629629629629,
+      "ram_price_coverage": 0.7777777777777778,
+      "mean": 215.76923076923077,
+      "median": 190.0,
+      "p95": 350.0,
+      "min": 70.0,
+      "max": 500.0,
+      "eligible": true
+    },
+    {
+      "brand": "Huawei",
+      "year": 2015,
+      "catalog_n": 23,
+      "price_n": 23,
+      "joint_n": 14,
+      "price_coverage": 1.0,
+      "ram_price_coverage": 0.6086956521739131,
+      "mean": 212.17391304347825,
+      "median": 190.0,
+      "p95": 368.0,
+      "min": 90.0,
+      "max": 400.0,
+      "eligible": true
+    },
+    {
+      "brand": "Huawei",
+      "year": 2016,
+      "catalog_n": 21,
+      "price_n": 21,
+      "joint_n": 7,
+      "price_coverage": 1.0,
+      "ram_price_coverage": 0.3333333333333333,
+      "mean": 265.23809523809524,
+      "median": 240.0,
+      "p95": 430.0,
+      "min": 80.0,
+      "max": 920.0,
+      "eligible": true
+    },
+    {
+      "brand": "Huawei",
+      "year": 2017,
+      "catalog_n": 26,
+      "price_n": 26,
+      "joint_n": 12,
+      "price_coverage": 1.0,
+      "ram_price_coverage": 0.46153846153846156,
+      "mean": 227.69230769230768,
+      "median": 195.0,
+      "p95": 420.0,
+      "min": 90.0,
+      "max": 600.0,
+      "eligible": true
+    },
+    {
+      "brand": "Huawei",
+      "year": 2018,
+      "catalog_n": 32,
+      "price_n": 32,
+      "joint_n": 6,
+      "price_coverage": 1.0,
+      "ram_price_coverage": 0.1875,
+      "mean": 326.5625,
+      "median": 235.0,
+      "p95": 979.9999999999998,
+      "min": 90.0,
+      "max": 1300.0,
+      "eligible": true
+    },
+    {
+      "brand": "Huawei",
+      "year": 2019,
+      "catalog_n": 41,
+      "price_n": 39,
+      "joint_n": 10,
+      "price_coverage": 0.9512195121951219,
+      "ram_price_coverage": 0.24390243902439024,
+      "mean": 434.1025641025641,
+      "median": 280.0,
+      "p95": 1466.0000000000005,
+      "min": 120.0,
+      "max": 2150.0,
+      "eligible": true
+    },
+    {
+      "brand": "Huawei",
+      "year": 2020,
+      "catalog_n": 46,
+      "price_n": 46,
+      "joint_n": 10,
+      "price_coverage": 1.0,
+      "ram_price_coverage": 0.21739130434782608,
+      "mean": 405.6521739130435,
+      "median": 255.0,
+      "p95": 1300.0,
+      "min": 100.0,
+      "max": 1950.0,
+      "eligible": true
+    },
+    {
+      "brand": "Huawei",
+      "year": 2021,
+      "catalog_n": 9,
+      "price_n": 8,
+      "joint_n": 2,
+      "price_coverage": 0.8888888888888888,
+      "ram_price_coverage": 0.2222222222222222,
+      "mean": 571.25,
+      "median": 335.0,
+      "p95": 1704.999999999999,
+      "min": 150.0,
+      "max": 2300.0,
+      "eligible": false
+    },
+    {
+      "brand": "Huawei",
+      "year": 2022,
+      "catalog_n": 4,
+      "price_n": 3,
+      "joint_n": 0,
+      "price_coverage": 0.75,
+      "ram_price_coverage": 0.0,
+      "mean": 290.0,
+      "median": 350.0,
+      "p95": 368.0,
+      "min": 150.0,
+      "max": 370.0,
+      "eligible": false
+    },
+    {
+      "brand": "Huawei",
+      "year": 2024,
+      "catalog_n": 1,
+      "price_n": 1,
+      "joint_n": 0,
+      "price_coverage": 1.0,
+      "ram_price_coverage": 0.0,
+      "mean": 240.0,
+      "median": 240.0,
+      "p95": 240.0,
+      "min": 240.0,
+      "max": 240.0,
+      "eligible": false
+    },
+    {
+      "brand": "Huawei",
+      "year": 2025,
+      "catalog_n": 3,
+      "price_n": 3,
+      "joint_n": 0,
+      "price_coverage": 1.0,
+      "ram_price_coverage": 0.0,
+      "mean": 220.0,
+      "median": 240.0,
+      "p95": 240.0,
+      "min": 180.0,
+      "max": 240.0,
+      "eligible": false
+    },
+    {
+      "brand": "Samsung",
+      "year": 2010,
+      "catalog_n": 27,
+      "price_n": 27,
+      "joint_n": 12,
+      "price_coverage": 1.0,
+      "ram_price_coverage": 0.4444444444444444,
+      "mean": 166.2962962962963,
+      "median": 150.0,
+      "p95": 277.0,
+      "min": 80.0,
+      "max": 310.0,
+      "eligible": true
+    },
+    {
+      "brand": "Samsung",
+      "year": 2011,
+      "catalog_n": 74,
+      "price_n": 74,
+      "joint_n": 34,
+      "price_coverage": 1.0,
+      "ram_price_coverage": 0.4594594594594595,
+      "mean": 165.40540540540542,
+      "median": 150.0,
+      "p95": 296.9999999999999,
+      "min": 50.0,
+      "max": 370.0,
+      "eligible": true
+    },
+    {
+      "brand": "Samsung",
+      "year": 2012,
+      "catalog_n": 66,
+      "price_n": 65,
+      "joint_n": 36,
+      "price_coverage": 0.9848484848484849,
+      "ram_price_coverage": 0.5454545454545454,
+      "mean": 190.76923076923077,
+      "median": 150.0,
+      "p95": 350.0,
+      "min": 70.0,
+      "max": 430.0,
+      "eligible": true
+    },
+    {
+      "brand": "Samsung",
+      "year": 2013,
+      "catalog_n": 51,
+      "price_n": 50,
+      "joint_n": 26,
+      "price_coverage": 0.9803921568627451,
+      "ram_price_coverage": 0.5098039215686274,
+      "mean": 238.2,
+      "median": 190.0,
+      "p95": 455.5,
+      "min": 70.0,
+      "max": 680.0,
+      "eligible": true
+    },
+    {
+      "brand": "Samsung",
+      "year": 2014,
+      "catalog_n": 81,
+      "price_n": 80,
+      "joint_n": 53,
+      "price_coverage": 0.9876543209876543,
+      "ram_price_coverage": 0.654320987654321,
+      "mean": 288.625,
+      "median": 295.0,
+      "p95": 480.99999999999994,
+      "min": 80.0,
+      "max": 670.0,
+      "eligible": true
+    },
+    {
+      "brand": "Samsung",
+      "year": 2015,
+      "catalog_n": 47,
+      "price_n": 47,
+      "joint_n": 27,
+      "price_coverage": 1.0,
+      "ram_price_coverage": 0.574468085106383,
+      "mean": 264.25531914893617,
+      "median": 250.0,
+      "p95": 450.0,
+      "min": 70.0,
+      "max": 500.0,
+      "eligible": true
+    },
+    {
+      "brand": "Samsung",
+      "year": 2016,
+      "catalog_n": 36,
+      "price_n": 35,
+      "joint_n": 24,
+      "price_coverage": 0.9722222222222222,
+      "ram_price_coverage": 0.6666666666666666,
+      "mean": 232.28571428571428,
+      "median": 190.0,
+      "p95": 493.9999999999989,
+      "min": 90.0,
+      "max": 850.0,
+      "eligible": true
+    },
+    {
+      "brand": "Samsung",
+      "year": 2017,
+      "catalog_n": 27,
+      "price_n": 27,
+      "joint_n": 13,
+      "price_coverage": 1.0,
+      "ram_price_coverage": 0.48148148148148145,
+      "mean": 264.0740740740741,
+      "median": 220.0,
+      "p95": 500.0,
+      "min": 110.0,
+      "max": 550.0,
+      "eligible": true
+    },
+    {
+      "brand": "Samsung",
+      "year": 2018,
+      "catalog_n": 28,
+      "price_n": 28,
+      "joint_n": 7,
+      "price_coverage": 1.0,
+      "ram_price_coverage": 0.25,
+      "mean": 248.92857142857142,
+      "median": 210.0,
+      "p95": 488.4999999999999,
+      "min": 100.0,
+      "max": 550.0,
+      "eligible": true
+    },
+    {
+      "brand": "Samsung",
+      "year": 2019,
+      "catalog_n": 45,
+      "price_n": 44,
+      "joint_n": 12,
+      "price_coverage": 0.9777777777777777,
+      "ram_price_coverage": 0.26666666666666666,
+      "mean": 370.0,
+      "median": 260.0,
+      "p95": 1088.0,
+      "min": 80.0,
+      "max": 1750.0,
+      "eligible": true
+    },
+    {
+      "brand": "Samsung",
+      "year": 2020,
+      "catalog_n": 52,
+      "price_n": 44,
+      "joint_n": 12,
+      "price_coverage": 0.8461538461538461,
+      "ram_price_coverage": 0.23076923076923078,
+      "mean": 377.95431818181817,
+      "median": 275.0,
+      "p95": 897.0,
+      "min": 60.0,
+      "max": 1250.0,
+      "eligible": true
+    },
+    {
+      "brand": "Samsung",
+      "year": 2021,
+      "catalog_n": 44,
+      "price_n": 31,
+      "joint_n": 6,
+      "price_coverage": 0.7045454545454546,
+      "ram_price_coverage": 0.13636363636363635,
+      "mean": 197.74193548387098,
+      "median": 160.0,
+      "p95": 510.0,
+      "min": 60.0,
+      "max": 650.0,
+      "eligible": true
+    },
+    {
+      "brand": "Samsung",
+      "year": 2022,
+      "catalog_n": 35,
+      "price_n": 26,
+      "joint_n": 3,
+      "price_coverage": 0.7428571428571429,
+      "ram_price_coverage": 0.08571428571428572,
+      "mean": 304.34,
+      "median": 185.0,
+      "p95": 920.0,
+      "min": 70.0,
+      "max": 1150.0,
+      "eligible": true
+    },
+    {
+      "brand": "Samsung",
+      "year": 2023,
+      "catalog_n": 32,
+      "price_n": 17,
+      "joint_n": 4,
+      "price_coverage": 0.53125,
+      "ram_price_coverage": 0.125,
+      "mean": 363.52941176470586,
+      "median": 210.0,
+      "p95": 1039.9999999999998,
+      "min": 90.0,
+      "max": 1200.0,
+      "eligible": true
+    },
+    {
+      "brand": "Samsung",
+      "year": 2024,
+      "catalog_n": 31,
+      "price_n": 16,
+      "joint_n": 6,
+      "price_coverage": 0.5161290322580645,
+      "ram_price_coverage": 0.1935483870967742,
+      "mean": 443.239375,
+      "median": 180.92000000000002,
+      "p95": 1682.5,
+      "min": 50.0,
+      "max": 1870.0,
+      "eligible": true
+    },
+    {
+      "brand": "Samsung",
+      "year": 2025,
+      "catalog_n": 39,
+      "price_n": 13,
+      "joint_n": 1,
+      "price_coverage": 0.3333333333333333,
+      "ram_price_coverage": 0.02564102564102564,
+      "mean": 545.3838461538462,
+      "median": 269.99,
+      "p95": 1699.9999999999973,
+      "min": 100.0,
+      "max": 2900.0,
+      "eligible": false
+    },
+    {
+      "brand": "Sony",
+      "year": 2010,
+      "catalog_n": 4,
+      "price_n": 4,
+      "joint_n": 1,
+      "price_coverage": 1.0,
+      "ram_price_coverage": 0.25,
+      "mean": 92.5,
+      "median": 85.0,
+      "p95": 125.49999999999999,
+      "min": 70.0,
+      "max": 130.0,
+      "eligible": false
+    },
+    {
+      "brand": "Sony",
+      "year": 2011,
+      "catalog_n": 17,
+      "price_n": 17,
+      "joint_n": 12,
+      "price_coverage": 1.0,
+      "ram_price_coverage": 0.7058823529411765,
+      "mean": 160.0,
+      "median": 170.0,
+      "p95": 235.99999999999997,
+      "min": 70.0,
+      "max": 260.0,
+      "eligible": false
+    },
+    {
+      "brand": "Sony",
+      "year": 2012,
+      "catalog_n": 27,
+      "price_n": 27,
+      "joint_n": 25,
+      "price_coverage": 1.0,
+      "ram_price_coverage": 0.9259259259259259,
+      "mean": 202.22222222222223,
+      "median": 210.0,
+      "p95": 318.0,
+      "min": 80.0,
+      "max": 350.0,
+      "eligible": true
+    },
+    {
+      "brand": "Sony",
+      "year": 2013,
+      "catalog_n": 12,
+      "price_n": 12,
+      "joint_n": 10,
+      "price_coverage": 1.0,
+      "ram_price_coverage": 0.8333333333333334,
+      "mean": 230.0,
+      "median": 245.0,
+      "p95": 339.0,
+      "min": 80.0,
+      "max": 350.0,
+      "eligible": false
+    },
+    {
+      "brand": "Sony",
+      "year": 2014,
+      "catalog_n": 24,
+      "price_n": 24,
+      "joint_n": 21,
+      "price_coverage": 1.0,
+      "ram_price_coverage": 0.875,
+      "mean": 247.08333333333334,
+      "median": 240.0,
+      "p95": 380.0,
+      "min": 120.0,
+      "max": 400.0,
+      "eligible": true
+    },
+    {
+      "brand": "Sony",
+      "year": 2015,
+      "catalog_n": 22,
+      "price_n": 21,
+      "joint_n": 19,
+      "price_coverage": 0.9545454545454546,
+      "ram_price_coverage": 0.8636363636363636,
+      "mean": 211.42857142857142,
+      "median": 200.0,
+      "p95": 400.0,
+      "min": 110.0,
+      "max": 500.0,
+      "eligible": true
+    },
+    {
+      "brand": "Sony",
+      "year": 2016,
+      "catalog_n": 8,
+      "price_n": 8,
+      "joint_n": 5,
+      "price_coverage": 1.0,
+      "ram_price_coverage": 0.625,
+      "mean": 180.0,
+      "median": 185.0,
+      "p95": 243.0,
+      "min": 100.0,
+      "max": 250.0,
+      "eligible": false
+    },
+    {
+      "brand": "Sony",
+      "year": 2017,
+      "catalog_n": 9,
+      "price_n": 8,
+      "joint_n": 5,
+      "price_coverage": 0.8888888888888888,
+      "ram_price_coverage": 0.5555555555555556,
+      "mean": 218.75,
+      "median": 235.0,
+      "p95": 313.0,
+      "min": 110.0,
+      "max": 320.0,
+      "eligible": false
+    },
+    {
+      "brand": "Sony",
+      "year": 2018,
+      "catalog_n": 8,
+      "price_n": 8,
+      "joint_n": 4,
+      "price_coverage": 1.0,
+      "ram_price_coverage": 0.5,
+      "mean": 325.0,
+      "median": 310.0,
+      "p95": 492.5,
+      "min": 140.0,
+      "max": 510.0,
+      "eligible": false
+    },
+    {
+      "brand": "Sony",
+      "year": 2019,
+      "catalog_n": 5,
+      "price_n": 5,
+      "joint_n": 2,
+      "price_coverage": 1.0,
+      "ram_price_coverage": 0.4,
+      "mean": 414.0,
+      "median": 500.0,
+      "p95": 548.0,
+      "min": 230.0,
+      "max": 560.0,
+      "eligible": false
+    },
+    {
+      "brand": "Sony",
+      "year": 2020,
+      "catalog_n": 5,
+      "price_n": 5,
+      "joint_n": 2,
+      "price_coverage": 1.0,
+      "ram_price_coverage": 0.4,
+      "mean": 850.0,
+      "median": 700.0,
+      "p95": 1739.9999999999998,
+      "min": 200.0,
+      "max": 2000.0,
+      "eligible": false
+    },
+    {
+      "brand": "Sony",
+      "year": 2021,
+      "catalog_n": 5,
+      "price_n": 3,
+      "joint_n": 2,
+      "price_coverage": 0.6,
+      "ram_price_coverage": 0.4,
+      "mean": 533.3333333333334,
+      "median": 370.0,
+      "p95": 874.0,
+      "min": 300.0,
+      "max": 930.0,
+      "eligible": false
+    },
+    {
+      "brand": "Sony",
+      "year": 2022,
+      "catalog_n": 3,
+      "price_n": 0,
+      "joint_n": 0,
+      "price_coverage": 0.0,
+      "ram_price_coverage": 0.0,
+      "mean": null,
+      "median": null,
+      "p95": null,
+      "min": null,
+      "max": null,
+      "eligible": false
+    },
+    {
+      "brand": "Sony",
+      "year": 2023,
+      "catalog_n": 3,
+      "price_n": 0,
+      "joint_n": 0,
+      "price_coverage": 0.0,
+      "ram_price_coverage": 0.0,
+      "mean": null,
+      "median": null,
+      "p95": null,
+      "min": null,
+      "max": null,
+      "eligible": false
+    },
+    {
+      "brand": "Sony",
+      "year": 2024,
+      "catalog_n": 2,
+      "price_n": 2,
+      "joint_n": 1,
+      "price_coverage": 1.0,
+      "ram_price_coverage": 0.5,
+      "mean": 622.995,
+      "median": 622.995,
+      "p95": 868.6904999999999,
+      "min": 350.0,
+      "max": 895.99,
+      "eligible": false
+    },
+    {
+      "brand": "Sony",
+      "year": 2025,
+      "catalog_n": 2,
+      "price_n": 1,
+      "joint_n": 1,
+      "price_coverage": 0.5,
+      "ram_price_coverage": 0.5,
+      "mean": 550.0,
+      "median": 550.0,
+      "p95": 550.0,
+      "min": 550.0,
+      "max": 550.0,
+      "eligible": false
+    },
+    {
+      "brand": "Xiaomi",
+      "year": 2012,
+      "catalog_n": 2,
+      "price_n": 2,
+      "joint_n": 1,
+      "price_coverage": 1.0,
+      "ram_price_coverage": 0.5,
+      "mean": 220.0,
+      "median": 220.0,
+      "p95": 247.0,
+      "min": 190.0,
+      "max": 250.0,
+      "eligible": false
+    },
+    {
+      "brand": "Xiaomi",
+      "year": 2013,
+      "catalog_n": 4,
+      "price_n": 3,
+      "joint_n": 1,
+      "price_coverage": 0.75,
+      "ram_price_coverage": 0.25,
+      "mean": 183.33333333333334,
+      "median": 200.0,
+      "p95": 245.0,
+      "min": 100.0,
+      "max": 250.0,
+      "eligible": false
+    },
+    {
+      "brand": "Xiaomi",
+      "year": 2014,
+      "catalog_n": 6,
+      "price_n": 6,
+      "joint_n": 3,
+      "price_coverage": 1.0,
+      "ram_price_coverage": 0.5,
+      "mean": 178.33333333333334,
+      "median": 195.0,
+      "p95": 237.5,
+      "min": 90.0,
+      "max": 240.0,
+      "eligible": false
+    },
+    {
+      "brand": "Xiaomi",
+      "year": 2015,
+      "catalog_n": 12,
+      "price_n": 12,
+      "joint_n": 5,
+      "price_coverage": 1.0,
+      "ram_price_coverage": 0.4166666666666667,
+      "mean": 170.83333333333334,
+      "median": 170.0,
+      "p95": 254.5,
+      "min": 100.0,
+      "max": 260.0,
+      "eligible": false
+    },
+    {
+      "brand": "Xiaomi",
+      "year": 2016,
+      "catalog_n": 18,
+      "price_n": 18,
+      "joint_n": 6,
+      "price_coverage": 1.0,
+      "ram_price_coverage": 0.3333333333333333,
+      "mean": 194.44444444444446,
+      "median": 165.0,
+      "p95": 321.9999999999999,
+      "min": 110.0,
+      "max": 390.0,
+      "eligible": false
+    },
+    {
+      "brand": "Xiaomi",
+      "year": 2017,
+      "catalog_n": 14,
+      "price_n": 14,
+      "joint_n": 3,
+      "price_coverage": 1.0,
+      "ram_price_coverage": 0.21428571428571427,
+      "mean": 193.57142857142858,
+      "median": 155.0,
+      "p95": 358.0,
+      "min": 90.0,
+      "max": 410.0,
+      "eligible": false
+    },
+    {
+      "brand": "Xiaomi",
+      "year": 2018,
+      "catalog_n": 23,
+      "price_n": 23,
+      "joint_n": 1,
+      "price_coverage": 1.0,
+      "ram_price_coverage": 0.043478260869565216,
+      "mean": 298.2608695652174,
+      "median": 270.0,
+      "p95": 503.9999999999999,
+      "min": 110.0,
+      "max": 730.0,
+      "eligible": true
+    },
+    {
+      "brand": "Xiaomi",
+      "year": 2019,
+      "catalog_n": 35,
+      "price_n": 34,
+      "joint_n": 2,
+      "price_coverage": 0.9714285714285714,
+      "ram_price_coverage": 0.05714285714285714,
+      "mean": 380.5882352941176,
+      "median": 260.0,
+      "p95": 593.5,
+      "min": 100.0,
+      "max": 2500.0,
+      "eligible": true
+    },
+    {
+      "brand": "Xiaomi",
+      "year": 2020,
+      "catalog_n": 49,
+      "price_n": 48,
+      "joint_n": 2,
+      "price_coverage": 0.9795918367346939,
+      "ram_price_coverage": 0.04081632653061224,
+      "mean": 238.95833333333334,
+      "median": 170.0,
+      "p95": 632.4999999999999,
+      "min": 80.0,
+      "max": 940.0,
+      "eligible": true
+    },
+    {
+      "brand": "Xiaomi",
+      "year": 2021,
+      "catalog_n": 59,
+      "price_n": 50,
+      "joint_n": 2,
+      "price_coverage": 0.847457627118644,
+      "ram_price_coverage": 0.03389830508474576,
+      "mean": 304.4276,
+      "median": 215.0,
+      "p95": 808.4999999999992,
+      "min": 90.0,
+      "max": 1500.0,
+      "eligible": true
+    },
+    {
+      "brand": "Xiaomi",
+      "year": 2022,
+      "catalog_n": 70,
+      "price_n": 66,
+      "joint_n": 2,
+      "price_coverage": 0.9428571428571428,
+      "ram_price_coverage": 0.02857142857142857,
+      "mean": 294.5319696969697,
+      "median": 245.0,
+      "p95": 652.5,
+      "min": 80.0,
+      "max": 1300.0,
+      "eligible": true
+    },
+    {
+      "brand": "Xiaomi",
+      "year": 2023,
+      "catalog_n": 45,
+      "price_n": 35,
+      "joint_n": 4,
+      "price_coverage": 0.7777777777777778,
+      "ram_price_coverage": 0.08888888888888889,
+      "mean": 264.9851428571429,
+      "median": 220.0,
+      "p95": 509.99999999999943,
+      "min": 60.0,
+      "max": 1150.0,
+      "eligible": true
+    },
+    {
+      "brand": "Xiaomi",
+      "year": 2024,
+      "catalog_n": 52,
+      "price_n": 37,
+      "joint_n": 4,
+      "price_coverage": 0.7115384615384616,
+      "ram_price_coverage": 0.07692307692307693,
+      "mean": 294.3989189189189,
+      "median": 200.0,
+      "p95": 692.0,
+      "min": 70.0,
+      "max": 1140.0,
+      "eligible": true
+    },
+    {
+      "brand": "Xiaomi",
+      "year": 2025,
+      "catalog_n": 62,
+      "price_n": 27,
+      "joint_n": 2,
+      "price_coverage": 0.43548387096774194,
+      "ram_price_coverage": 0.03225806451612903,
+      "mean": 361.6703703703704,
+      "median": 310.0,
+      "p95": 720.0,
+      "min": 100.0,
+      "max": 850.0,
+      "eligible": false
+    }
+  ],
+  "periods": [
+    {
+      "brand": "Huawei",
+      "period": 2010,
+      "catalog_n": 97,
+      "price_n": 96,
+      "joint_n": 75,
+      "price_coverage": 0.9896907216494846,
+      "ram_price_coverage": 0.7731958762886598,
+      "mean": 162.5,
+      "median": 140.0,
+      "p95": 332.5,
+      "min": 50.0,
+      "max": 500.0,
+      "eligible": true
+    },
+    {
+      "brand": "Huawei",
+      "period": 2015,
+      "catalog_n": 143,
+      "price_n": 141,
+      "joint_n": 49,
+      "price_coverage": 0.986013986013986,
+      "ram_price_coverage": 0.34265734265734266,
+      "mean": 310.2836879432624,
+      "median": 230.0,
+      "p95": 800.0,
+      "min": 80.0,
+      "max": 2150.0,
+      "eligible": true
+    },
+    {
+      "brand": "Huawei",
+      "period": 2020,
+      "catalog_n": 60,
+      "price_n": 58,
+      "joint_n": 12,
+      "price_coverage": 0.9666666666666667,
+      "ram_price_coverage": 0.2,
+      "mean": 419.6551724137931,
+      "median": 255.0,
+      "p95": 1400.0,
+      "min": 100.0,
+      "max": 2300.0,
+      "eligible": true
+    },
+    {
+      "brand": "Huawei",
+      "period": 2025,
+      "catalog_n": 3,
+      "price_n": 3,
+      "joint_n": 0,
+      "price_coverage": 1.0,
+      "ram_price_coverage": 0.0,
+      "mean": 220.0,
+      "median": 240.0,
+      "p95": 240.0,
+      "min": 180.0,
+      "max": 240.0,
+      "eligible": false
+    },
+    {
+      "brand": "Samsung",
+      "period": 2010,
+      "catalog_n": 299,
+      "price_n": 296,
+      "joint_n": 161,
+      "price_coverage": 0.9899665551839465,
+      "ram_price_coverage": 0.5384615384615384,
+      "mean": 216.65540540540542,
+      "median": 180.0,
+      "p95": 422.5,
+      "min": 50.0,
+      "max": 680.0,
+      "eligible": true
+    },
+    {
+      "brand": "Samsung",
+      "period": 2015,
+      "catalog_n": 183,
+      "price_n": 181,
+      "joint_n": 83,
+      "price_coverage": 0.9890710382513661,
+      "ram_price_coverage": 0.453551912568306,
+      "mean": 281.38121546961327,
+      "median": 220.0,
+      "p95": 600.0,
+      "min": 70.0,
+      "max": 1750.0,
+      "eligible": true
+    },
+    {
+      "brand": "Samsung",
+      "period": 2020,
+      "catalog_n": 194,
+      "price_n": 134,
+      "joint_n": 31,
+      "price_coverage": 0.6907216494845361,
+      "ram_price_coverage": 0.15979381443298968,
+      "mean": 327.94522388059704,
+      "median": 210.0,
+      "p95": 973.9999999999998,
+      "min": 50.0,
+      "max": 1870.0,
+      "eligible": true
+    },
+    {
+      "brand": "Samsung",
+      "period": 2025,
+      "catalog_n": 39,
+      "price_n": 13,
+      "joint_n": 1,
+      "price_coverage": 0.3333333333333333,
+      "ram_price_coverage": 0.02564102564102564,
+      "mean": 545.3838461538462,
+      "median": 269.99,
+      "p95": 1699.9999999999973,
+      "min": 100.0,
+      "max": 2900.0,
+      "eligible": false
+    },
+    {
+      "brand": "Sony",
+      "period": 2010,
+      "catalog_n": 84,
+      "price_n": 84,
+      "joint_n": 69,
+      "price_coverage": 1.0,
+      "ram_price_coverage": 0.8214285714285714,
+      "mean": 205.23809523809524,
+      "median": 195.0,
+      "p95": 350.0,
+      "min": 70.0,
+      "max": 400.0,
+      "eligible": true
+    },
+    {
+      "brand": "Sony",
+      "period": 2015,
+      "catalog_n": 52,
+      "price_n": 50,
+      "joint_n": 35,
+      "price_coverage": 0.9615384615384616,
+      "ram_price_coverage": 0.6730769230769231,
+      "mean": 246.0,
+      "median": 220.0,
+      "p95": 500.0,
+      "min": 100.0,
+      "max": 560.0,
+      "eligible": true
+    },
+    {
+      "brand": "Sony",
+      "period": 2020,
+      "catalog_n": 18,
+      "price_n": 10,
+      "joint_n": 5,
+      "price_coverage": 0.5555555555555556,
+      "ram_price_coverage": 0.2777777777777778,
+      "mean": 709.599,
+      "median": 675.0,
+      "p95": 1518.4999999999989,
+      "min": 200.0,
+      "max": 2000.0,
+      "eligible": false
+    },
+    {
+      "brand": "Sony",
+      "period": 2025,
+      "catalog_n": 2,
+      "price_n": 1,
+      "joint_n": 1,
+      "price_coverage": 0.5,
+      "ram_price_coverage": 0.5,
+      "mean": 550.0,
+      "median": 550.0,
+      "p95": 550.0,
+      "min": 550.0,
+      "max": 550.0,
+      "eligible": false
+    },
+    {
+      "brand": "Xiaomi",
+      "period": 2010,
+      "catalog_n": 12,
+      "price_n": 11,
+      "joint_n": 5,
+      "price_coverage": 0.9166666666666666,
+      "ram_price_coverage": 0.4166666666666667,
+      "mean": 187.27272727272728,
+      "median": 200.0,
+      "p95": 250.0,
+      "min": 90.0,
+      "max": 250.0,
+      "eligible": false
+    },
+    {
+      "brand": "Xiaomi",
+      "period": 2015,
+      "catalog_n": 102,
+      "price_n": 101,
+      "joint_n": 17,
+      "price_coverage": 0.9901960784313726,
+      "ram_price_coverage": 0.16666666666666666,
+      "mean": 277.8217821782178,
+      "median": 210.0,
+      "p95": 530.0,
+      "min": 90.0,
+      "max": 2500.0,
+      "eligible": true
+    },
+    {
+      "brand": "Xiaomi",
+      "period": 2020,
+      "catalog_n": 275,
+      "price_n": 236,
+      "joint_n": 14,
+      "price_coverage": 0.8581818181818182,
+      "ram_price_coverage": 0.05090909090909091,
+      "mean": 280.9225847457627,
+      "median": 200.0,
+      "p95": 675.0,
+      "min": 60.0,
+      "max": 1500.0,
+      "eligible": true
+    },
+    {
+      "brand": "Xiaomi",
+      "period": 2025,
+      "catalog_n": 62,
+      "price_n": 27,
+      "joint_n": 2,
+      "price_coverage": 0.43548387096774194,
+      "ram_price_coverage": 0.03225806451612903,
+      "mean": 361.6703703703704,
+      "median": 310.0,
+      "p95": 720.0,
+      "min": 100.0,
+      "max": 850.0,
+      "eligible": false
+    }
+  ],
+  "bins": [
+    {
+      "width": 50,
+      "nonempty_bins": 37,
+      "peak_bin_n": 270,
+      "upper": 2900.0,
+      "n": 1442
+    },
+    {
+      "width": 100,
+      "nonempty_bins": 25,
+      "peak_bin_n": 537,
+      "upper": 2900.0,
+      "n": 1442
+    },
+    {
+      "width": 200,
+      "nonempty_bins": 14,
+      "peak_bin_n": 645,
+      "upper": 2900.0,
+      "n": 1442
+    }
+  ],
+  "relationship": {
+    "n": 560,
+    "pearson": 0.673614759441416,
+    "spearman": 0.5955581762251693
+  },
+  "trimmed": {
+    "n": 554,
+    "pearson": 0.6237102810853171,
+    "spearman": 0.5823354952277688
+  },
+  "trim_removed": 6,
+  "trim_thresholds": {
+    "ram_gb": 12.0,
+    "price_eur": 1720.4999999999984
+  },
+  "by_brand": {
+    "Samsung": {
+      "n": 276,
+      "pearson": 0.7916590883316404,
+      "spearman": 0.612265967389255
+    },
+    "Xiaomi": {
+      "n": 38,
+      "pearson": 0.5205084421866268,
+      "spearman": 0.7185534737505554
+    },
+    "Huawei": {
+      "n": 136,
+      "pearson": 0.628297427635333,
+      "spearman": 0.6771499519448825
+    },
+    "Sony": {
+      "n": 110,
+      "pearson": 0.7755069813057494,
+      "spearman": 0.6287397719569316
+    }
+  },
+  "within_brand_year": [
+    {
+      "brand": "Huawei",
+      "year": 2011,
+      "n": 12,
+      "pearson": 0.7600803868295776,
+      "spearman": 0.6994728344382539
+    },
+    {
+      "brand": "Huawei",
+      "year": 2012,
+      "n": 19,
+      "pearson": 0.7555922056338878,
+      "spearman": 0.8309885181216355
+    },
+    {
+      "brand": "Huawei",
+      "year": 2013,
+      "n": 19,
+      "pearson": 0.7150280693104553,
+      "spearman": 0.7858928838984568
+    },
+    {
+      "brand": "Huawei",
+      "year": 2014,
+      "n": 21,
+      "pearson": 0.8768398238400243,
+      "spearman": 0.8644709125487691
+    },
+    {
+      "brand": "Huawei",
+      "year": 2015,
+      "n": 14,
+      "pearson": 0.5688810948032098,
+      "spearman": 0.5961295721324175
+    },
+    {
+      "brand": "Huawei",
+      "year": 2017,
+      "n": 12,
+      "pearson": 0.510225472429885,
+      "spearman": 0.2098641064566369
+    },
+    {
+      "brand": "Huawei",
+      "year": 2019,
+      "n": 10,
+      "pearson": 0.6701388350216338,
+      "spearman": 0.8101615018982283
+    },
+    {
+      "brand": "Huawei",
+      "year": 2020,
+      "n": 10,
+      "pearson": 0.4726225557520578,
+      "spearman": 0.7758098206022831
+    },
+    {
+      "brand": "Samsung",
+      "year": 2010,
+      "n": 12,
+      "pearson": 0.39835472224658663,
+      "spearman": 0.4633532570227201
+    },
+    {
+      "brand": "Samsung",
+      "year": 2011,
+      "n": 34,
+      "pearson": 0.5896638350614328,
+      "spearman": 0.6386150222194594
+    },
+    {
+      "brand": "Samsung",
+      "year": 2012,
+      "n": 36,
+      "pearson": 0.6702512116538486,
+      "spearman": 0.787952251542961
+    },
+    {
+      "brand": "Samsung",
+      "year": 2013,
+      "n": 26,
+      "pearson": 0.8486659785756229,
+      "spearman": 0.8870195269124799
+    },
+    {
+      "brand": "Samsung",
+      "year": 2014,
+      "n": 53,
+      "pearson": 0.7613070665516077,
+      "spearman": 0.8492988621961752
+    },
+    {
+      "brand": "Samsung",
+      "year": 2015,
+      "n": 27,
+      "pearson": 0.5742499903795002,
+      "spearman": 0.6720232279853892
+    },
+    {
+      "brand": "Samsung",
+      "year": 2016,
+      "n": 24,
+      "pearson": 0.6813854960142323,
+      "spearman": 0.850806716173301
+    },
+    {
+      "brand": "Samsung",
+      "year": 2017,
+      "n": 13,
+      "pearson": 0.5364004545150965,
+      "spearman": 0.6043633137585719
+    },
+    {
+      "brand": "Samsung",
+      "year": 2019,
+      "n": 12,
+      "pearson": 0.7918884588814785,
+      "spearman": 0.7884402180300091
+    },
+    {
+      "brand": "Samsung",
+      "year": 2020,
+      "n": 12,
+      "pearson": 0.8851302984287884,
+      "spearman": 0.8019375951142418
+    },
+    {
+      "brand": "Sony",
+      "year": 2011,
+      "n": 12,
+      "pearson": 0.38633092124580837,
+      "spearman": 0.445043121822695
+    },
+    {
+      "brand": "Sony",
+      "year": 2012,
+      "n": 25,
+      "pearson": 0.8617331414574838,
+      "spearman": 0.8521626927067439
+    },
+    {
+      "brand": "Sony",
+      "year": 2013,
+      "n": 10,
+      "pearson": 0.8316962112133403,
+      "spearman": 0.8553989227683015
+    },
+    {
+      "brand": "Sony",
+      "year": 2014,
+      "n": 21,
+      "pearson": 0.8295559178145224,
+      "spearman": 0.8606116481317113
+    },
+    {
+      "brand": "Sony",
+      "year": 2015,
+      "n": 19,
+      "pearson": 0.4331461984645576,
+      "spearman": 0.33211433677865465
+    }
+  ],
+  "group_demeaned": {
+    "n": 453,
+    "pearson": 0.6649163307942777,
+    "spearman": 0.6947724494045651
+  },
+  "leave_one_brand_out": {
+    "Samsung": {
+      "n": 284,
+      "pearson": 0.6027452831553274,
+      "spearman": 0.5946384018203513
+    },
+    "Xiaomi": {
+      "n": 522,
+      "pearson": 0.7310437522257066,
+      "spearman": 0.6265989420034423
+    },
+    "Huawei": {
+      "n": 424,
+      "pearson": 0.6942827802854563,
+      "spearman": 0.5684173878423082
+    },
+    "Sony": {
+      "n": 450,
+      "pearson": 0.6574943951510549,
+      "spearman": 0.5949818288558351
+    }
+  },
+  "comparison": {
+    "a": "Samsung",
+    "b": "Xiaomi",
+    "years": [
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024
+    ],
+    "paired": [
+      {
+        "year": 2018,
+        "difference": -60.0,
+        "a_n": 28,
+        "b_n": 23,
+        "a_median": 210.0,
+        "b_median": 270.0
+      },
+      {
+        "year": 2019,
+        "difference": 0.0,
+        "a_n": 44,
+        "b_n": 34,
+        "a_median": 260.0,
+        "b_median": 260.0
+      },
+      {
+        "year": 2020,
+        "difference": 105.0,
+        "a_n": 44,
+        "b_n": 48,
+        "a_median": 275.0,
+        "b_median": 170.0
+      },
+      {
+        "year": 2021,
+        "difference": -55.0,
+        "a_n": 31,
+        "b_n": 50,
+        "a_median": 160.0,
+        "b_median": 215.0
+      },
+      {
+        "year": 2022,
+        "difference": -60.0,
+        "a_n": 26,
+        "b_n": 66,
+        "a_median": 185.0,
+        "b_median": 245.0
+      },
+      {
+        "year": 2023,
+        "difference": -10.0,
+        "a_n": 17,
+        "b_n": 35,
+        "a_median": 210.0,
+        "b_median": 220.0
+      },
+      {
+        "year": 2024,
+        "difference": -19.079999999999984,
+        "a_n": 16,
+        "b_n": 37,
+        "a_median": 180.92000000000002,
+        "b_median": 200.0
+      }
+    ],
+    "estimate": -14.154285714285711,
+    "ci95": [
+      -45.582857142857144,
+      27.142857142857142
+    ],
+    "iid_year_ci95": [
+      -46.879999999999995,
+      31.691428571428577
+    ],
+    "pooled": {
+      "Samsung": {
+        "n": 624,
+        "mean": 266.1773237179487,
+        "median": 200.0,
+        "p95": 658.5000000000002,
+        "min": 50.0,
+        "max": 2900.0
+      },
+      "Xiaomi": {
+        "n": 375,
+        "mean": 283.15421333333336,
+        "median": 220.0,
+        "p95": 673.0000000000001,
+        "min": 60.0,
+        "max": 2500.0
+      }
+    },
+    "common_years": {
+      "Samsung": {
+        "n": 206,
+        "mean": 326.1876699029126,
+        "median": 220.0,
+        "p95": 990.0,
+        "min": 50.0,
+        "max": 1870.0
+      },
+      "Xiaomi": {
+        "n": 293,
+        "mean": 293.84890784982935,
+        "median": 230.0,
+        "p95": 670.0,
+        "min": 60.0,
+        "max": 2500.0
+      }
+    },
+    "pooled_median_difference": -20.0,
+    "common_pooled_median_difference": -10.0
+  },
+  "all_pairs": [
+    {
+      "a": "Samsung",
+      "b": "Xiaomi",
+      "pooled_median_difference": -20.0,
+      "a_n": 624,
+      "b_n": 375
+    },
+    {
+      "a": "Samsung",
+      "b": "Huawei",
+      "pooled_median_difference": 0.0,
+      "a_n": 624,
+      "b_n": 298
+    },
+    {
+      "a": "Samsung",
+      "b": "Sony",
+      "pooled_median_difference": -10.0,
+      "a_n": 624,
+      "b_n": 145
+    },
+    {
+      "a": "Xiaomi",
+      "b": "Huawei",
+      "pooled_median_difference": 20.0,
+      "a_n": 375,
+      "b_n": 298
+    },
+    {
+      "a": "Xiaomi",
+      "b": "Sony",
+      "pooled_median_difference": 10.0,
+      "a_n": 375,
+      "b_n": 145
+    },
+    {
+      "a": "Huawei",
+      "b": "Sony",
+      "pooled_median_difference": -10.0,
+      "a_n": 298,
+      "b_n": 145
+    }
+  ],
+  "without_coverage_rule": {
+    "estimate": 2.8100000000000023,
+    "paired": [
+      {
+        "year": 2015,
+        "difference": 80.0,
+        "a_n": 47,
+        "b_n": 12
+      },
+      {
+        "year": 2016,
+        "difference": 25.0,
+        "a_n": 35,
+        "b_n": 18
+      },
+      {
+        "year": 2017,
+        "difference": 65.0,
+        "a_n": 27,
+        "b_n": 14
+      },
+      {
+        "year": 2018,
+        "difference": -60.0,
+        "a_n": 28,
+        "b_n": 23
+      },
+      {
+        "year": 2019,
+        "difference": 0.0,
+        "a_n": 44,
+        "b_n": 34
+      },
+      {
+        "year": 2020,
+        "difference": 105.0,
+        "a_n": 44,
+        "b_n": 48
+      },
+      {
+        "year": 2021,
+        "difference": -55.0,
+        "a_n": 31,
+        "b_n": 50
+      },
+      {
+        "year": 2022,
+        "difference": -60.0,
+        "a_n": 26,
+        "b_n": 66
+      },
+      {
+        "year": 2023,
+        "difference": -10.0,
+        "a_n": 17,
+        "b_n": 35
+      },
+      {
+        "year": 2024,
+        "difference": -19.079999999999984,
+        "a_n": 16,
+        "b_n": 37
+      },
+      {
+        "year": 2025,
+        "difference": -40.00999999999999,
+        "a_n": 13,
+        "b_n": 27
+      }
+    ]
+  },
+  "retrieval_range": [
+    "2026-10-09T13:12:26.109302Z",
+    "2026-10-11T00:13:23.874785Z"
+  ],
+  "cohort_year_range": [
+    2010,
+    2025
+  ],
+  "eligible_annual_groups": 34,
+  "total_annual_groups": 61,
+  "overall": {
+    "n": 1442,
+    "mean": 273.10226768377254,
+    "median": 210.0,
+    "p95": 670.0,
+    "min": 50.0,
+    "max": 2900.0
+  },
+  "joint_counts": {
+    "Huawei": 136,
+    "Samsung": 276,
+    "Sony": 110,
+    "Xiaomi": 38
+  },
+  "audit": {
+    "duplicate_analytical_fields": 0,
+    "identity_mappings": 0
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "fresh_database": "tmp\\m4-fresh\\phones.db",
+  "baseline_database": "data\\phones.db",
+  "m2_full_row_hashes": {
+    "raw_file": "9e7cbd777ec37d0316095045fc1340d978b7854dbb45970da10ee370f9dcb31d",
+    "phone": "e59c70712affb8dd7fa94e93f2f5e4c50a8725f91792df6fed6f635b4882a50a",
+    "phone_snapshot": "260762d46e3e87c97e243f577ebf365ef6745af42186ac5a3b2a4d4873d1821e",
+    "specification": "5e3620ee9c7c6b8a21c1f59bc440ffbfa38067d5f2c97d5239ed9633672ff4de",
+    "wikidata_item": "f84ce28a02e2f8faf6804cb896ee358928ebb5423aa8b4164766035485394d57",
+    "phone_item_link": "024dfc3e2caed541f146699dd6f437c5d8a18dbb557fb723d643f2e2d3b29c15",
+    "wikipedia_article": "aa32f4583ac63fdbc12fe279754fad8c9bce4964703bf753fdaa3fb9fc64a506",
+    "article_revision": "e5546a32643ee19b2805087f9eeaaf247e4740130d3a5af96aad7f10e4ebd01a",
+    "quarantine": "1ffad2b6b74af305173d1aeeb43918e8c725597adb51ccc8e7f475a536bd449d"
+  },
+  "m3_full_row_hashes": [
+    "3a4c4a8503b7993fee94bc7a0a82c014ccffafeed8e8c488238158e3486cfb55",
+    "9a9d0188d65bad39b4f40fb51e70a4f1796c075c1f35d1a7d8f2daf84e981264",
+    "7d12c097ff6124607de05d3f23d1b16fcdf58ef30d7fe42078bad60b2c488eed",
+    "6c012b1244f8dd7149b52fe524302d8a7b4b32b4f2bdf8503056e73cfcbcdacb",
+    "3458b8fc7fa271857c8d86d16864d6ef22bec5b904361ea63040869d9254be0a",
+    "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  ],
+  "fresh_matches_m2": true,
+  "fresh_matches_m3": true,
+  "fresh_database_sha256_before": "89b75d2b2196b88bc133c4e8d331f3aa54761214b95bc6eae28ce548fb7d9c5e",
+  "fresh_database_sha256_after": "89b75d2b2196b88bc133c4e8d331f3aa54761214b95bc6eae28ce548fb7d9c5e",
+  "baseline_database_sha256_before": "0e2b1f1341b22117417b63ab5e69316a3333c1576d5247ddc9581304eafe33e5",
+  "baseline_database_sha256_after": "0e2b1f1341b22117417b63ab5e69316a3333c1576d5247ddc9581304eafe33e5",
+  "database_bytes_unchanged": true,
+  "generated_files_match": true,
+  "generated_sha256": {
+    "figures/01_price_histogram.svg": "3e57aeb59db265584dbebcb27eb2df2e112956ea0cedb88184f77a5e258f7299",
+    "figures/02_price_ecdf.svg": "4c199cbab02c294c5bb5ef081b9f5438872cf8edd1f71472333569ba992f9c10",
+    "figures/03_coverage.svg": "31c795067e42c262750d846424985b8cacb2cad5ea738b5ef49fefe74156836f",
+    "figures/04_announcement_cohorts.svg": "27b0103d5565dcbee55d450ad222018d94dbb537e7585cd69f7f572d2400d38c",
+    "figures/05_ram_price.svg": "6c92604648e8627a87ac894f3dd5ef48da2818a5a72df6262bdf7586b5f974da",
+    "figures/06_brand_comparison.svg": "c5d576145f4152b55bd464e79e7305069a20764f60435bbee134da4835742fe5",
+    "docs/eda_report.md": "6f024ac92e609dd3138f454b496fad88a9c7b2189bd5bcb6e5797730972a59cf",
+    "docs/m4/results.json": "65ca659a77573e735a86ef0476a1d8d9a325450bafc6281b5861808038b32e20"
+  },
+  "sql_formatting_scan": {
+    "sources_checked": 38,
+    "formatting_violations": [],
+    "non_sql_queries": [
+      {
+        "source": "src\\ingest.py:273",
+        "language": "Wikidata SPARQL; HTTP query, not SQLite SQL"
+      }
+    ],
+    "scope": "Python modules and notebook code cells; direct execution formatting and formatted SQL literals"
+  },
+  "execution": "Every notebook Python cell executed in a fresh namespace; nbconvert unavailable locally"
+}

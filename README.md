@@ -407,10 +407,46 @@ inches, mAh and SI GB; prices retain their explicit currency. Query
 observations with canonical identity keys. Neither view selects an eligible
 smartphone cohort or supplies a verified launch price.
 
+## Exploration (M4)
+
+![RAM and EUR catalog prices by brand](figures/05_ram_price.svg)
+
+The exploratory analysis covers 1,625 Android catalog entries from Samsung,
+Xiaomi, Huawei and Sony announced in 2010–2025, including 1,442 usable EUR
+prices. Brand rankings differ between mean and median, and a positive RAM-price
+association survives the documented trimming and group checks in 560 complete
+pairs. These findings are exploratory: single-configuration coverage is uneven,
+and the Samsung-minus-Xiaomi cohort comparison has an interval spanning zero.
+Catalog prices remain unverified as launch MSRP; see the
+[EDA report](docs/eda_report.md) and [executed notebook](notebooks/m4_eda.ipynb).
+
+From a fresh clone with landed raw data and installed `requirements.txt`:
+
+```sh
+python src/load.py
+python src/clean.py
+python src/validate.py
+python scripts/run_m4_eda.py
+```
+
+The M4 runner needs only Python's standard library. It executes the notebook
+top to bottom in a fresh namespace, saves its outputs, and regenerates six SVG
+figures and the report. When Jupyter is installed, the course's equivalent
+command is:
+
+```sh
+jupyter nbconvert --to notebook --execute --inplace notebooks/m4_eda.ipynb
+```
+
+The database is opened read-only and its complete file hash is checked before
+and after execution. Parameters, seeds, flag filters, coverage rules and the
+paired year-block bootstrap are recorded in the notebook. Verification,
+aggregate results and team review notes are in [docs/m4/](docs/m4/README.md).
+
 ## Status
 
-M3 — cleaned layer and quality report complete. Group attribution, M2-feedback
-notes, review, individual commits and submission remain for the team.
+M4 — exploratory analysis complete. Member review/attribution, M2/M3 feedback
+confirmation, individual commits, tagging and submission remain for the team.
 
 ## Team
 

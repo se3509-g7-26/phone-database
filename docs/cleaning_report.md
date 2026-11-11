@@ -52,6 +52,14 @@ The Investigated by column names the member who reviewed an issue; Pending rows 
 | I-11 | Interpretation | specification.price | No source-verified launch/market/configuration linkage | M2 schema and price text | Unknown price reference date and context | Catalog amount only; persistent MSRP warning | Pending |
 | I-12 | Text / category | specification.os | 444 OS cells (all observations) were unmapped: 51 because of a prefix-boundary defect, 305 that name an OS family without an alias, and 88 that remain | `Symbian, S60 rel. 3.2`, `Android-based OPhone 2.0`; `Proprietary OS` (111), `iPadOS 17.5.1`, `Firefox OS 1.3`; remaining `HyperOS`, `EMUI 14.2 (International), HarmonyOS 4.2 (China)` | Confirmed: the prefix rule required a space after the alias, and the alias list covered eleven families | Boundary fix and 32 reviewed aliases; vendor skins, UI names and non-OS strings stay unmapped | Onur Atıcı |
 
+M4 follow-up (I-13; pending member review): among selected Android/EUR/2010–2025
+cohorts, Xiaomi has 38 joint price/RAM pairs out of 451 catalog entries, versus
+Sony 110/156. Recent cohorts also lose usable EUR price coverage. See the
+[EDA report](eda_report.md), sections 4–6, using primary numeric flags including
+unusual measurements. This extends I-05/I-11 with selection evidence; it does
+not establish a new parser defect. Conservative M3 rules remain in force;
+future extraction changes require source review and regression cases.
+
 ### Checked and not found
 
 | Family | Check | Result |

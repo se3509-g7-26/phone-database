@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="740" viewBox="0 0 1200 740" role="img">
+<rect width="100%" height="100%" fill="#f8fafc"/>
+<style>text{font-family:Arial,sans-serif;fill:#24364b} .grid{stroke:#dde5ed;stroke-width:1}</style>
+<title>Year and five-year summaries answer different cohort questions</title>
+<text x="35.00" y="38.00" font-size="23" text-anchor="start" font-weight="bold">Year and five-year summaries answer different cohort questions</text>
+<text x="35.00" y="66.00" font-size="14" text-anchor="start" font-weight="normal">Question: does the typical EUR catalog amount change across device generations?</text>
+<text x="35.00" y="699.00" font-size="12" text-anchor="start" font-weight="normal">n=1,442 current catalog IDs; Android; 2010-2025 announcement cohorts; EUR. Only groups passing coverage rule are plotted; lines break at failed/missing years.</text>
+<text x="35.00" y="718.00" font-size="12" text-anchor="start" font-weight="normal">Numeric flags: ok, unit_converted, unusual_low, unusual_high. OS: mapped; year: ok. Catalog amounts, not verified launch MSRP.</text>
+<text x="85.00" y="140.00" font-size="14" text-anchor="start" font-weight="bold">Annual cohorts</text>
+<line x1="85.00" y1="550.00" x2="560.00" y2="550.00" stroke="#ccd7e2" stroke-width="1"/>
+<text x="76.00" y="554.00" font-size="11" text-anchor="end" font-weight="normal">0</text>
+<line x1="85.00" y1="451.25" x2="560.00" y2="451.25" stroke="#ccd7e2" stroke-width="1"/>
+<text x="76.00" y="455.25" font-size="11" text-anchor="end" font-weight="normal">75</text>
+<line x1="85.00" y1="352.50" x2="560.00" y2="352.50" stroke="#ccd7e2" stroke-width="1"/>
+<text x="76.00" y="356.50" font-size="11" text-anchor="end" font-weight="normal">150</text>
+<line x1="85.00" y1="253.75" x2="560.00" y2="253.75" stroke="#ccd7e2" stroke-width="1"/>
+<text x="76.00" y="257.75" font-size="11" text-anchor="end" font-weight="normal">225</text>
+<line x1="85.00" y1="155.00" x2="560.00" y2="155.00" stroke="#ccd7e2" stroke-width="1"/>
+<text x="76.00" y="159.00" font-size="11" text-anchor="end" font-weight="normal">300</text>
+<text x="85.00" y="570.00" font-size="11" text-anchor="middle" font-weight="normal">2010</text>
+<text x="243.33" y="570.00" font-size="11" text-anchor="middle" font-weight="normal">2015</text>
+<text x="401.67" y="570.00" font-size="11" text-anchor="middle" font-weight="normal">2020</text>
+<text x="560.00" y="570.00" font-size="11" text-anchor="middle" font-weight="normal">2025</text>
+<line x1="85.00" y1="550.00" x2="560.00" y2="550.00" stroke="#8292a5" stroke-width="1"/>
+<text x="322.50" y="593.00" font-size="12" text-anchor="middle" font-weight="normal">Announcement year</text>
+<text x="85.00" y="121.00" font-size="11" text-anchor="start" font-weight="normal">Median catalog price (EUR)</text>
+<circle cx="85.00" cy="352.50" r="4" fill="#2463a5" opacity="1"/>
+<line x1="85.00" y1="352.50" x2="116.67" y2="352.50" stroke="#2463a5" stroke-width="2"/>
+<circle cx="116.67" cy="352.50" r="4" fill="#2463a5" opacity="1"/>
+<line x1="116.67" y1="352.50" x2="148.33" y2="352.50" stroke="#2463a5" stroke-width="2"/>
+<circle cx="148.33" cy="352.50" r="4" fill="#2463a5" opacity="1"/>
+<line x1="148.33" y1="352.50" x2="180.00" y2="299.83" stroke="#2463a5" stroke-width="2"/>
+<circle cx="180.00" cy="299.83" r="4" fill="#2463a5" opacity="1"/>
+<line x1="180.00" y1="299.83" x2="211.67" y2="161.58" stroke="#2463a5" stroke-width="2"/>
+<circle cx="211.67" cy="161.58" r="4" fill="#2463a5" opacity="1"/>
+<line x1="211.67" y1="161.58" x2="243.33" y2="220.83" stroke="#2463a5" stroke-width="2"/>
+<circle cx="243.33" cy="220.83" r="4" fill="#2463a5" opacity="1"/>
+<line x1="243.33" y1="220.83" x2="275.00" y2="299.83" stroke="#2463a5" stroke-width="2"/>
+<circle cx="275.00" cy="299.83" r="4" fill="#2463a5" opacity="1"/>
+<line x1="275.00" y1="299.83" x2="306.67" y2="260.33" stroke="#2463a5" stroke-width="2"/>
+<circle cx="306.67" cy="260.33" r="4" fill="#2463a5" opacity="1"/>
+<line x1="306.67" y1="260.33" x2="338.33" y2="273.50" stroke="#2463a5" stroke-width="2"/>
+<circle cx="338.33" cy="273.50" r="4" fill="#2463a5" opacity="1"/>
+<line x1="338.33" y1="273.50" x2="370.00" y2="207.67" stroke="#2463a5" stroke-width="2"/>
+<circle cx="370.00" cy="207.67" r="4" fill="#2463a5" opacity="1"/>
+<line x1="370.00" y1="207.67" x2="401.67" y2="187.92" stroke="#2463a5" stroke-width="2"/>
+<circle cx="401.67" cy="187.92" r="4" fill="#2463a5" opacity="1"/>
+<line x1="401.67" y1="187.92" x2="433.33" y2="339.33" stroke="#2463a5" stroke-width="2"/>
+<circle cx="433.33" cy="339.33" r="4" fill="#2463a5" opacity="1"/>
+<line x1="433.33" y1="339.33" x2="465.00" y2="306.42" stroke="#2463a5" stroke-width="2"/>
+<circle cx="465.00" cy="306.42" r="4" fill="#2463a5" opacity="1"/>
+<line x1="465.00" y1="306.42" x2="496.67" y2="273.50" stroke="#2463a5" stroke-width="2"/>
+<circle cx="496.67" cy="273.50" r="4" fill="#2463a5" opacity="1"/>
+<line x1="496.67" y1="273.50" x2="528.33" y2="311.79" stroke="#2463a5" stroke-width="2"/>
+<circle cx="528.33" cy="311.79" r="4" fill="#2463a5" opacity="1"/>
+<circle cx="338.33" cy="194.50" r="4" fill="#cf661c" opacity="1"/>
+<line x1="338.33" y1="194.50" x2="370.00" y2="207.67" stroke="#cf661c" stroke-width="2"/>
+<circle cx="370.00" cy="207.67" r="4" fill="#cf661c" opacity="1"/>
+<line x1="370.00" y1="207.67" x2="401.67" y2="326.17" stroke="#cf661c" stroke-width="2"/>
+<circle cx="401.67" cy="326.17" r="4" fill="#cf661c" opacity="1"/>
+<line x1="401.67" y1="326.17" x2="433.33" y2="266.92" stroke="#cf661c" stroke-width="2"/>
+<circle cx="433.33" cy="266.92" r="4" fill="#cf661c" opacity="1"/>
+<line x1="433.33" y1="266.92" x2="465.00" y2="227.42" stroke="#cf661c" stroke-width="2"/>
+<circle cx="465.00" cy="227.42" r="4" fill="#cf661c" opacity="1"/>
+<line x1="465.00" y1="227.42" x2="496.67" y2="260.33" stroke="#cf661c" stroke-width="2"/>
+<circle cx="496.67" cy="260.33" r="4" fill="#cf661c" opacity="1"/>
+<line x1="496.67" y1="260.33" x2="528.33" y2="286.67" stroke="#cf661c" stroke-width="2"/>
+<circle cx="528.33" cy="286.67" r="4" fill="#cf661c" opacity="1"/>
+<circle cx="148.33" cy="378.83" r="4" fill="#248878" opacity="1"/>
+<line x1="148.33" y1="378.83" x2="180.00" y2="332.75" stroke="#248878" stroke-width="2"/>
+<circle cx="180.00" cy="332.75" r="4" fill="#248878" opacity="1"/>
+<line x1="180.00" y1="332.75" x2="211.67" y2="299.83" stroke="#248878" stroke-width="2"/>
+<circle cx="211.67" cy="299.83" r="4" fill="#248878" opacity="1"/>
+<line x1="211.67" y1="299.83" x2="243.33" y2="299.83" stroke="#248878" stroke-width="2"/>
+<circle cx="243.33" cy="299.83" r="4" fill="#248878" opacity="1"/>
+<line x1="243.33" y1="299.83" x2="275.00" y2="234.00" stroke="#248878" stroke-width="2"/>
+<circle cx="275.00" cy="234.00" r="4" fill="#248878" opacity="1"/>
+<line x1="275.00" y1="234.00" x2="306.67" y2="293.25" stroke="#248878" stroke-width="2"/>
+<circle cx="306.67" cy="293.25" r="4" fill="#248878" opacity="1"/>
+<line x1="306.67" y1="293.25" x2="338.33" y2="240.58" stroke="#248878" stroke-width="2"/>
+<circle cx="338.33" cy="240.58" r="4" fill="#248878" opacity="1"/>
+<line x1="338.33" y1="240.58" x2="370.00" y2="181.33" stroke="#248878" stroke-width="2"/>
+<circle cx="370.00" cy="181.33" r="4" fill="#248878" opacity="1"/>
+<line x1="370.00" y1="181.33" x2="401.67" y2="214.25" stroke="#248878" stroke-width="2"/>
+<circle cx="401.67" cy="214.25" r="4" fill="#248878" opacity="1"/>
+<circle cx="148.33" cy="273.50" r="4" fill="#9654a1" opacity="1"/>
+<circle cx="211.67" cy="234.00" r="4" fill="#9654a1" opacity="1"/>
+<line x1="211.67" y1="234.00" x2="243.33" y2="286.67" stroke="#9654a1" stroke-width="2"/>
+<circle cx="243.33" cy="286.67" r="4" fill="#9654a1" opacity="1"/>
+<text x="665.00" y="140.00" font-size="14" text-anchor="start" font-weight="bold">Five-year cohorts</text>
+<line x1="665.00" y1="550.00" x2="1140.00" y2="550.00" stroke="#ccd7e2" stroke-width="1"/>
+<text x="656.00" y="554.00" font-size="11" text-anchor="end" font-weight="normal">0</text>
+<line x1="665.00" y1="451.25" x2="1140.00" y2="451.25" stroke="#ccd7e2" stroke-width="1"/>
+<text x="656.00" y="455.25" font-size="11" text-anchor="end" font-weight="normal">75</text>
+<line x1="665.00" y1="352.50" x2="1140.00" y2="352.50" stroke="#ccd7e2" stroke-width="1"/>
+<text x="656.00" y="356.50" font-size="11" text-anchor="end" font-weight="normal">150</text>
+<line x1="665.00" y1="253.75" x2="1140.00" y2="253.75" stroke="#ccd7e2" stroke-width="1"/>
+<text x="656.00" y="257.75" font-size="11" text-anchor="end" font-weight="normal">225</text>
+<line x1="665.00" y1="155.00" x2="1140.00" y2="155.00" stroke="#ccd7e2" stroke-width="1"/>
+<text x="656.00" y="159.00" font-size="11" text-anchor="end" font-weight="normal">300</text>
+<text x="665.00" y="570.00" font-size="11" text-anchor="middle" font-weight="normal">2010</text>
+<text x="823.33" y="570.00" font-size="11" text-anchor="middle" font-weight="normal">2015</text>
+<text x="981.67" y="570.00" font-size="11" text-anchor="middle" font-weight="normal">2020</text>
+<text x="1140.00" y="570.00" font-size="11" text-anchor="middle" font-weight="normal">2025</text>
+<line x1="665.00" y1="550.00" x2="1140.00" y2="550.00" stroke="#8292a5" stroke-width="1"/>
+<text x="902.50" y="593.00" font-size="12" text-anchor="middle" font-weight="normal">Announcement five-year bin start</text>
+<text x="665.00" y="121.00" font-size="11" text-anchor="start" font-weight="normal">Median catalog price (EUR)</text>
+<circle cx="665.00" cy="313.00" r="4" fill="#2463a5" opacity="1"/>
+<line x1="665.00" y1="313.00" x2="823.33" y2="260.33" stroke="#2463a5" stroke-width="2"/>
+<circle cx="823.33" cy="260.33" r="4" fill="#2463a5" opacity="1"/>
+<line x1="823.33" y1="260.33" x2="981.67" y2="273.50" stroke="#2463a5" stroke-width="2"/>
+<circle cx="981.67" cy="273.50" r="4" fill="#2463a5" opacity="1"/>
+<circle cx="823.33" cy="273.50" r="4" fill="#cf661c" opacity="1"/>
+<line x1="823.33" y1="273.50" x2="981.67" y2="286.67" stroke="#cf661c" stroke-width="2"/>
+<circle cx="981.67" cy="286.67" r="4" fill="#cf661c" opacity="1"/>
+<circle cx="665.00" cy="365.67" r="4" fill="#248878" opacity="1"/>
+<line x1="665.00" y1="365.67" x2="823.33" y2="247.17" stroke="#248878" stroke-width="2"/>
+<circle cx="823.33" cy="247.17" r="4" fill="#248878" opacity="1"/>
+<line x1="823.33" y1="247.17" x2="981.67" y2="214.25" stroke="#248878" stroke-width="2"/>
+<circle cx="981.67" cy="214.25" r="4" fill="#248878" opacity="1"/>
+<circle cx="665.00" cy="293.25" r="4" fill="#9654a1" opacity="1"/>
+<line x1="665.00" y1="293.25" x2="823.33" y2="260.33" stroke="#9654a1" stroke-width="2"/>
+<circle cx="823.33" cy="260.33" r="4" fill="#9654a1" opacity="1"/>
+<text x="85.00" y="615.00" font-size="14" text-anchor="start" font-weight="bold" style="fill:#2463a5">Samsung</text>
+<text x="355.00" y="615.00" font-size="14" text-anchor="start" font-weight="bold" style="fill:#cf661c">Xiaomi</text>
+<text x="625.00" y="615.00" font-size="14" text-anchor="start" font-weight="bold" style="fill:#248878">Huawei</text>
+<text x="895.00" y="615.00" font-size="14" text-anchor="start" font-weight="bold" style="fill:#9654a1">Sony</text>
+</svg>
