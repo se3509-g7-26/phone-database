@@ -15,6 +15,9 @@ import textwrap
 
 from db import ROOT, DEFAULT_DB, connect
 
+# Source fields pivoted by sql/queries/m4_cohort.sql; each must be unique per model.
+ANALYTICAL_FIELDS = ['price', 'os', 'year', 'internalmemory']
+
 COLORS = {'Samsung': '#2463a5', 'Xiaomi': '#cf661c', 'Huawei': '#248878',
           'Sony': '#9654a1', 'All': '#35485e'}
 
@@ -330,7 +333,8 @@ def analyze(con, params, output):
     for width in params['bin_trials']:
         hist=Counter(int(v//width) for v in priced)
         bins.append(dict(width=width,nonempty_bins=len(hist),peak_bin_n=max(hist.values()),upper=max(priced),n=len(priced)))
-    duplicates=list(con.execute("SELECT phone_key,source_field,COUNT(*) FROM specification_current WHERE source_field IN ('price','os','year','internalmemory') GROUP BY phone_key,source_field HAVING COUNT(*)>1"))
+    duplicates=list(con.execute((ROOT/'sql/queries/m4_audit_duplicates.sql').read_text(),
+        dict(fields=json.dumps(ANALYTICAL_FIELDS))))
     if duplicates:
         raise ValueError('Repeated analytical fields need a cleaning decision before pivoting')
     if con.execute('SELECT COUNT(*) FROM phone_identity_map').fetchone()[0]:
