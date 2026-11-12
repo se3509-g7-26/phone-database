@@ -1,6 +1,27 @@
 """Generate the M4 narrative from executed aggregate results, never manual values."""
 from explore import markdown_table
 
+WORDS = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten']
+
+
+def word(n):
+    """Spell small counts in prose; larger counts stay numeric."""
+    return WORDS[n] if 0 <= n < len(WORDS) else str(n)
+
+
+def edge_sentence(annual, params, year, label):
+    """Describe every brand at one cohort edge from the annual coverage table."""
+    lookup = {(row['brand'], row['year']): row for row in annual}
+    parts = []
+    for brand in params['brands']:
+        row = lookup.get((brand, year))
+        if row is None:
+            parts.append(f'{brand} no retained entries')
+        else:
+            verdict = 'passes' if row['eligible'] else 'fails'
+            parts.append(f"{brand} {row['price_n']}/{row['catalog_n']} usable prices ({verdict} the rule)")
+    return f'At the {year} {label} edge: ' + ', '.join(parts) + '.'
+
 
 def write_report(r, root):
     p=r['params'];c=r['comparison'];rel=r['relationship'];trim=r['trimmed'];demean=r['group_demeaned']
@@ -15,13 +36,16 @@ def write_report(r, root):
     within_brand=[dict(brand=b,**v) for b,v in r['by_brand'].items()]
     leaveout=[dict(omitted_brand=b,**v) for b,v in r['leave_one_brand_out'].items()]
     summary_rows=[dict(check='All complete pairs',**rel),dict(check='Remove marginal top 1%',**trim),dict(check='Within brand-year residuals',**demean)]
+    medians=[g['median'] for g in r['groups']]
+    edges=' '.join(edge_sentence(r['annual'],p,year,label) for year,label in [(p['start_year'],'left'),(p['end_year'],'right')])
+    loose_years=[v['year'] for v in r['without_coverage_rule']['paired']]
     raw_sql=(root/'sql/queries/m4_raw.sql').read_text()
     clean_sql=(root/'sql/queries/m4_cohort.sql').read_text()
     text=f'''# Exploratory Analysis — Cellphone Catalog Prices and Specifications
 
 ## 1. Summary
 
-The project asks how smartphone launch prices relate to hardware and how that relationship changes across manufacturers and years, but the current extract supports only a narrower catalog-price exploration. We examine {r['cohort_n']:,} Android catalog entries from four named brands, announced in 2010–2025, of which {r['overall']['n']:,} have a usable EUR amount; this is not a validated smartphone-only cohort. Typical priced entries have a median of EUR {num(r['overall']['median'])}, while brand medians range from EUR 200 to EUR 220. RAM and price are positively related in {rel['n']} complete pairs (Pearson {rel['pearson']:.3f}, Spearman {rel['spearman']:.3f}), but configuration availability differs sharply between brands. The Samsung-minus-Xiaomi equal-year median contrast is EUR {c['estimate']:+.2f}, with an exploratory 95% block-bootstrap interval of [{c['ci95'][0]:+.2f}, {c['ci95'][1]:+.2f}], so these data do not establish a stable brand premium. Better launch-price evidence, device classification, configuration extraction, or different cohort coverage could change these results; no additional M3 parser correction or feedback resolution is claimed in this milestone.
+The project asks how smartphone launch prices relate to hardware and how that relationship changes across manufacturers and years, but the current extract supports only a narrower catalog-price exploration. We examine {r['cohort_n']:,} Android catalog entries from four named brands, announced in 2010–2025, of which {r['overall']['n']:,} have a usable EUR amount; this is not a validated smartphone-only cohort. Typical priced entries have a median of EUR {num(r['overall']['median'])}, while brand medians range from EUR {min(medians):,.0f} to EUR {max(medians):,.0f}. RAM and price are positively related in {rel['n']} complete pairs (Pearson {rel['pearson']:.3f}, Spearman {rel['spearman']:.3f}), but configuration availability differs sharply between brands. The Samsung-minus-Xiaomi equal-year median contrast is EUR {c['estimate']:+.2f}, with an exploratory 95% block-bootstrap interval of [{c['ci95'][0]:+.2f}, {c['ci95'][1]:+.2f}], so these data do not establish a stable brand premium. Better launch-price evidence, device classification, configuration extraction, or different cohort coverage could change these results; no additional M3 parser correction or feedback resolution is claimed in this milestone.
 
 ## 2. Raw versus cleaned
 
@@ -79,7 +103,7 @@ The coverage denominator is all landed catalog IDs satisfying the stated OS, bra
 
 The annual rule is the same 20 catalog / 10 usable / 50% threshold as the brand-wide rule. Twenty limits very small catalog cohorts; ten avoids reporting a median from only a handful of prices; half-coverage prevents a small observed minority defining a cohort's typical amount. These are explicit pragmatic screens, not calibrated representativeness guarantees. {r['eligible_annual_groups']} of {r['total_annual_groups']} observed brand-years pass. Zero-model cells in the heatmap are missing groups, not zero-price products. Failed groups remain in the audit table but are gaps in the annual figure.
 
-The equal-year Samsung-minus-Xiaomi median contrast is EUR {c['estimate']:+.2f} across {len(c['years'])} supported common years with the rule. Removing it admits 2015–2025 and gives EUR {r['without_coverage_rule']['estimate']:+.2f} across {len(r['without_coverage_rule']['paired'])} years. Its direction changes because the admitted cohort mixture changes; this is a sensitivity of the target set, not proof of a causal reversal.
+The equal-year Samsung-minus-Xiaomi median contrast is EUR {c['estimate']:+.2f} across {len(c['years'])} supported common years with the rule. Removing it admits {min(loose_years)}–{max(loose_years)} and gives EUR {r['without_coverage_rule']['estimate']:+.2f} across {len(r['without_coverage_rule']['paired'])} years. Its direction changes because the admitted cohort mixture changes; this is a sensitivity of the target set, not proof of a causal reversal.
 
 ### Flag sensitivity
 
@@ -95,7 +119,7 @@ Strict filtering reduces every mean and makes Xiaomi's median tie Huawei and Sam
 
 These are device-generation cohorts, not repeated observations of the same price over time. Announcement year is a source calendar year; no precise announcement timestamp or timezone is available to convert. Applying `tz_convert` to an invented January timestamp would manufacture information. Retrieval timestamps are genuinely UTC and span {r['retrieval_range'][0]} to {r['retrieval_range'][1]}; they document collection only. Grouping that three-day collection by local hour would answer a crawler-scheduling question.
 
-The 2026 cohort is excluded because collection occurred before year end. The 2010 left edge has Samsung 27/27 usable prices, Huawei 8/8, Sony 4/4, and no retained Xiaomi entries; Huawei and Sony fail the count rule. At the 2025 right edge, Samsung has 13/39 and Xiaomi 27/62 usable prices, both below half coverage. Passing coverage cannot establish a complete historical catalog. The notebook prints both edge audits, and this report retains the complete annual table.
+The 2026 cohort is excluded because collection occurred before year end. {edges} Passing coverage cannot establish a complete historical catalog. The notebook prints both edge audits, and this report retains the complete annual table.
 
 The two scales are annual and five-year announcement cohorts; the latter group years by floor(year/5). Both use the same flags and coverage rule. Broader bins provide more support but can hide individual-year changes. The brand-within-year hierarchy supplies a second grouping rather than an invented hourly timeline. Holidays, launch-day effects, and day-of-week seasonality cannot be assessed from year-only dates; they are explicitly untestable here, not checked and found absent.
 
@@ -123,11 +147,11 @@ Samsung/Xiaomi was selected for substantive relevance and common-cohort support 
 
 {table(c['paired'],['year','a_n','b_n','a_median','b_median','difference'])}
 
-The estimate is EUR {c['estimate']:+.2f}; the 95% percentile interval is [{c['ci95'][0]:+.2f}, {c['ci95'][1]:+.2f}]. We resample paired annual contrasts in two-year circular moving blocks, retain {len(c['years'])} years per replicate, and use {p['bootstrap_reps']:,} replicates with seed {p['seed']}. Pairing preserves common cohort conditions and blocks retain some adjacent-year dependence; circular wrapping is a bootstrap convention, not an assertion that the endpoints are historically adjacent. An independent-year sensitivity interval is [{c['iid_year_ci95'][0]:+.2f}, {c['iid_year_ci95'][1]:+.2f}]. Seven cohort years provide weak support for precise uncertainty, and neither interval covers selection or measurement bias.
+The estimate is EUR {c['estimate']:+.2f}; the 95% percentile interval is [{c['ci95'][0]:+.2f}, {c['ci95'][1]:+.2f}]. We resample paired annual contrasts in two-year circular moving blocks, retain {len(c['years'])} years per replicate, and use {p['bootstrap_reps']:,} replicates with seed {p['seed']}. Pairing preserves common cohort conditions and blocks retain some adjacent-year dependence; circular wrapping is a bootstrap convention, not an assertion that the endpoints are historically adjacent. An independent-year sensitivity interval is [{c['iid_year_ci95'][0]:+.2f}, {c['iid_year_ci95'][1]:+.2f}]. {word(len(c['years'])).capitalize()} cohort years provide weak support for precise uncertainty, and neither interval covers selection or measurement bias.
 
 The full-cohort pooled median gap is EUR {c['pooled_median_difference']:+.2f} (Samsung n={c['pooled']['Samsung']['n']}, Xiaomi n={c['pooled']['Xiaomi']['n']}). Restricting to common supported years gives EUR {c['common_pooled_median_difference']:+.2f} (n={c['common_years']['Samsung']['n']} and {c['common_years']['Xiaomi']['n']}). Equal weighting gives the estimate above. The counts show different cohort mixtures; annual differences include both signs. There is no uniform within-year reversal establishing Simpson's paradox, and no stable brand premium is inferred.
 
-We inspect six pooled pairwise brand contrasts, the selected paired-year comparison, 23 supported brand-year correlations, four within-brand correlations, and the documented trim, omission, flag and coverage sensitivities. These are multiple looks on one extract, not independent tests. No p-value, multiplicity-adjusted discovery, or held-out confirmation is claimed.
+We inspect {word(len(r['all_pairs']))} pooled pairwise brand contrasts, the selected paired-year comparison, {len(r['within_brand_year'])} supported brand-year correlations, {word(len(r['by_brand']))} within-brand correlations, and the documented trim, omission, flag and coverage sensitivities. These are multiple looks on one extract, not independent tests. No p-value, multiplicity-adjusted discovery, or held-out confirmation is claimed.
 
 ## 8. Findings
 
