@@ -23,6 +23,7 @@ COLORS = {'Samsung': '#2463a5', 'Xiaomi': '#cf661c', 'Huawei': '#248878',
 
 
 def quantile(values, p):
+    """Linear-interpolated percentile (same rule as numpy's default); None if empty."""
     a = sorted(values)
     if not a:
         return None
@@ -32,6 +33,7 @@ def quantile(values, p):
 
 
 def summary(values):
+    """n, mean, median, p95, min and max of one group; statistics are None when n=0."""
     a = list(values)
     return dict(n=len(a), mean=st.mean(a) if a else None,
                 median=st.median(a) if a else None, p95=quantile(a, .95),
@@ -39,6 +41,7 @@ def summary(values):
 
 
 def pearson(x, y):
+    """Pearson correlation; None for fewer than three pairs or a constant variable."""
     if len(x) < 3:
         return None
     mx, my = st.mean(x), st.mean(y)
@@ -47,6 +50,7 @@ def pearson(x, y):
 
 
 def ranks(values):
+    """1-based ranks with ties given their average rank, as Spearman requires."""
     order = sorted(range(len(values)), key=values.__getitem__)
     result = [0.0]*len(values)
     i = 0
@@ -61,11 +65,13 @@ def ranks(values):
 
 
 def correlation(rows):
+    """Pearson and Spearman of RAM against price on identical complete pairs."""
     x, y = [r['ram'] for r in rows], [r['price'] for r in rows]
     return dict(n=len(rows), pearson=pearson(x, y), spearman=pearson(ranks(x), ranks(y)))
 
 
 def read_cohort(con, params, flags=None):
+    """One row per selected catalog model; flags override the primary numeric filter."""
     bindings = dict(currency=params['currency'], os=params['os'],
                     start=params['start_year'], end=params['end_year'],
                     brands=json.dumps(params['brands']),
@@ -74,12 +80,14 @@ def read_cohort(con, params, flags=None):
 
 
 def raw_summary(con, params):
+    """Naive M2 baseline: mean of the raw `About … EUR` cast per brand, no flags."""
     return [dict(r) for r in con.execute((ROOT/'sql/queries/m4_raw.sql').read_text(),
         dict(start=params['start_year'], end=params['end_year'],
              brands=json.dumps(params['brands']), price_pattern='About % EUR', os_pattern='Android%'))]
 
 
 def grouped(rows, keys):
+    """Group row dicts by a tuple of key columns."""
     result = defaultdict(list)
     for row in rows:
         result[tuple(row[k] for k in keys)].append(row)
@@ -87,6 +95,10 @@ def grouped(rows, keys):
 
 
 def coverage(rows, params, keys=('brand', 'year')):
+    """Price coverage and summaries per group, with the coverage rule as `eligible`.
+
+    The denominator is every catalog model in the group, priced or not.
+    """
     result = []
     for key, group in sorted(grouped(rows, keys).items()):
         priced = [r for r in group if r['price'] is not None]
@@ -180,6 +192,7 @@ class SVG:
 
 
 def captions(params, n, extra=''):
+    """Two caption lines stating n, cohort, currency and the flag filter."""
     return [f'n={n:,} current catalog IDs; Android; {params["start_year"]}-{params["end_year"]} announcement cohorts; {params["currency"]}. '+extra,
             'Numeric flags: '+', '.join(params['flags'])+'. OS: mapped; year: ok. Catalog amounts, not verified launch MSRP.']
 
@@ -302,6 +315,7 @@ def comparison(annual, rows, params, directory):
 
 
 def analyze(con, params, output):
+    """Run every M4 query, write the six figures and return the aggregate results."""
     rows=read_cohort(con,params)
     strict=read_cohort(con,params,params['strict_flags'])
     annual=coverage(rows,params)
@@ -370,6 +384,7 @@ def analyze(con, params, output):
 
 
 def markdown_table(rows, columns):
+    """Render row dicts as a Markdown table; floats get three decimals."""
     def fmt(v):
         if v is None:return 'NA'
         if isinstance(v,bool):return 'yes' if v else 'no'
@@ -383,6 +398,7 @@ def print_table(rows, columns):
 
 
 def database_hash(path):
+    """SHA-256 of the database file, compared before and after the notebook runs."""
     digest=hashlib.sha256()
     with Path(path).open('rb') as stream:
         for block in iter(lambda:stream.read(1024*1024),b''):
