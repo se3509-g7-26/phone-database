@@ -7,6 +7,6 @@ Atomicity: PASS
 foreign_key_check: PASS
 All tables STRICT: PASS
 ----------------------------------------------------------------------
-Ran 42 tests in 2.519s
+Ran 47 tests in 0.448s
 
 OK

@@ -1,11 +1,17 @@
 """Numerical regression cases for the dependency-free EDA calculations."""
+import json
 import math
 from pathlib import Path
+import re
+import shutil
 import sys
+import tempfile
 import unittest
 
-sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'src'))
-from explore import correlation,coverage,paired_bootstrap,pearson,quantile,ranks
+ROOT=Path(__file__).resolve().parents[1]
+sys.path.insert(0,str(ROOT/'src'))
+from explore import correlation,coverage,markdown_table,paired_bootstrap,pearson,quantile,ranks,summary
+from explore_report import edge_sentence,word,write_report
 
 
 class ExploreTests(unittest.TestCase):
@@ -41,6 +47,34 @@ class ExploreTests(unittest.TestCase):
         self.assertEqual(a,paired_bootstrap(values,params,2))
         self.assertLess(a[0],0);self.assertGreater(a[1],0)
         with self.assertRaises(ValueError):paired_bootstrap([1,2],params,2)
+
+    def test_summary_of_empty_group_has_no_statistics(self):
+        self.assertEqual(summary([]),dict(n=0,mean=None,median=None,p95=None,min=None,max=None))
+        self.assertEqual(summary([3,1,2])['median'],2)
+
+    def test_markdown_table_formats_missing_flags_and_floats(self):
+        table=markdown_table([dict(a=None,b=True,c=1.23456,d=7)],['a','b','c','d'])
+        self.assertEqual(table.splitlines()[-1],'| NA | yes | 1.235 | 7 |')
+
+    def test_edge_sentence_names_every_brand(self):
+        annual=[dict(brand='A',year=2010,price_n=5,catalog_n=8,eligible=False)]
+        text=edge_sentence(annual,dict(brands=['A','B']),2010,'left')
+        self.assertEqual(text,'At the 2010 left edge: A 5/8 usable prices (fails the rule), B no retained entries.')
+        self.assertEqual((word(7),word(23)),('seven','23'))
+
+    def test_queries_bind_every_value(self):
+        for path in sorted((ROOT/'sql/queries').glob('m4_*.sql')):
+            sql=path.read_text()
+            self.assertNotRegex(sql,r'\{|%s|\?',path.name)
+            self.assertTrue(re.search(r':[a-z_]+',sql),path.name)
+
+    def test_report_regenerates_from_committed_results(self):
+        results=json.loads((ROOT/'docs/m4/results.json').read_text(encoding='utf-8'))
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp=Path(tmp);shutil.copytree(ROOT/'sql',tmp/'sql');(tmp/'docs').mkdir()
+            write_report(results,tmp)
+            self.assertEqual((tmp/'docs/eda_report.md').read_text(encoding='utf-8'),
+                             (ROOT/'docs/eda_report.md').read_text(encoding='utf-8'))
 
 
 if __name__=='__main__':unittest.main()
