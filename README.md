@@ -69,7 +69,12 @@ To run the tests:
 ## Structure
 
 - `src/ingest.py` — ingestion entry point.
-- `tests/test_ingest.py` — tests of the ingestion script; they make no network requests.
+- `src/load.py`, `src/clean.py`, `src/validate.py` — M2 load, M3 cleaned layer and its validation.
+- `src/explore.py`, `src/explore_report.py` — read-only M4 analysis, SVG figures and the generated EDA report.
+- `notebooks/` — M3 profile and M4 exploration, committed with outputs.
+- `sql/` — schemas, and reused analytical queries under `sql/queries/`.
+- `figures/` — the six M4 figures, written by the notebook.
+- `tests/` — offline tests; they make no network requests.
 - `scripts/` — helpers for the long GSMArena crawl.
 - `data/raw/` — timestamped original responses, kept locally.
 - `data/discovery/` — local model URL inventories from catalog traversal.
@@ -437,6 +442,15 @@ command is:
 ```sh
 jupyter nbconvert --to notebook --execute --inplace notebooks/m4_eda.ipynb
 ```
+
+| Figure | Question it answers |
+|---|---|
+| [01 histogram](figures/01_price_histogram.svg) | Shape of EUR catalog prices, overall and by brand |
+| [02 ECDF](figures/02_price_ecdf.svg) | Shares at or below each price, independent of bins |
+| [03 coverage](figures/03_coverage.svg) | Which brand-years have enough usable prices |
+| [04 cohorts](figures/04_announcement_cohorts.svg) | Median price at annual and five-year scales |
+| [05 RAM vs price](figures/05_ram_price.svg) | RAM–price relationship within each brand (headline) |
+| [06 comparison](figures/06_brand_comparison.svg) | Samsung minus Xiaomi, equal-year contrast with 95% interval |
 
 The database is opened read-only and its complete file hash is checked before
 and after execution. Parameters, seeds, flag filters, coverage rules and the
