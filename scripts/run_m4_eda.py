@@ -34,7 +34,7 @@ def run(database=None):
             cell['execution_count']=count
             cell['outputs']=[dict(output_type='stream',name='stdout',text=output.getvalue().splitlines(keepends=True))]
             print('Executed cell',count)
-        path.write_text(json.dumps(notebook,indent=1)+'\n',encoding='utf-8')
+        path.write_text(json.dumps(notebook,indent=1)+'\n',encoding='utf-8',newline='\n')
     finally:
         os.chdir(previous)
         if previous_database is None:os.environ.pop('PHONE_M4_DB',None)

@@ -1,3 +1,4 @@
+Wrote docs/eda_report.md
 Duplicate natural key: PASS
 Orphan event: PASS
 NULL key: PASS
@@ -7,6 +8,6 @@ Atomicity: PASS
 foreign_key_check: PASS
 All tables STRICT: PASS
 ----------------------------------------------------------------------
-Ran 47 tests in 0.448s
+Ran 49 tests in 4.019s
 
 OK

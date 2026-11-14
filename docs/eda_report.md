@@ -322,7 +322,7 @@ From a fresh clone with the landed M1 responses and existing ingestion dependenc
 python src/load.py
 python src/clean.py
 python src/validate.py
-python scripts/run_m4_eda.py
+jupyter nbconvert --to notebook --execute --inplace notebooks/m4_eda.ipynb
 ```
 
-The last command executes every ordinary Python notebook cell in order in a new namespace and saves outputs. With Jupyter installed, the course command also works: `jupyter nbconvert --to notebook --execute --inplace notebooks/m4_eda.ipynb`. The local verification uses the dependency-free runner because package installation is unavailable. Queries open `mode=ro`; before/after database SHA-256 values are recorded in `docs/m4/notebook-verification.json`. The notebook writes every SVG figure in `figures/`, this report and aggregate results; no source record is repaired or database table changed.
+The last command is the course's Restart & Run All. It needs only `pip install nbconvert ipykernel`, because the notebook itself uses the standard library; `python scripts/run_m4_eda.py` is an equivalent route without Jupyter. Both routes were run on Windows (nbconvert 7.17, ipykernel 7.4) and give the same report, results and figures. Generated files are written with LF line endings, so a run on any platform reproduces the committed bytes. `python scripts/verify_m4.py --nbconvert --db <fresh database>` repeats the run on a separately built database and records the comparison in `docs/m4/fresh-build-verification.json`. Queries open `mode=ro`; before/after database SHA-256 values are recorded in `docs/m4/notebook-verification.json`. The notebook writes every SVG figure in `figures/`, this report and aggregate results; no source record is repaired or database table changed.

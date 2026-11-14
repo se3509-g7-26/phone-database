@@ -164,13 +164,13 @@ evidence = {'database_sha256_before':before, 'database_sha256_after':database_ha
             'figure_files':sorted(p.name for p in (ROOT/'figures').glob('*.svg')),
             'parameters':PARAMS}
 (ROOT/'docs/m4').mkdir(parents=True, exist_ok=True)
-(ROOT/'docs/m4/results.json').write_text(json.dumps(RESULT,indent=2)+'\\n',encoding='utf-8')
-(ROOT/'docs/m4/notebook-verification.json').write_text(json.dumps(evidence,indent=2)+'\\n',encoding='utf-8')
+(ROOT/'docs/m4/results.json').write_text(json.dumps(RESULT,indent=2)+'\\n',encoding='utf-8',newline='\\n')
+(ROOT/'docs/m4/notebook-verification.json').write_text(json.dumps(evidence,indent=2)+'\\n',encoding='utf-8',newline='\\n')
 print('Wrote report,', len(evidence['figure_files']), 'SVG figures, aggregate results and read-only verification.')
 print('Parameters actually used:', json.dumps(PARAMS, sort_keys=True))
 ''')
 notebook=dict(cells=cells,metadata=dict(kernelspec=dict(display_name='Python 3',language='python',name='python3'),language_info=dict(name='python',version='3.12')),nbformat=4,nbformat_minor=5)
 for index,cell in enumerate(cells):
     cell['id']='m4-'+str(index).zfill(2)
-(ROOT/'notebooks/m4_eda.ipynb').write_text(json.dumps(notebook,indent=1)+'\n',encoding='utf-8')
+(ROOT/'notebooks/m4_eda.ipynb').write_text(json.dumps(notebook,indent=1)+'\n',encoding='utf-8',newline='\n')
 print('Built notebooks/m4_eda.ipynb')

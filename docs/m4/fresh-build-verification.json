@@ -1,6 +1,7 @@
 {
-  "fresh_database": "tmp\\m4-fresh\\phones.db",
-  "baseline_database": "data\\phones.db",
+  "fresh_database": "tmp/m4-fresh/phones.db",
+  "baseline_database": "data/phones.db",
+  "fresh_build": "Copy of the M2 submission database (src/load.py on the full landed raw data; load.py, db.py and sql/schema.sql are unchanged since tag m2), then src/clean.py and src/validate.py run on it from scratch",
   "m2_full_row_hashes": {
     "raw_file": "9e7cbd777ec37d0316095045fc1340d978b7854dbb45970da10ee370f9dcb31d",
     "phone": "e59c70712affb8dd7fa94e93f2f5e4c50a8725f91792df6fed6f635b4882a50a",
@@ -22,21 +23,22 @@
   ],
   "fresh_matches_m2": true,
   "fresh_matches_m3": true,
-  "fresh_database_sha256_before": "89b75d2b2196b88bc133c4e8d331f3aa54761214b95bc6eae28ce548fb7d9c5e",
-  "fresh_database_sha256_after": "89b75d2b2196b88bc133c4e8d331f3aa54761214b95bc6eae28ce548fb7d9c5e",
-  "baseline_database_sha256_before": "0e2b1f1341b22117417b63ab5e69316a3333c1576d5247ddc9581304eafe33e5",
-  "baseline_database_sha256_after": "0e2b1f1341b22117417b63ab5e69316a3333c1576d5247ddc9581304eafe33e5",
+  "fresh_database_sha256_before": "267eb74acdb4d12010c0265ec8ef1cf3816602fe456cf1688044b044d24b5117",
+  "fresh_database_sha256_after": "267eb74acdb4d12010c0265ec8ef1cf3816602fe456cf1688044b044d24b5117",
+  "baseline_database_sha256_before": "a47682e00aec4c38df7a46739a1bd21a5585920c2a27405d0862cdda370bcb83",
+  "baseline_database_sha256_after": "a47682e00aec4c38df7a46739a1bd21a5585920c2a27405d0862cdda370bcb83",
   "database_bytes_unchanged": true,
   "generated_files_match": true,
   "generated_sha256": {
-    "figures/01_price_histogram.svg": "3e57aeb59db265584dbebcb27eb2df2e112956ea0cedb88184f77a5e258f7299",
-    "figures/02_price_ecdf.svg": "4c199cbab02c294c5bb5ef081b9f5438872cf8edd1f71472333569ba992f9c10",
-    "figures/03_coverage.svg": "31c795067e42c262750d846424985b8cacb2cad5ea738b5ef49fefe74156836f",
-    "figures/04_announcement_cohorts.svg": "27b0103d5565dcbee55d450ad222018d94dbb537e7585cd69f7f572d2400d38c",
-    "figures/05_ram_price.svg": "6c92604648e8627a87ac894f3dd5ef48da2818a5a72df6262bdf7586b5f974da",
-    "figures/06_brand_comparison.svg": "c5d576145f4152b55bd464e79e7305069a20764f60435bbee134da4835742fe5",
-    "docs/eda_report.md": "6f024ac92e609dd3138f454b496fad88a9c7b2189bd5bcb6e5797730972a59cf",
-    "docs/m4/results.json": "65ca659a77573e735a86ef0476a1d8d9a325450bafc6281b5861808038b32e20"
+    "figures/01_price_histogram.svg": "3fec2d7711eb12e2df4b4f1356abf8bdbad8ec67a84645e1c74e9b43459387b0",
+    "figures/02_price_ecdf.svg": "f3f23db01fd0ebb5e183e9f6db3a7babd65e2a2f280632ba0d8185cd799c3444",
+    "figures/03_coverage.svg": "601fe46ec12ca26eae27be631d18e12415206b098134040cf3ec3cd4a3f0d86d",
+    "figures/04_announcement_cohorts.svg": "1ae3220166a25c9ac928af8ef29c75f59150abb246e91d67576aa7f7e56773f9",
+    "figures/05_ram_price.svg": "61ed0c63e66dda224f9c350d0fcd3ed62407ea2988ae9330377893b290388200",
+    "figures/06_brand_comparison.svg": "55b4b1868630863d08fa2d344f3c9cc0108aebc04f3c574bdc32f08989b8ff86",
+    "figures/07_ram_binned_medians.svg": "d415ce4ef9f0390db4945581dac0fde61d0ed1c2af09ef1a5a8bc5c962c0d3a0",
+    "docs/eda_report.md": "da309ee8c6099524f453cc4666e6cef27be1aeca154dd05d5ceb2ad02668b63d",
+    "docs/m4/results.json": "e8a66c10becd06608b7f2fcc3ec1759d82d75b7c7a813eed533d9793c3001168"
   },
   "sql_formatting_scan": {
     "sources_checked": 38,
@@ -49,5 +51,5 @@
     ],
     "scope": "Python modules and notebook code cells; direct execution formatting and formatted SQL literals"
   },
-  "execution": "Every notebook Python cell executed in a fresh namespace; nbconvert unavailable locally"
+  "execution": "python -m jupyter nbconvert --to notebook --execute --inplace notebooks/m4_eda.ipynb on both databases, after a restart (new kernel)"
 }

@@ -3,8 +3,10 @@ import argparse
 import ast
 import hashlib
 import json
+import os
 from pathlib import Path
 import re
+import subprocess
 import sys
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -12,6 +14,14 @@ sys.path.insert(0,str(ROOT/'src'))
 from explore import database_hash
 from verify_m3 import digest
 from run_m4_eda import run
+
+NBCONVERT=['-m','jupyter','nbconvert','--to','notebook','--execute','--inplace','notebooks/m4_eda.ipynb']
+
+
+def run_nbconvert(database):
+    """Execute the notebook with the course command, against the given database."""
+    env=dict(os.environ,PHONE_M4_DB=str(database))
+    subprocess.run([sys.executable,*NBCONVERT],cwd=ROOT,env=env,check=True)
 
 
 def generated_hashes():
@@ -49,22 +59,28 @@ def sql_scan():
                 scope='Python modules and notebook code cells; direct execution formatting and formatted SQL literals')
 
 
-def verify(fresh,baseline):
+def verify(fresh,baseline,nbconvert=False,fresh_note=None):
+    execute=run_nbconvert if nbconvert else run
     raw_base,clean_base=digest(baseline)
     raw_fresh,clean_fresh=digest(fresh)
     assert raw_base==raw_fresh,'Fresh M2 rows differ'
     assert clean_base==clean_fresh,'Fresh M3 rows differ'
     before_fresh=database_hash(fresh)
-    run(fresh)
+    execute(fresh)
     after_fresh=database_hash(fresh)
     generated_fresh=generated_hashes()
     before_baseline=database_hash(baseline)
-    run(baseline)
+    execute(baseline)
     after_baseline=database_hash(baseline)
     generated_baseline=generated_hashes()
     scan=sql_scan()
-    evidence=dict(fresh_database=str(fresh.relative_to(ROOT)),
-                  baseline_database=str(baseline.relative_to(ROOT)),
+    if nbconvert:
+        execution='python '+' '.join(NBCONVERT)+' on both databases, after a restart (new kernel)'
+    else:
+        execution='Every notebook Python cell executed in a fresh namespace (scripts/run_m4_eda.py)'
+    evidence=dict(fresh_database=fresh.relative_to(ROOT).as_posix(),
+                  baseline_database=baseline.relative_to(ROOT).as_posix(),
+                  fresh_build=fresh_note,
                   m2_full_row_hashes=raw_fresh,m3_full_row_hashes=clean_fresh,
                   fresh_matches_m2=raw_base==raw_fresh,fresh_matches_m3=clean_base==clean_fresh,
                   fresh_database_sha256_before=before_fresh,fresh_database_sha256_after=after_fresh,
@@ -72,8 +88,8 @@ def verify(fresh,baseline):
                   database_bytes_unchanged=(before_fresh==after_fresh and before_baseline==after_baseline),
                   generated_files_match=generated_fresh==generated_baseline,
                   generated_sha256=generated_baseline,sql_formatting_scan=scan,
-                  execution='Every notebook Python cell executed in a fresh namespace; nbconvert unavailable locally')
-    (ROOT/'docs/m4/fresh-build-verification.json').write_text(json.dumps(evidence,indent=2)+'\n',encoding='utf-8')
+                  execution=execution)
+    (ROOT/'docs/m4/fresh-build-verification.json').write_text(json.dumps(evidence,indent=2)+'\n',encoding='utf-8',newline='\n')
     assert evidence['database_bytes_unchanged']
     assert evidence['generated_files_match']
     assert not scan['formatting_violations'],scan
@@ -84,5 +100,7 @@ if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--db',type=Path,required=True,help='Already independently rebuilt M2/M3 database')
     parser.add_argument('--baseline',type=Path,default=ROOT/'data/phones.db')
+    parser.add_argument('--nbconvert',action='store_true',help='Execute with jupyter nbconvert (the course command) instead of the runner')
+    parser.add_argument('--fresh-note',help='How the fresh database was built, recorded in the evidence file')
     args=parser.parse_args()
-    verify(args.db.resolve(),args.baseline.resolve())
+    verify(args.db.resolve(),args.baseline.resolve(),args.nbconvert,args.fresh_note)

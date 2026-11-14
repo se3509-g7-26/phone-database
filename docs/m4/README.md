@@ -11,13 +11,16 @@ No member is claimed to have performed work they have not reviewed.
 python src/load.py
 python src/clean.py
 python src/validate.py
-python scripts/run_m4_eda.py
+jupyter nbconvert --to notebook --execute --inplace notebooks/m4_eda.ipynb
 python -m unittest discover -s tests -q
 ```
 
-The notebook uses ordinary Python and runs through either the dependency-free
-runner above or Jupyter/nbconvert. `PHONE_M4_DB` selects a different database;
-the runner also accepts `--db PATH`. Run from the repository root. Plotting
+The notebook uses ordinary Python. The nbconvert step needs only
+`pip install nbconvert ipykernel`; `python scripts/run_m4_eda.py` runs the same
+cells without Jupyter and gives the same report, results and figures. Generated
+files are written with LF line endings, so a Windows run reproduces the
+committed bytes. `PHONE_M4_DB` selects a different database; the runner also
+accepts `--db PATH`. Run from the repository root. Plotting
 uses deterministic SVG output, with no extra packages or network requests.
 The original ingestion dependencies in `requirements.txt` remain necessary
 for rebuilding M2.
@@ -36,15 +39,23 @@ for rebuilding M2.
   correlations, percentile interpolation, coverage denominators and bootstrap.
 
 `python scripts/verify_m4.py --db tmp/m4-fresh/phones.db` verifies an already
-rebuilt comparison database against `data/phones.db` and reruns the notebook.
-To reproduce the fresh database used for that check:
+rebuilt comparison database against `data/phones.db` and reruns the notebook;
+`--nbconvert` reruns it with the course command instead of the runner. To
+reproduce the fresh database used for that check:
 
 ```sh
 python src/load.py --db tmp/m4-fresh/phones.db
 python src/clean.py --db tmp/m4-fresh/phones.db
 python src/validate.py --db tmp/m4-fresh/phones.db
-python scripts/verify_m4.py --db tmp/m4-fresh/phones.db
+python scripts/verify_m4.py --db tmp/m4-fresh/phones.db --nbconvert
 ```
+
+The committed evidence was produced this way except for the first step: the
+Wikidata and Wikipedia responses are not on every member's machine, so the
+fresh database started from a copy of the M2 submission database (built by
+`load.py` from the full landed data; `load.py`, `db.py` and `sql/schema.sql`
+are unchanged since tag `m2`). `clean.py` and `validate.py` then ran on it from
+scratch, and the validation output matched `validate.txt` line for line.
 
 The fresh database is temporary evidence; the submission database remains
 `data/phones.db`. Raw files and databases stay outside Git. Submit the built

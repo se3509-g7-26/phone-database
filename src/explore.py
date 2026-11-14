@@ -224,7 +224,7 @@ class SVG:
         return xy
 
     def save(self, path):
-        path.write_text('\n'.join(self.parts+['</svg>'])+'\n',encoding='utf-8')
+        path.write_text('\n'.join(self.parts+['</svg>'])+'\n',encoding='utf-8',newline='\n')
 
 
 def captions(params, n, extra=''):

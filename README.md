@@ -426,23 +426,21 @@ and the Samsung-minus-Xiaomi cohort comparison has an interval spanning zero.
 Catalog prices remain unverified as launch MSRP; see the
 [EDA report](docs/eda_report.md) and [executed notebook](notebooks/m4_eda.ipynb).
 
-From a fresh clone with landed raw data and installed `requirements.txt`:
+From a fresh clone with landed raw data and installed `requirements.txt`,
+plus `pip install nbconvert ipykernel` for the last step:
 
 ```sh
 python src/load.py
 python src/clean.py
 python src/validate.py
-python scripts/run_m4_eda.py
-```
-
-The M4 runner needs only Python's standard library. It executes the notebook
-top to bottom in a fresh namespace, saves its outputs, and regenerates the seven
-SVG figures and the report. When Jupyter is installed, the course's equivalent
-command is:
-
-```sh
 jupyter nbconvert --to notebook --execute --inplace notebooks/m4_eda.ipynb
 ```
+
+The notebook itself needs only Python's standard library. It regenerates the
+seven SVG figures, the report and `docs/m4/results.json`;
+`python scripts/run_m4_eda.py` runs the same cells without Jupyter and gives
+the same files. They are written with LF line endings, so a run on Windows
+reproduces the committed bytes as well.
 
 | Figure | Question it answers |
 |---|---|
