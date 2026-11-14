@@ -16,7 +16,7 @@ import textwrap
 from db import ROOT, DEFAULT_DB, connect
 
 # Source fields pivoted by sql/queries/m4_cohort.sql; each must be unique per model.
-ANALYTICAL_FIELDS = ['price', 'os', 'year', 'internalmemory']
+ANALYTICAL_FIELDS = ['price', 'os', 'year', 'internalmemory', 'displaysize']
 
 COLORS = {'Samsung': '#2463a5', 'Xiaomi': '#cf661c', 'Huawei': '#248878',
           'Sony': '#9654a1', 'All': '#35485e'}
@@ -68,6 +68,22 @@ def correlation(rows):
     """Pearson and Spearman of RAM against price on identical complete pairs."""
     x, y = [r['ram'] for r in rows], [r['price'] for r in rows]
     return dict(n=len(rows), pearson=pearson(x, y), spearman=pearson(ranks(x), ranks(y)))
+
+
+def display_split(joint, threshold):
+    """RAM-price correlations on phone-sized and large screens (>= threshold inches).
+
+    Display size is a measured attribute, not a device class: the large-screen
+    group can hold tablets and foldable phones alike, so it is reported as
+    measured and never relabelled here. Pairs without a display size are counted
+    and left out of both groups.
+    """
+    measured = [r for r in joint if r['display_in'] is not None]
+    small = [r for r in measured if r['display_in'] < threshold]
+    large = [r for r in measured if r['display_in'] >= threshold]
+    return dict(threshold_in=threshold, display_missing=len(joint)-len(measured),
+                phone_sized=correlation(small), large_screen=correlation(large),
+                large_screen_by_brand=dict(sorted(Counter(r['brand'] for r in large).items())))
 
 
 def read_cohort(con, params, flags=None):
@@ -342,6 +358,12 @@ def analyze(con, params, output):
             residuals.extend(dict(ram=r['ram']-mx,price=r['price']-my) for r in group)
     counts=Counter(r['brand'] for r in joint)
     influence={b:correlation([r for r in joint if r['brand']!=b]) for b in params['brands']}
+    # Device-type check: does a screen-size group carry the pooled association?
+    screens=display_split(joint,params['large_display_in'])
+    large_pairs=sorted((dict(name=r['name'],brand=r['brand'],year=r['year'],display_in=r['display_in'],
+                             ram=r['ram'],price=r['price']) for r in joint
+                        if r['display_in'] is not None and r['display_in']>=params['large_display_in']),
+                       key=lambda r:(-r['price'],r['name']))
     bins=[]
     priced=[r['price'] for r in rows if r['price'] is not None]
     for width in params['bin_trials']:
@@ -374,7 +396,8 @@ def analyze(con, params, output):
                 trimmed=correlation(trimmed),trim_removed=len(joint)-len(trimmed),
                 trim_thresholds=dict(ram_gb=xcut,price_eur=ycut),by_brand=by_brand,
                 within_brand_year=within,group_demeaned=correlation(residuals),
-                leave_one_brand_out=influence,comparison=contrast,all_pairs=allpairs,
+                leave_one_brand_out=influence,display_split=screens,large_screen_pairs=large_pairs,
+                comparison=contrast,all_pairs=allpairs,
                 without_coverage_rule=dict(estimate=st.mean(r['difference'] for r in unfiltered),paired=unfiltered),
                 retrieval_range=list(con.execute('SELECT MIN(retrieved_at),MAX(retrieved_at) FROM phone').fetchone()),
                 cohort_year_range=[min(r['year'] for r in rows),max(r['year'] for r in rows)],

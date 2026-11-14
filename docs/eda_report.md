@@ -52,6 +52,7 @@ WITH cells AS (
  MAX(CASE WHEN source_field='price' AND unit=:currency AND number_flag IN (SELECT value FROM json_each(:flags)) THEN number END) AS price,
  MAX(CASE WHEN source_field='internalmemory' AND number_flag IN (SELECT value FROM json_each(:flags)) THEN ram_gb END) AS ram,
  MAX(CASE WHEN source_field='internalmemory' AND number_flag IN (SELECT value FROM json_each(:flags)) THEN number END) AS storage,
+ MAX(CASE WHEN source_field='displaysize' AND unit='inch' AND number_flag IN (SELECT value FROM json_each(:flags)) THEN number END) AS display_in,
  MAX(CASE WHEN source_field='price' THEN 1 ELSE 0 END) AS price_present,
  MAX(CASE WHEN source_field='price' THEN number_flag END) AS price_flag
  FROM cells GROUP BY phone_key,name,brand,retrieved_at

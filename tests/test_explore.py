@@ -10,7 +10,7 @@ import unittest
 
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'src'))
-from explore import correlation,coverage,markdown_table,paired_bootstrap,pearson,quantile,ranks,summary
+from explore import correlation,coverage,display_split,markdown_table,paired_bootstrap,pearson,quantile,ranks,summary
 from explore_report import edge_sentence,word,write_report
 
 
@@ -47,6 +47,17 @@ class ExploreTests(unittest.TestCase):
         self.assertEqual(a,paired_bootstrap(values,params,2))
         self.assertLess(a[0],0);self.assertGreater(a[1],0)
         with self.assertRaises(ValueError):paired_bootstrap([1,2],params,2)
+
+    def test_display_split_puts_threshold_in_large_group_and_skips_missing(self):
+        rows=[dict(brand=b,display_in=d,ram=r,price=p) for b,d,r,p in
+              [('A',5.0,1,100),('A',6.9,2,200),('B',5.5,3,250),('B',7.0,1,150),
+               ('A',10.1,2,300),('B',8.0,12,1500),('B',None,4,400)]]
+        result=display_split(rows,7.0)
+        self.assertEqual(result['display_missing'],1)
+        self.assertEqual((result['phone_sized']['n'],result['large_screen']['n']),(3,3))
+        self.assertEqual(result['large_screen_by_brand'],{'A':1,'B':2})
+        self.assertAlmostEqual(result['phone_sized']['spearman'],1)
+        self.assertEqual(display_split(rows,20)['large_screen']['n'],0)
 
     def test_summary_of_empty_group_has_no_statistics(self):
         self.assertEqual(summary([]),dict(n=0,mean=None,median=None,p95=None,min=None,max=None))

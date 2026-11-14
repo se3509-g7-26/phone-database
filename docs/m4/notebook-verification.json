@@ -1,6 +1,6 @@
 {
-  "database_sha256_before": "0e2b1f1341b22117417b63ab5e69316a3333c1576d5247ddc9581304eafe33e5",
-  "database_sha256_after": "0e2b1f1341b22117417b63ab5e69316a3333c1576d5247ddc9581304eafe33e5",
+  "database_sha256_before": "a47682e00aec4c38df7a46739a1bd21a5585920c2a27405d0862cdda370bcb83",
+  "database_sha256_after": "a47682e00aec4c38df7a46739a1bd21a5585920c2a27405d0862cdda370bcb83",
   "database_unchanged": true,
   "figure_files": [
     "01_price_histogram.svg",
@@ -35,6 +35,7 @@
     "min_prices": 10,
     "min_coverage": 0.5,
     "min_joint": 10,
+    "large_display_in": 7.0,
     "bin_trials": [
       50,
       100,

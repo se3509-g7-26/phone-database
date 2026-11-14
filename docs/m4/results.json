@@ -24,6 +24,7 @@
     "min_prices": 10,
     "min_coverage": 0.5,
     "min_joint": 10,
+    "large_display_in": 7.0,
     "bin_trials": [
       50,
       100,
@@ -1592,6 +1593,492 @@
       "spearman": 0.5949818288558351
     }
   },
+  "display_split": {
+    "threshold_in": 7.0,
+    "display_missing": 0,
+    "phone_sized": {
+      "n": 502,
+      "pearson": 0.6319784282464512,
+      "spearman": 0.5739525526292438
+    },
+    "large_screen": {
+      "n": 58,
+      "pearson": 0.8066894036868701,
+      "spearman": 0.7149446288928357
+    },
+    "large_screen_by_brand": {
+      "Huawei": 16,
+      "Samsung": 32,
+      "Sony": 5,
+      "Xiaomi": 5
+    }
+  },
+  "large_screen_pairs": [
+    {
+      "name": "Xiaomi Mi Mix Alpha",
+      "brand": "Xiaomi",
+      "year": 2019,
+      "display_in": 7.92,
+      "ram": 12.0,
+      "price": 2500.0
+    },
+    {
+      "name": "Huawei Mate X",
+      "brand": "Huawei",
+      "year": 2019,
+      "display_in": 8.0,
+      "ram": 8.0,
+      "price": 2150.0
+    },
+    {
+      "name": "Huawei Mate Xs",
+      "brand": "Huawei",
+      "year": 2020,
+      "display_in": 8.0,
+      "ram": 8.0,
+      "price": 1950.0
+    },
+    {
+      "name": "Samsung Galaxy Z Fold Special",
+      "brand": "Samsung",
+      "year": 2024,
+      "display_in": 8.0,
+      "ram": 16.0,
+      "price": 1870.0
+    },
+    {
+      "name": "Samsung Galaxy Fold",
+      "brand": "Samsung",
+      "year": 2019,
+      "display_in": 7.3,
+      "ram": 12.0,
+      "price": 1750.0
+    },
+    {
+      "name": "Samsung Galaxy Fold 5G",
+      "brand": "Samsung",
+      "year": 2019,
+      "display_in": 7.3,
+      "ram": 12.0,
+      "price": 1400.0
+    },
+    {
+      "name": "Samsung Galaxy Tab S6 5G",
+      "brand": "Samsung",
+      "year": 2020,
+      "display_in": 10.5,
+      "ram": 6.0,
+      "price": 800.0
+    },
+    {
+      "name": "Samsung Galaxy View2",
+      "brand": "Samsung",
+      "year": 2019,
+      "display_in": 17.3,
+      "ram": 3.0,
+      "price": 660.0
+    },
+    {
+      "name": "Samsung Galaxy Tab Active Pro",
+      "brand": "Samsung",
+      "year": 2019,
+      "display_in": 10.1,
+      "ram": 4.0,
+      "price": 600.0
+    },
+    {
+      "name": "Sony Xperia Z4 Tablet LTE",
+      "brand": "Sony",
+      "year": 2015,
+      "display_in": 10.1,
+      "ram": 3.0,
+      "price": 500.0
+    },
+    {
+      "name": "Huawei MatePad 5G",
+      "brand": "Huawei",
+      "year": 2020,
+      "display_in": 10.4,
+      "ram": 6.0,
+      "price": 400.0
+    },
+    {
+      "name": "Sony Xperia Z4 Tablet WiFi",
+      "brand": "Sony",
+      "year": 2015,
+      "display_in": 10.1,
+      "ram": 3.0,
+      "price": 400.0
+    },
+    {
+      "name": "Sony Xperia Z3 Tablet Compact",
+      "brand": "Sony",
+      "year": 2014,
+      "display_in": 8.0,
+      "ram": 3.0,
+      "price": 380.0
+    },
+    {
+      "name": "Samsung Galaxy W",
+      "brand": "Samsung",
+      "year": 2014,
+      "display_in": 7.0,
+      "ram": 1.5,
+      "price": 360.0
+    },
+    {
+      "name": "Huawei MediaPad M6 Turbo 8.4",
+      "brand": "Huawei",
+      "year": 2019,
+      "display_in": 8.4,
+      "ram": 6.0,
+      "price": 350.0
+    },
+    {
+      "name": "Huawei MediaPad X1",
+      "brand": "Huawei",
+      "year": 2014,
+      "display_in": 7.0,
+      "ram": 2.0,
+      "price": 350.0
+    },
+    {
+      "name": "Samsung Galaxy Tab 4 8.0 LTE",
+      "brand": "Samsung",
+      "year": 2014,
+      "display_in": 8.0,
+      "ram": 1.5,
+      "price": 350.0
+    },
+    {
+      "name": "Samsung Galaxy Tab Active LTE",
+      "brand": "Samsung",
+      "year": 2014,
+      "display_in": 8.0,
+      "ram": 1.5,
+      "price": 350.0
+    },
+    {
+      "name": "Sony Xperia Tablet Z LTE",
+      "brand": "Sony",
+      "year": 2013,
+      "display_in": 10.1,
+      "ram": 2.0,
+      "price": 350.0
+    },
+    {
+      "name": "Sony Xperia Z2 Tablet LTE",
+      "brand": "Sony",
+      "year": 2014,
+      "display_in": 10.1,
+      "ram": 3.0,
+      "price": 350.0
+    },
+    {
+      "name": "Samsung Galaxy Tab A 9.7 & S Pen",
+      "brand": "Samsung",
+      "year": 2015,
+      "display_in": 9.7,
+      "ram": 2.0,
+      "price": 340.0
+    },
+    {
+      "name": "Samsung Galaxy Tab 4 10.1 LTE",
+      "brand": "Samsung",
+      "year": 2014,
+      "display_in": 10.1,
+      "ram": 1.5,
+      "price": 310.0
+    },
+    {
+      "name": "Huawei MediaPad M1",
+      "brand": "Huawei",
+      "year": 2014,
+      "display_in": 8.0,
+      "ram": 1.0,
+      "price": 300.0
+    },
+    {
+      "name": "Samsung Galaxy Tab 4 10.1 3G",
+      "brand": "Samsung",
+      "year": 2014,
+      "display_in": 10.1,
+      "ram": 1.5,
+      "price": 300.0
+    },
+    {
+      "name": "Samsung Galaxy Tab 4 8.0 3G",
+      "brand": "Samsung",
+      "year": 2014,
+      "display_in": 8.0,
+      "ram": 1.5,
+      "price": 300.0
+    },
+    {
+      "name": "Samsung Galaxy Tab Active",
+      "brand": "Samsung",
+      "year": 2014,
+      "display_in": 8.0,
+      "ram": 1.5,
+      "price": 300.0
+    },
+    {
+      "name": "Xiaomi Mi Pad 3",
+      "brand": "Xiaomi",
+      "year": 2017,
+      "display_in": 7.9,
+      "ram": 4.0,
+      "price": 290.0
+    },
+    {
+      "name": "Huawei Y Max",
+      "brand": "Huawei",
+      "year": 2018,
+      "display_in": 7.12,
+      "ram": 4.0,
+      "price": 280.0
+    },
+    {
+      "name": "Samsung Galaxy Tab 4 10.1 (2015)",
+      "brand": "Samsung",
+      "year": 2015,
+      "display_in": 10.1,
+      "ram": 1.5,
+      "price": 280.0
+    },
+    {
+      "name": "Xiaomi Black Shark Pad 6",
+      "brand": "Xiaomi",
+      "year": 2024,
+      "display_in": 11.0,
+      "ram": 8.0,
+      "price": 280.0
+    },
+    {
+      "name": "Xiaomi Poco Pad",
+      "brand": "Xiaomi",
+      "year": 2024,
+      "display_in": 12.1,
+      "ram": 8.0,
+      "price": 280.0
+    },
+    {
+      "name": "Samsung Galaxy Tab 4 10.1",
+      "brand": "Samsung",
+      "year": 2014,
+      "display_in": 10.1,
+      "ram": 1.5,
+      "price": 270.0
+    },
+    {
+      "name": "Samsung Galaxy Tab 4 8.0",
+      "brand": "Samsung",
+      "year": 2014,
+      "display_in": 8.0,
+      "ram": 1.5,
+      "price": 270.0
+    },
+    {
+      "name": "Samsung Galaxy Tab T-Mobile T849",
+      "brand": "Samsung",
+      "year": 2010,
+      "display_in": 7.0,
+      "ram": 0.64,
+      "price": 270.0
+    },
+    {
+      "name": "Samsung Galaxy Tab A 10.5",
+      "brand": "Samsung",
+      "year": 2018,
+      "display_in": 10.5,
+      "ram": 3.0,
+      "price": 250.0
+    },
+    {
+      "name": "Samsung Galaxy Tab A 8.4 (2020)",
+      "brand": "Samsung",
+      "year": 2020,
+      "display_in": 8.4,
+      "ram": 3.0,
+      "price": 240.0
+    },
+    {
+      "name": "Samsung Galaxy Tab A 8.0 & S Pen (2015)",
+      "brand": "Samsung",
+      "year": 2015,
+      "display_in": 8.0,
+      "ram": 2.0,
+      "price": 220.0
+    },
+    {
+      "name": "Samsung Galaxy Tab 2 7.0 I705",
+      "brand": "Samsung",
+      "year": 2012,
+      "display_in": 7.0,
+      "ram": 1.0,
+      "price": 200.0
+    },
+    {
+      "name": "Samsung Galaxy Tab A 8.0 (2018)",
+      "brand": "Samsung",
+      "year": 2018,
+      "display_in": 8.0,
+      "ram": 2.0,
+      "price": 200.0
+    },
+    {
+      "name": "Samsung Galaxy Tab Advanced2",
+      "brand": "Samsung",
+      "year": 2018,
+      "display_in": 10.1,
+      "ram": 3.0,
+      "price": 200.0
+    },
+    {
+      "name": "Xiaomi Black Shark Pad 7 Pro",
+      "brand": "Xiaomi",
+      "year": 2025,
+      "display_in": 11.0,
+      "ram": 8.0,
+      "price": 200.0
+    },
+    {
+      "name": "Samsung Galaxy Tab 3 Lite 7.0 3G",
+      "brand": "Samsung",
+      "year": 2014,
+      "display_in": 7.0,
+      "ram": 1.0,
+      "price": 190.0
+    },
+    {
+      "name": "Huawei MediaPad 7 Vogue",
+      "brand": "Huawei",
+      "year": 2013,
+      "display_in": 7.0,
+      "ram": 1.0,
+      "price": 180.0
+    },
+    {
+      "name": "Samsung Galaxy Tab E 8.0",
+      "brand": "Samsung",
+      "year": 2016,
+      "display_in": 8.0,
+      "ram": 1.5,
+      "price": 180.0
+    },
+    {
+      "name": "Huawei IDEOS S7 Slim",
+      "brand": "Huawei",
+      "year": 2011,
+      "display_in": 7.0,
+      "ram": 0.512,
+      "price": 160.0
+    },
+    {
+      "name": "Huawei MediaPad S7-301w",
+      "brand": "Huawei",
+      "year": 2011,
+      "display_in": 7.0,
+      "ram": 1.0,
+      "price": 160.0
+    },
+    {
+      "name": "Huawei MediaPad",
+      "brand": "Huawei",
+      "year": 2011,
+      "display_in": 7.0,
+      "ram": 1.0,
+      "price": 150.0
+    },
+    {
+      "name": "Huawei MediaPad 7 Lite",
+      "brand": "Huawei",
+      "year": 2012,
+      "display_in": 7.0,
+      "ram": 1.0,
+      "price": 150.0
+    },
+    {
+      "name": "Huawei MediaPad 7 Youth",
+      "brand": "Huawei",
+      "year": 2013,
+      "display_in": 7.0,
+      "ram": 1.0,
+      "price": 150.0
+    },
+    {
+      "name": "Samsung Galaxy J Max",
+      "brand": "Samsung",
+      "year": 2016,
+      "display_in": 7.0,
+      "ram": 1.5,
+      "price": 150.0
+    },
+    {
+      "name": "Samsung Galaxy Tab 3 Lite 7.0",
+      "brand": "Samsung",
+      "year": 2014,
+      "display_in": 7.0,
+      "ram": 1.0,
+      "price": 150.0
+    },
+    {
+      "name": "Samsung P1010 Galaxy Tab Wi-Fi",
+      "brand": "Samsung",
+      "year": 2011,
+      "display_in": 7.0,
+      "ram": 0.592,
+      "price": 150.0
+    },
+    {
+      "name": "Samsung Galaxy Tab 3 V",
+      "brand": "Samsung",
+      "year": 2015,
+      "display_in": 7.0,
+      "ram": 1.0,
+      "price": 130.0
+    },
+    {
+      "name": "Samsung Galaxy Tab A 7.0 (2016)",
+      "brand": "Samsung",
+      "year": 2016,
+      "display_in": 7.0,
+      "ram": 1.5,
+      "price": 130.0
+    },
+    {
+      "name": "Samsung Galaxy Tab 3 Lite 7.0 VE",
+      "brand": "Samsung",
+      "year": 2015,
+      "display_in": 7.0,
+      "ram": 1.0,
+      "price": 120.0
+    },
+    {
+      "name": "Huawei MediaPad T1 7.0",
+      "brand": "Huawei",
+      "year": 2015,
+      "display_in": 7.0,
+      "ram": 1.0,
+      "price": 100.0
+    },
+    {
+      "name": "Huawei MediaPad T1 7.0 Plus",
+      "brand": "Huawei",
+      "year": 2016,
+      "display_in": 7.0,
+      "ram": 2.0,
+      "price": 100.0
+    },
+    {
+      "name": "Huawei IDEOS S7",
+      "brand": "Huawei",
+      "year": 2010,
+      "display_in": 7.0,
+      "ram": 0.256,
+      "price": 70.0
+    }
+  ],
   "comparison": {
     "a": "Samsung",
     "b": "Xiaomi",

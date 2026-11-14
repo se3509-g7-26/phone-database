@@ -30,13 +30,14 @@ PARAMS = {
     'strict_flags': ['ok', 'unit_converted'],
     'min_models': 20, 'min_prices': 10, 'min_coverage': 0.5,
     'min_joint': 10,
+    'large_display_in': 7.0,
     'bin_trials': [50, 100, 200], 'bin_width': 100,
     'comparison': ['Samsung', 'Xiaomi'], 'comparison_start': 2015,
     'bootstrap_reps': 5000, 'block_length': 2, 'seed': 20261111,
 }
 DATABASE = Path(os.environ.get('PHONE_M4_DB', str(ROOT / 'data/phones.db')))
 print(json.dumps(PARAMS, indent=2))
-print('Database:', DATABASE)
+print('Database:', DATABASE.relative_to(ROOT).as_posix() if DATABASE.is_relative_to(ROOT) else DATABASE)
 ''')
 md('''## Read-only build and analytical grain
 
@@ -115,6 +116,8 @@ md('''## 2.6 Relationships and drivers
 
 Question: how much of RAM versus price is shared generation/brand structure or a few extremes? Inspect the scatter first. Both coefficients use the same complete pairs; at least 10 pairs are required per brand or brand-year coefficient. Coefficients on all pairs are descriptive complete-case results, with their denominator against the eligible catalog shown above. Sensitivities remove rows above the marginal 99th percentiles, omit one brand at a time, and demean RAM and price within brand-year cells with >= 10 pairs. Spearman on those residuals is a sensitivity, not a formal partial rank coefficient. No missing configuration is parsed or chosen in this notebook.
 
+Device type is a second candidate driver: Android also covers tablets, and the cleaned layer has no device class. Display size is the measured attribute closest to it, so the coefficients are recomputed separately for phone-sized screens and for screens of at least `large_display_in` inches (7.0, the smallest tablet screen among these pairs). The large-screen pairs are listed in full, because a screen-size group is not a device class and nothing here relabels a model.
+
 ![RAM and price by brand](../figures/05_ram_price.svg)
 ''')
 code('''print('Overall:', RESULT['relationship'])
@@ -124,6 +127,14 @@ print('Within brand:', json.dumps(RESULT['by_brand'], indent=2))
 print('Leave one brand out:', json.dumps(RESULT['leave_one_brand_out'], indent=2))
 print_table(RESULT['within_brand_year'], ['brand','year','n','pearson','spearman'])
 print('Brand-year demeaned:', RESULT['group_demeaned'])
+screens = RESULT['display_split']
+print(f"Display split at {screens['threshold_in']} in; pairs without a display size: {screens['display_missing']}")
+print_table([dict(group=f"display < {screens['threshold_in']} in", **screens['phone_sized']),
+             dict(group=f"display >= {screens['threshold_in']} in", **screens['large_screen'])],
+            ['group', 'n', 'pearson', 'spearman'])
+print('Large-screen pairs by brand:', screens['large_screen_by_brand'])
+print('Large-screen pairs, most expensive first:')
+print_table(RESULT['large_screen_pairs'], ['name', 'year', 'display_in', 'ram', 'price'])
 ''')
 md('''## 2.7 A comparison, an interval and a look count
 
