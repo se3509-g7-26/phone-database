@@ -60,10 +60,12 @@ class ExploreTests(unittest.TestCase):
         self.assertEqual(display_split(rows,20)['large_screen']['n'],0)
 
     def test_ram_levels_split_screens_and_mark_thin_levels(self):
-        rows=[dict(ram=2,price=p,display_in=d) for p,d in [(100,5.0),(200,6.0),(300,10.1),(400,None)]]
-        rows.append(dict(ram=8,price=900,display_in=6.5))
+        rows=[dict(ram=2,price=p,display_in=d,year=y) for p,d,y in
+              [(100,5.0,2012),(200,6.0,2013),(300,10.1,2014),(400,None,2016)]]
+        rows.append(dict(ram=8,price=900,display_in=6.5,year=2020))
         two,eight=ram_levels(rows,dict(min_joint=3,large_display_in=7.0))
         self.assertEqual((two['ram'],two['n'],two['median'],two['q1'],two['q3']),(2,4,250,175,325))
+        self.assertEqual((two['year_median'],eight['year_median']),(2013.5,2020))
         self.assertTrue(two['eligible'])
         self.assertEqual((two['phone_n'],two['phone_median'],two['phone_eligible']),(2,150,False))
         self.assertEqual((eight['n'],eight['eligible'],eight['phone_n']),(1,False,1))

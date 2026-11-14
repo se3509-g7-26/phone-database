@@ -1,6 +1,6 @@
 # M4 verification and team handoff
 
-The executed notebook, report, SQL queries, six SVG figures and README changes
+The executed notebook, report, SQL queries, seven SVG figures and README changes
 are prepared locally. Member review/attribution, individual commits, feedback
 confirmation, the `m4` tag, push and course submission are still team actions.
 No member is claimed to have performed work they have not reviewed.
@@ -25,9 +25,10 @@ for rebuilding M2.
 ## Evidence
 
 - `results.json`: aggregate summaries, all annual denominators, six pooled
-  brand-pair looks, correlation sensitivities, paired year comparison and seeds.
+  brand-pair looks, correlation sensitivities, the screen-size split, price by
+  RAM level, paired year comparison and seeds.
 - `notebook-verification.json`: database hashes before/after notebook execution
-  and the six generated figure filenames.
+  and the generated figure filenames.
 - `fresh-build-verification.json`: fresh M2/M3 equality with the working
   database, repeatable notebook outputs and unchanged database bytes.
 - `validate.txt`: full-data validation; WARNs describe existing evidence limits.

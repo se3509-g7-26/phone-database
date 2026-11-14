@@ -141,7 +141,7 @@ print('Large-screen pairs, most expensive first:')
 print_table(RESULT['large_screen_pairs'], ['name', 'year', 'display_in', 'ram', 'price'])
 print('Price by RAM level (all pairs, then display <', PARAMS['large_display_in'], 'in):')
 print_table(RESULT['ram_levels'], ['ram', 'n', 'median', 'q1', 'q3', 'eligible',
-                                   'phone_n', 'phone_median', 'phone_eligible'])
+                                   'phone_n', 'phone_median', 'phone_eligible', 'year_median'])
 ''')
 md('''## 2.7 A comparison, an interval and a look count
 

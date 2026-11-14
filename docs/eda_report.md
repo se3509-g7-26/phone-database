@@ -2,7 +2,7 @@
 
 ## 1. Summary
 
-The project asks how smartphone launch prices relate to hardware and how that relationship changes across manufacturers and years, but the current extract supports only a narrower catalog-price exploration. We examine 1,625 Android catalog entries from four named brands, announced in 2010–2025, of which 1,442 have a usable EUR amount; this is not a validated smartphone-only cohort. Typical priced entries have a median of EUR 210.00, while brand medians range from EUR 200 to EUR 220. RAM and price are positively related in 560 complete pairs (Pearson 0.674, Spearman 0.596), but configuration availability differs sharply between brands. The Samsung-minus-Xiaomi equal-year median contrast is EUR -14.15, with an exploratory 95% block-bootstrap interval of [-45.58, +27.14], so these data do not establish a stable brand premium. Better launch-price evidence, device classification, configuration extraction, or different cohort coverage could change these results; no additional M3 parser correction or feedback resolution is claimed in this milestone.
+The project asks how smartphone launch prices relate to hardware and how that relationship changes across manufacturers and years, but the current extract supports only a narrower catalog-price exploration. We examine 1,625 Android catalog entries from four named brands, announced in 2010–2025, of which 1,442 have a usable EUR amount; this is not a validated smartphone-only cohort. Typical priced entries have a median of EUR 210.00, while brand medians range from EUR 200 to EUR 220. RAM and price are positively related in 560 complete pairs (Pearson 0.674, Spearman 0.596; 0.632 and 0.574 on screens under 7 in), but configuration availability differs sharply between brands. The Samsung-minus-Xiaomi equal-year median contrast is EUR -14.15, with an exploratory 95% block-bootstrap interval of [-45.58, +27.14], so these data do not establish a stable brand premium. Better launch-price evidence, device classification, configuration extraction, or different cohort coverage could change these results; no additional M3 parser correction or feedback resolution is claimed in this milestone.
 
 ## 2. Raw versus cleaned
 
@@ -228,7 +228,37 @@ Removing rows above the marginal 99th percentiles of RAM and price removes 6 of 
 | Huawei | 424 | 0.694 | 0.568 |
 | Sony | 450 | 0.657 | 0.595 |
 
-No single omitted brand eliminates the positive pooled association. To check shared generation and brand structure, RAM and price are demeaned within brand-year cells containing at least ten complete pairs; 453 pairs remain. Their residual association is still positive. The notebook also prints every supported within-cell coefficient; residual Spearman is a sensitivity on residual ranks, not a formal partial Spearman estimate. These checks address observed group structure while leaving unmeasured device type, configuration selection, and price provenance unresolved.
+No single omitted brand eliminates the positive pooled association. To check shared generation and brand structure, RAM and price are demeaned within brand-year cells containing at least ten complete pairs; 453 pairs remain. Their residual association is still positive. The notebook also prints every supported within-cell coefficient; residual Spearman is a sensitivity on residual ranks, not a formal partial Spearman estimate. These checks address observed group structure while leaving configuration selection and price provenance unresolved; device type is checked next as far as the data allow.
+
+### Screen size and RAM levels
+
+The cleaned layer has no device class, and Android also covers tablets. Display size is the measured attribute closest to it, so the coefficients are recomputed with and without screens of at least 7 in, the smallest tablet screen among these pairs.
+
+| group | n | pearson | spearman |
+|---|---|---|---|
+| All complete pairs | 560 | 0.674 | 0.596 |
+| Display < 7 in | 502 | 0.632 | 0.574 |
+| Display >= 7 in | 58 | 0.807 | 0.715 |
+
+58 of 560 pairs have a large screen. Without them, Pearson falls from 0.674 to 0.632 and Spearman from 0.596 to 0.574, so the association remains positive on phone-sized screens. Inside the large-screen group the coefficients are higher because the group mixes two device types: most of its rows are tablets with little RAM at mid-range prices, while every large-screen pair above EUR 1,000 is a foldable phone whose inner screen passes 7 in: Xiaomi Mi Mix Alpha (12 GB, EUR 2,500), Huawei Mate X (8 GB, EUR 2,150), Huawei Mate Xs (8 GB, EUR 1,950), Samsung Galaxy Z Fold Special (16 GB, EUR 1,870), Samsung Galaxy Fold (12 GB, EUR 1,750), Samsung Galaxy Fold 5G (12 GB, EUR 1,400). A screen-size group is not a device class, so the notebook lists all 58 large-screen pairs and nothing is relabelled (register I-14).
+
+![Median catalog price per RAM level](../figures/07_ram_binned_medians.svg)
+
+RAM is recorded at a few discrete levels, so the binned view takes each level with at least 10 pairs as one bin. Median price stays at EUR 180–250 from 1 to 4 GB (371 pairs), against EUR 85–140 below 1 GB and EUR 360–1,250 above 4 GB. The positive coefficients therefore come from the two ends of the RAM range, not from a steady rise at every step. Where both series have enough pairs, the phone-sized medians differ from the all-pair medians by at most EUR 10; the phone-sized series is too thin to draw at 12 GB (7 pairs). RAM levels also follow device generations, as the year column shows, so each level mixes cohorts; the brand-year residual check above is the cohort-controlled version.
+
+| ram_gb | n | median | q1 | q3 | phone_n | phone_median | year_median |
+|---|---|---|---|---|---|---|---|
+| 0.256 | 14 | 85.000 | 70.000 | 100.000 | 13 | 90.000 | 2011 |
+| 0.512 | 94 | 110.000 | 90.000 | 147.500 | 93 | 110.000 | 2012 |
+| 0.768 | 16 | 140.000 | 117.500 | 195.000 | 16 | 140.000 | 2013 |
+| 1 | 136 | 180.000 | 150.000 | 230.000 | 124 | 180.000 | 2013 |
+| 1.5 | 45 | 210.000 | 160.000 | 280.000 | 32 | 200.000 | 2015 |
+| 2 | 91 | 220.000 | 150.000 | 300.000 | 85 | 220.000 | 2015 |
+| 3 | 58 | 200.000 | 152.500 | 282.500 | 50 | 200.000 | 2016 |
+| 4 | 41 | 250.000 | 150.000 | 320.000 | 38 | 240.000 | 2017 |
+| 6 | 15 | 460.000 | 360.000 | 520.000 | 12 | 465.000 | 2019 |
+| 8 | 25 | 360.000 | 280.000 | 550.000 | 20 | 370.000 | 2020 |
+| 12 | 10 | 1,250.000 | 585.000 | 1,737.500 | 7 | 930.000 | 2019.5 |
 
 ## 7. The comparison
 
@@ -250,7 +280,7 @@ The estimate is EUR -14.15; the 95% percentile interval is [-45.58, +27.14]. We 
 
 The full-cohort pooled median gap is EUR -20.00 (Samsung n=624, Xiaomi n=375). Restricting to common supported years gives EUR -10.00 (n=206 and 293). Equal weighting gives the estimate above. The counts show different cohort mixtures; annual differences include both signs. There is no uniform within-year reversal establishing Simpson's paradox, and no stable brand premium is inferred.
 
-We inspect six pooled pairwise brand contrasts, the selected paired-year comparison, 23 supported brand-year correlations, four within-brand correlations, and the documented trim, omission, flag and coverage sensitivities. These are multiple looks on one extract, not independent tests. No p-value, multiplicity-adjusted discovery, or held-out confirmation is claimed.
+We inspect six pooled pairwise brand contrasts, the selected paired-year comparison, 23 supported brand-year correlations, four within-brand correlations, the screen-size split, 21 RAM-level medians, and the documented trim, omission, flag and coverage sensitivities. These are multiple looks on one extract, not independent tests. No p-value, multiplicity-adjusted discovery, or held-out confirmation is claimed.
 
 ## 8. Findings
 
@@ -260,24 +290,27 @@ All substantive relationships below are exploratory. Arithmetic coverage facts c
 |---|---|---|---|---|---|
 | F-01 | Mean and median rank the four brands differently. | Section 3; figures 01–02 | Exploratory | New price evidence or a different device/configuration cohort | Pending review: Oguzhan Karacan |
 | F-02 | Joint price/RAM coverage is especially thin for Xiaomi. | Section 4; joint_n table | Exploratory interpretation; counts exact for extract | Expanded tested configuration grammar or additional source evidence | Pending review: Osman Yigit Dogan |
-| F-03 | Positive RAM-price association survives trimming and observed group controls. | Section 6; figure 05 | Exploratory | Matched device types, verified launch prices, or independent data | Pending review: Onur Atici |
+| F-03 | Positive RAM-price association survives trimming, observed group controls and removing large screens. | Section 6; figures 05, 07 | Exploratory | A reviewed device class, verified launch prices, or independent data | Onur Atıcı |
 | F-04 | The selected equal-year brand contrast has an interval spanning zero. | Section 7; figure 06 | Exploratory | More supported years, a different coverage rule, or better price evidence | Pending review: Oguzhan Karacan |
 | F-05 | Excluding unusual values reduces means and changes the median ranking. | Section 4 flag table | Exploratory | Reviewing unusual devices as invalid or retaining their premium segment explicitly | Pending review: Osman Yigit Dogan |
+| F-06 | Median price is nearly flat from 1 to 4 GB RAM; the association comes from the levels below 1 GB and above 4 GB. | Section 6; figure 07; RAM-level table | Exploratory | Binned medians within one cohort, more pairs at 6–12 GB, or configuration-level prices | Onur Atıcı |
 
 ### Back to cleaning
 
 - No new parser defect was established. Existing M3 issues I-05 and I-11 remain material: supported single memory pairs are selective and catalog prices do not establish launch MSRP. Register entry I-13 records this M4 evidence without inventing a correction in the notebook.
 - Before expanding the price question, retain source-backed market, date, device class and configuration context. Any new parsing or classification rule belongs in `clean.py` or reviewed mappings with regression cases, followed by a fresh build. This milestone does not silently broaden a grammar to improve coverage.
+- Device class is missing (new register entry I-14). 58 of 560 RAM-price pairs have a screen of at least 7 in, and that group holds tablets and foldable phones together. The screen-size split in section 6 is a stopgap; a reviewed phone/tablet/foldable category belongs in `clean.py` with regression cases before M7 compares devices.
 
 ### Forward to modelling
 
 - M7 should first decide whether its target is verified launch MSRP or an explicitly renamed catalog-price task. Present evidence cannot train or validate the former honestly.
 - Investigate whether RAM contributes information beyond brand, cohort, storage and device class using a held-out design. Prevent closely related model families/configurations from leaking across splits, and assess missingness by brand/year.
+- Fit RAM-price on phones only, or with a reviewed device class: tablets and foldables sit at opposite ends of the large-screen group. Treat RAM as levels or on a log scale, since the median is nearly flat across the middle levels, and keep announcement year in the model because RAM levels track device generations.
 - Use chronological validation where the question concerns newer cohorts. Do not interpret current catalog amounts indexed by announcement year as inflation-adjusted historical prices or apply currency conversion without documented dates and markets.
 
 ## 9. What we cannot say
 
-This is a selected catalog extract with unknown market, sales weighting, variant linkage and price reference date. Android includes more than smartphones, first-token brand extraction covers only the named prefixes, and absence from the landed cohort is not proof that no product existed. EUR-only selection avoids incompatible units but can itself select products. The narrow price/RAM subset, especially Xiaomi's 38 pairs, cannot represent all available configurations.
+This is a selected catalog extract with unknown market, sales weighting, variant linkage and price reference date. Android includes more than smartphones and the screen-size split is not a device class; first-token brand extraction covers only the named prefixes, and absence from the landed cohort is not proof that no product existed. EUR-only selection avoids incompatible units but can itself select products. The narrow price/RAM subset, especially Xiaomi's 38 pairs, cannot represent all available configurations.
 
 The bootstrap describes variation across a small set of observed cohort years under its resampling assumptions. It does not account for an unknown data-generating sample, hidden product-family dependence, vendor price updates, inflation, or systematic source omissions. Correlations and group gaps provide hypotheses for M7, not causal effects or demonstrated predictive accuracy. Member attribution, individual review/commits, the `m4` tag and course-system submission remain team actions; none is represented here as already performed.
 
@@ -292,4 +325,4 @@ python src/validate.py
 python scripts/run_m4_eda.py
 ```
 
-The last command executes every ordinary Python notebook cell in order in a new namespace and saves outputs. With Jupyter installed, the course command also works: `jupyter nbconvert --to notebook --execute --inplace notebooks/m4_eda.ipynb`. The local verification uses the dependency-free runner because package installation is unavailable. Queries open `mode=ro`; before/after database SHA-256 values are recorded in `docs/m4/notebook-verification.json`. The notebook writes all six SVG figures, this report and aggregate results; no source record is repaired or database table changed.
+The last command executes every ordinary Python notebook cell in order in a new namespace and saves outputs. With Jupyter installed, the course command also works: `jupyter nbconvert --to notebook --execute --inplace notebooks/m4_eda.ipynb`. The local verification uses the dependency-free runner because package installation is unavailable. Queries open `mode=ro`; before/after database SHA-256 values are recorded in `docs/m4/notebook-verification.json`. The notebook writes every SVG figure in `figures/`, this report and aggregate results; no source record is repaired or database table changed.

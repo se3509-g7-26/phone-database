@@ -73,7 +73,7 @@ To run the tests:
 - `src/explore.py`, `src/explore_report.py` — read-only M4 analysis, SVG figures and the generated EDA report.
 - `notebooks/` — M3 profile and M4 exploration, committed with outputs.
 - `sql/` — schemas, and reused analytical queries under `sql/queries/`.
-- `figures/` — the six M4 figures, written by the notebook.
+- `figures/` — the seven M4 figures, written by the notebook.
 - `tests/` — offline tests; they make no network requests.
 - `scripts/` — helpers for the long GSMArena crawl.
 - `data/raw/` — timestamped original responses, kept locally.
@@ -419,8 +419,9 @@ smartphone cohort or supplies a verified launch price.
 The exploratory analysis covers 1,625 Android catalog entries from Samsung,
 Xiaomi, Huawei and Sony announced in 2010–2025, including 1,442 usable EUR
 prices. Brand rankings differ between mean and median, and a positive RAM-price
-association survives the documented trimming and group checks in 560 complete
-pairs. These findings are exploratory: single-configuration coverage is uneven,
+association survives the documented trimming, group and screen-size checks in
+560 complete pairs, although the median price barely moves between 1 and 4 GB
+of RAM. These findings are exploratory: single-configuration coverage is uneven,
 and the Samsung-minus-Xiaomi cohort comparison has an interval spanning zero.
 Catalog prices remain unverified as launch MSRP; see the
 [EDA report](docs/eda_report.md) and [executed notebook](notebooks/m4_eda.ipynb).
@@ -435,8 +436,8 @@ python scripts/run_m4_eda.py
 ```
 
 The M4 runner needs only Python's standard library. It executes the notebook
-top to bottom in a fresh namespace, saves its outputs, and regenerates six SVG
-figures and the report. When Jupyter is installed, the course's equivalent
+top to bottom in a fresh namespace, saves its outputs, and regenerates the seven
+SVG figures and the report. When Jupyter is installed, the course's equivalent
 command is:
 
 ```sh
@@ -451,6 +452,7 @@ jupyter nbconvert --to notebook --execute --inplace notebooks/m4_eda.ipynb
 | [04 cohorts](figures/04_announcement_cohorts.svg) | Median price at annual and five-year scales |
 | [05 RAM vs price](figures/05_ram_price.svg) | RAM–price relationship within each brand (headline) |
 | [06 comparison](figures/06_brand_comparison.svg) | Samsung minus Xiaomi, equal-year contrast with 95% interval |
+| [07 RAM levels](figures/07_ram_binned_medians.svg) | Median price per RAM level, all pairs and screens under 7 in |
 
 The database is opened read-only and its complete file hash is checked before
 and after execution. Parameters, seeds, flag filters, coverage rules and the

@@ -101,7 +101,8 @@ def ram_levels(joint, params):
     for (ram,), group in sorted(grouped(joint, ('ram',)).items()):
         phone = [r['price'] for r in group
                  if r['display_in'] is not None and r['display_in'] < params['large_display_in']]
-        result.append(dict(ram=ram, **stats([r['price'] for r in group], ''), **stats(phone, 'phone_')))
+        result.append(dict(ram=ram, **stats([r['price'] for r in group], ''), **stats(phone, 'phone_'),
+                           year_median=st.median(r['year'] for r in group)))
     return result
 
 
