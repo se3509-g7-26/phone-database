@@ -118,7 +118,11 @@ Question: how much of RAM versus price is shared generation/brand structure or a
 
 Device type is a second candidate driver: Android also covers tablets, and the cleaned layer has no device class. Display size is the measured attribute closest to it, so the coefficients are recomputed separately for phone-sized screens and for screens of at least `large_display_in` inches (7.0, the smallest tablet screen among these pairs). The large-screen pairs are listed in full, because a screen-size group is not a device class and nothing here relabels a model.
 
+RAM is recorded at a few discrete levels, so the scatter overplots. The binned view takes each recorded level as a bin and draws the price median and interquartile range for all pairs and for phone-sized screens; a level needs at least `min_joint` pairs to be drawn. It shows where along the RAM axis the association comes from.
+
 ![RAM and price by brand](../figures/05_ram_price.svg)
+
+![Median price per RAM level](../figures/07_ram_binned_medians.svg)
 ''')
 code('''print('Overall:', RESULT['relationship'])
 print('Trim cutoffs:', RESULT['trim_thresholds'], 'removed:', RESULT['trim_removed'])
@@ -135,6 +139,9 @@ print_table([dict(group=f"display < {screens['threshold_in']} in", **screens['ph
 print('Large-screen pairs by brand:', screens['large_screen_by_brand'])
 print('Large-screen pairs, most expensive first:')
 print_table(RESULT['large_screen_pairs'], ['name', 'year', 'display_in', 'ram', 'price'])
+print('Price by RAM level (all pairs, then display <', PARAMS['large_display_in'], 'in):')
+print_table(RESULT['ram_levels'], ['ram', 'n', 'median', 'q1', 'q3', 'eligible',
+                                   'phone_n', 'phone_median', 'phone_eligible'])
 ''')
 md('''## 2.7 A comparison, an interval and a look count
 
@@ -159,7 +166,7 @@ evidence = {'database_sha256_before':before, 'database_sha256_after':database_ha
 (ROOT/'docs/m4').mkdir(parents=True, exist_ok=True)
 (ROOT/'docs/m4/results.json').write_text(json.dumps(RESULT,indent=2)+'\\n',encoding='utf-8')
 (ROOT/'docs/m4/notebook-verification.json').write_text(json.dumps(evidence,indent=2)+'\\n',encoding='utf-8')
-print('Wrote report, six SVG figures, aggregate results and read-only verification.')
+print('Wrote report,', len(evidence['figure_files']), 'SVG figures, aggregate results and read-only verification.')
 print('Parameters actually used:', json.dumps(PARAMS, sort_keys=True))
 ''')
 notebook=dict(cells=cells,metadata=dict(kernelspec=dict(display_name='Python 3',language='python',name='python3'),language_info=dict(name='python',version='3.12')),nbformat=4,nbformat_minor=5)

@@ -10,7 +10,7 @@ import unittest
 
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'src'))
-from explore import correlation,coverage,display_split,markdown_table,paired_bootstrap,pearson,quantile,ranks,summary
+from explore import correlation,coverage,display_split,markdown_table,paired_bootstrap,pearson,quantile,ram_levels,ranks,summary
 from explore_report import edge_sentence,word,write_report
 
 
@@ -58,6 +58,15 @@ class ExploreTests(unittest.TestCase):
         self.assertEqual(result['large_screen_by_brand'],{'A':1,'B':2})
         self.assertAlmostEqual(result['phone_sized']['spearman'],1)
         self.assertEqual(display_split(rows,20)['large_screen']['n'],0)
+
+    def test_ram_levels_split_screens_and_mark_thin_levels(self):
+        rows=[dict(ram=2,price=p,display_in=d) for p,d in [(100,5.0),(200,6.0),(300,10.1),(400,None)]]
+        rows.append(dict(ram=8,price=900,display_in=6.5))
+        two,eight=ram_levels(rows,dict(min_joint=3,large_display_in=7.0))
+        self.assertEqual((two['ram'],two['n'],two['median'],two['q1'],two['q3']),(2,4,250,175,325))
+        self.assertTrue(two['eligible'])
+        self.assertEqual((two['phone_n'],two['phone_median'],two['phone_eligible']),(2,150,False))
+        self.assertEqual((eight['n'],eight['eligible'],eight['phone_n']),(1,False,1))
 
     def test_summary_of_empty_group_has_no_statistics(self):
         self.assertEqual(summary([]),dict(n=0,mean=None,median=None,p95=None,min=None,max=None))

@@ -8,7 +8,8 @@
     "03_coverage.svg",
     "04_announcement_cohorts.svg",
     "05_ram_price.svg",
-    "06_brand_comparison.svg"
+    "06_brand_comparison.svg",
+    "07_ram_binned_medians.svg"
   ],
   "parameters": {
     "brands": [

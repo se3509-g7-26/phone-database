@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img">
+<rect width="100%" height="100%" fill="#f8fafc"/>
+<style>text{font-family:Arial,sans-serif;fill:#24364b} .grid{stroke:#dde5ed;stroke-width:1}</style>
+<title>Median price stays at EUR 180-250 from 1 to 4 GB RAM and is higher only above 4 GB</title>
+<text x="35.00" y="38.00" font-size="23" text-anchor="start" font-weight="bold">Median price stays at EUR 180-250 from 1 to 4 GB RAM and is higher only above 4 GB</text>
+<text x="35.00" y="66.00" font-size="14" text-anchor="start" font-weight="normal">Question: does the typical price rise with every RAM step, or only at the ends? Dot = median; bar = interquartile range.</text>
+<text x="35.00" y="700.00" font-size="12" text-anchor="start" font-weight="normal">n=560 current catalog IDs; Android; 2010-2025 announcement cohorts; EUR. Only explicit single storage/RAM pairs. A level needs n &gt;= 10 pairs; 10 thinner levels (15 pairs) are</text>
+<text x="35.00" y="719.00" font-size="12" text-anchor="start" font-weight="normal">not drawn. Dashed line: median of all pairs.</text>
+<text x="35.00" y="738.00" font-size="12" text-anchor="start" font-weight="normal">Numeric flags: ok, unit_converted, unusual_low, unusual_high. OS: mapped; year: ok. Catalog amounts, not verified launch MSRP.</text>
+<text x="95.00" y="135.00" font-size="14" text-anchor="start" font-weight="bold"></text>
+<line x1="95.00" y1="540.00" x2="1095.00" y2="540.00" stroke="#ccd7e2" stroke-width="1"/>
+<text x="86.00" y="544.00" font-size="11" text-anchor="end" font-weight="normal">0</text>
+<line x1="95.00" y1="442.50" x2="1095.00" y2="442.50" stroke="#ccd7e2" stroke-width="1"/>
+<text x="86.00" y="446.50" font-size="11" text-anchor="end" font-weight="normal">500</text>
+<line x1="95.00" y1="345.00" x2="1095.00" y2="345.00" stroke="#ccd7e2" stroke-width="1"/>
+<text x="86.00" y="349.00" font-size="11" text-anchor="end" font-weight="normal">1,000</text>
+<line x1="95.00" y1="247.50" x2="1095.00" y2="247.50" stroke="#ccd7e2" stroke-width="1"/>
+<text x="86.00" y="251.50" font-size="11" text-anchor="end" font-weight="normal">1,500</text>
+<line x1="95.00" y1="150.00" x2="1095.00" y2="150.00" stroke="#ccd7e2" stroke-width="1"/>
+<text x="86.00" y="154.00" font-size="11" text-anchor="end" font-weight="normal">2,000</text>
+<line x1="95.00" y1="540.00" x2="1095.00" y2="540.00" stroke="#8292a5" stroke-width="1"/>
+<text x="595.00" y="583.00" font-size="12" text-anchor="middle" font-weight="normal"></text>
+<text x="95.00" y="116.00" font-size="11" text-anchor="start" font-weight="normal">Catalog price (EUR)</text>
+<line x1="95.00" y1="503.93" x2="1095.00" y2="503.93" stroke="#8292a5" stroke-width="1" stroke-dasharray="5 4"/>
+<text x="1091.00" y="497.93" font-size="11" text-anchor="end" font-weight="normal">all-pairs median EUR 185</text>
+<line x1="160.64" y1="526.35" x2="160.64" y2="520.50" stroke="#35485e" stroke-width="3"/>
+<circle cx="160.64" cy="523.42" r="5" fill="#35485e" opacity="1"/>
+<line x1="313.30" y1="522.45" x2="313.30" y2="511.24" stroke="#35485e" stroke-width="3"/>
+<circle cx="313.30" cy="518.55" r="5" fill="#35485e" opacity="1"/>
+<line x1="402.59" y1="517.09" x2="402.59" y2="501.98" stroke="#35485e" stroke-width="3"/>
+<circle cx="402.59" cy="512.70" r="5" fill="#35485e" opacity="1"/>
+<line x1="460.73" y1="510.75" x2="460.73" y2="495.15" stroke="#35485e" stroke-width="3"/>
+<circle cx="460.73" cy="504.90" r="5" fill="#35485e" opacity="1"/>
+<line x1="550.02" y1="508.80" x2="550.02" y2="485.40" stroke="#35485e" stroke-width="3"/>
+<circle cx="550.02" cy="499.05" r="5" fill="#35485e" opacity="1"/>
+<line x1="613.38" y1="510.75" x2="613.38" y2="481.50" stroke="#35485e" stroke-width="3"/>
+<circle cx="613.38" cy="497.10" r="5" fill="#35485e" opacity="1"/>
+<line x1="702.68" y1="510.26" x2="702.68" y2="484.91" stroke="#35485e" stroke-width="3"/>
+<circle cx="702.68" cy="501.00" r="5" fill="#35485e" opacity="1"/>
+<line x1="766.04" y1="510.75" x2="766.04" y2="477.60" stroke="#35485e" stroke-width="3"/>
+<circle cx="766.04" cy="491.25" r="5" fill="#35485e" opacity="1"/>
+<line x1="855.33" y1="469.80" x2="855.33" y2="438.60" stroke="#35485e" stroke-width="3"/>
+<circle cx="855.33" cy="450.30" r="5" fill="#35485e" opacity="1"/>
+<line x1="918.69" y1="485.40" x2="918.69" y2="432.75" stroke="#35485e" stroke-width="3"/>
+<circle cx="918.69" cy="469.80" r="5" fill="#35485e" opacity="1"/>
+<line x1="1007.99" y1="425.93" x2="1007.99" y2="201.19" stroke="#35485e" stroke-width="3"/>
+<circle cx="1007.99" cy="296.25" r="5" fill="#35485e" opacity="1"/>
+<line x1="182.01" y1="526.35" x2="182.01" y2="520.50" stroke="#b42318" stroke-width="3"/>
+<circle cx="182.01" cy="522.45" r="5" fill="#b42318" opacity="1"/>
+<line x1="334.67" y1="522.45" x2="334.67" y2="512.70" stroke="#b42318" stroke-width="3"/>
+<circle cx="334.67" cy="518.55" r="5" fill="#b42318" opacity="1"/>
+<line x1="423.96" y1="517.09" x2="423.96" y2="501.98" stroke="#b42318" stroke-width="3"/>
+<circle cx="423.96" cy="512.70" r="5" fill="#b42318" opacity="1"/>
+<line x1="482.10" y1="510.75" x2="482.10" y2="495.15" stroke="#b42318" stroke-width="3"/>
+<circle cx="482.10" cy="504.90" r="5" fill="#b42318" opacity="1"/>
+<line x1="571.40" y1="513.19" x2="571.40" y2="491.25" stroke="#b42318" stroke-width="3"/>
+<circle cx="571.40" cy="501.00" r="5" fill="#b42318" opacity="1"/>
+<line x1="634.75" y1="510.75" x2="634.75" y2="481.50" stroke="#b42318" stroke-width="3"/>
+<circle cx="634.75" cy="497.10" r="5" fill="#b42318" opacity="1"/>
+<line x1="724.05" y1="510.75" x2="724.05" y2="491.25" stroke="#b42318" stroke-width="3"/>
+<circle cx="724.05" cy="501.00" r="5" fill="#b42318" opacity="1"/>
+<line x1="787.41" y1="512.21" x2="787.41" y2="477.60" stroke="#b42318" stroke-width="3"/>
+<circle cx="787.41" cy="493.20" r="5" fill="#b42318" opacity="1"/>
+<line x1="876.70" y1="471.75" x2="876.70" y2="438.60" stroke="#b42318" stroke-width="3"/>
+<circle cx="876.70" cy="449.32" r="5" fill="#b42318" opacity="1"/>
+<line x1="940.06" y1="483.94" x2="940.06" y2="440.06" stroke="#b42318" stroke-width="3"/>
+<circle cx="940.06" cy="467.85" r="5" fill="#b42318" opacity="1"/>
+<text x="86.00" y="560.00" font-size="11" text-anchor="end" font-weight="normal">RAM</text>
+<text x="86.00" y="578.00" font-size="11" text-anchor="end" font-weight="normal" style="fill:#35485e">n all</text>
+<text x="86.00" y="596.00" font-size="11" text-anchor="end" font-weight="normal" style="fill:#b42318">n &lt;7 in</text>
+<text x="171.33" y="560.00" font-size="11" text-anchor="middle" font-weight="normal">0.256</text>
+<text x="171.33" y="578.00" font-size="11" text-anchor="middle" font-weight="normal" style="fill:#35485e">14</text>
+<text x="171.33" y="596.00" font-size="11" text-anchor="middle" font-weight="normal" style="fill:#b42318">13</text>
+<text x="323.98" y="560.00" font-size="11" text-anchor="middle" font-weight="normal">0.512</text>
+<text x="323.98" y="578.00" font-size="11" text-anchor="middle" font-weight="normal" style="fill:#35485e">94</text>
+<text x="323.98" y="596.00" font-size="11" text-anchor="middle" font-weight="normal" style="fill:#b42318">93</text>
+<text x="413.28" y="560.00" font-size="11" text-anchor="middle" font-weight="normal">0.768</text>
+<text x="413.28" y="578.00" font-size="11" text-anchor="middle" font-weight="normal" style="fill:#35485e">16</text>
+<text x="413.28" y="596.00" font-size="11" text-anchor="middle" font-weight="normal" style="fill:#b42318">16</text>
+<text x="471.41" y="560.00" font-size="11" text-anchor="middle" font-weight="normal">1</text>
+<text x="471.41" y="578.00" font-size="11" text-anchor="middle" font-weight="normal" style="fill:#35485e">136</text>
+<text x="471.41" y="596.00" font-size="11" text-anchor="middle" font-weight="normal" style="fill:#b42318">124</text>
+<text x="560.71" y="560.00" font-size="11" text-anchor="middle" font-weight="normal">1.5</text>
+<text x="560.71" y="578.00" font-size="11" text-anchor="middle" font-weight="normal" style="fill:#35485e">45</text>
+<text x="560.71" y="596.00" font-size="11" text-anchor="middle" font-weight="normal" style="fill:#b42318">32</text>
+<text x="624.07" y="560.00" font-size="11" text-anchor="middle" font-weight="normal">2</text>
+<text x="624.07" y="578.00" font-size="11" text-anchor="middle" font-weight="normal" style="fill:#35485e">91</text>
+<text x="624.07" y="596.00" font-size="11" text-anchor="middle" font-weight="normal" style="fill:#b42318">85</text>
+<text x="713.36" y="560.00" font-size="11" text-anchor="middle" font-weight="normal">3</text>
+<text x="713.36" y="578.00" font-size="11" text-anchor="middle" font-weight="normal" style="fill:#35485e">58</text>
+<text x="713.36" y="596.00" font-size="11" text-anchor="middle" font-weight="normal" style="fill:#b42318">50</text>
+<text x="776.72" y="560.00" font-size="11" text-anchor="middle" font-weight="normal">4</text>
+<text x="776.72" y="578.00" font-size="11" text-anchor="middle" font-weight="normal" style="fill:#35485e">41</text>
+<text x="776.72" y="596.00" font-size="11" text-anchor="middle" font-weight="normal" style="fill:#b42318">38</text>
+<text x="866.02" y="560.00" font-size="11" text-anchor="middle" font-weight="normal">6</text>
+<text x="866.02" y="578.00" font-size="11" text-anchor="middle" font-weight="normal" style="fill:#35485e">15</text>
+<text x="866.02" y="596.00" font-size="11" text-anchor="middle" font-weight="normal" style="fill:#b42318">12</text>
+<text x="929.38" y="560.00" font-size="11" text-anchor="middle" font-weight="normal">8</text>
+<text x="929.38" y="578.00" font-size="11" text-anchor="middle" font-weight="normal" style="fill:#35485e">25</text>
+<text x="929.38" y="596.00" font-size="11" text-anchor="middle" font-weight="normal" style="fill:#b42318">20</text>
+<text x="1018.67" y="560.00" font-size="11" text-anchor="middle" font-weight="normal">12</text>
+<text x="1018.67" y="578.00" font-size="11" text-anchor="middle" font-weight="normal" style="fill:#35485e">10</text>
+<text x="1018.67" y="596.00" font-size="11" text-anchor="middle" font-weight="normal" style="fill:#b42318">7 (thin)</text>
+<text x="595.00" y="620.00" font-size="12" text-anchor="middle" font-weight="normal">RAM level (SI GB, log2 spacing; each level is one recorded value)</text>
+<circle cx="715.00" cy="112.00" r="5" fill="#35485e" opacity="1"/>
+<text x="727.00" y="116.00" font-size="12" text-anchor="start" font-weight="normal" style="fill:#35485e">All pairs</text>
+<circle cx="905.00" cy="112.00" r="5" fill="#b42318" opacity="1"/>
+<text x="917.00" y="116.00" font-size="12" text-anchor="start" font-weight="normal" style="fill:#b42318">Pairs with display &lt; 7 in</text>
+</svg>

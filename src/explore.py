@@ -86,6 +86,25 @@ def display_split(joint, threshold):
                 large_screen_by_brand=dict(sorted(Counter(r['brand'] for r in large).items())))
 
 
+def ram_levels(joint, params):
+    """Price median and quartiles at each recorded RAM level, all pairs and phone-sized screens.
+
+    RAM is recorded at discrete levels, so per-level medians are the binned
+    view of the scatter. A level needs min_joint pairs to be plotted; thinner
+    levels stay in the table with eligible=False.
+    """
+    def stats(prices, prefix):
+        return {prefix+'n': len(prices), prefix+'median': st.median(prices) if prices else None,
+                prefix+'q1': quantile(prices, .25), prefix+'q3': quantile(prices, .75),
+                prefix+'eligible': len(prices) >= params['min_joint']}
+    result = []
+    for (ram,), group in sorted(grouped(joint, ('ram',)).items()):
+        phone = [r['price'] for r in group
+                 if r['display_in'] is not None and r['display_in'] < params['large_display_in']]
+        result.append(dict(ram=ram, **stats([r['price'] for r in group], ''), **stats(phone, 'phone_')))
+    return result
+
+
 def read_cohort(con, params, flags=None):
     """One row per selected catalog model; flags override the primary numeric filter."""
     bindings = dict(currency=params['currency'], os=params['os'],
@@ -292,6 +311,58 @@ def plot_relationship(rows, params, directory):
     s.save(directory/'05_ram_price.svg')
 
 
+def ram_label(ram):
+    """Short RAM tick label: 0.512, 1, 1.5, 12."""
+    return f'{ram:g}'
+
+
+def plot_ram_levels(levels, joint, params, directory):
+    """Binned medians: price median and IQR per RAM level on a log2 RAM axis."""
+    shown = [r for r in levels if r['eligible']]
+    thin = [r for r in levels if not r['eligible']]
+    overall = st.median(r['price'] for r in joint)
+    small = f'display < {params["large_display_in"]:g} in'
+    # The title states the finding only when the data still support it.
+    middle = [r['median'] for r in shown if 1 <= r['ram'] <= 4]
+    upper = [r['median'] for r in shown if r['ram'] > 4]
+    if middle and upper and min(upper) > max(middle):
+        title = f'Median price stays at EUR {min(middle):,.0f}-{max(middle):,.0f} from 1 to 4 GB RAM and is higher only above 4 GB'
+    else:
+        title = 'Median catalog price by RAM level'
+    s = SVG(title, 'Question: does the typical price rise with every RAM step, or only at the ends? Dot = median; bar = interquartile range.',
+            captions(params, len(joint), f'Only explicit single storage/RAM pairs. A level needs n >= {params["min_joint"]} pairs; '
+                     f'{len(thin)} thinner levels ({sum(r["n"] for r in thin)} pairs) are not drawn. Dashed line: median of all pairs.'),
+            height=760)
+    xs = [math.log2(r['ram']) for r in shown]
+    xmin, xmax = min(xs)-.5, max(xs)+.5
+    ymax = math.ceil(max([r['q3'] for r in shown]+[r['phone_q3'] for r in shown if r['phone_eligible']])/400)*400
+    x0, y0, w, h = 95, 150, 1000, 390
+    xy = s.axes(x0, y0, w, h, xmax, ymax, '', 'Catalog price (EUR)', xmin=xmin, xticks=[])
+    s.line(*xy(xmin, overall), *xy(xmax, overall), '#8292a5', 1, True)
+    s.text(x0+w-4, xy(xmin, overall)[1]-6, f'all-pairs median EUR {overall:,.0f}', 11, 'end')
+    series = [('', COLORS['All'], 'All pairs', -.07), ('phone_', '#b42318', 'Pairs with '+small, .07)]
+    for prefix, color, _, offset in series:
+        for r in shown:
+            if not r[prefix+'eligible']:
+                continue
+            x = math.log2(r['ram'])+offset
+            s.line(*xy(x, r[prefix+'q1']), *xy(x, r[prefix+'q3']), color, 3)
+            s.circle(*xy(x, r[prefix+'median']), 5, color, 1)
+    s.text(x0-9, y0+h+20, 'RAM', 11, 'end')
+    s.text(x0-9, y0+h+38, 'n all', 11, 'end', fill=COLORS['All'])
+    s.text(x0-9, y0+h+56, 'n <'+f'{params["large_display_in"]:g} in', 11, 'end', fill='#b42318')
+    for r in shown:
+        px, _ = xy(math.log2(r['ram']), 0)
+        s.text(px, y0+h+20, ram_label(r['ram']), 11, 'middle')
+        s.text(px, y0+h+38, r['n'], 11, 'middle', fill=COLORS['All'])
+        s.text(px, y0+h+56, r['phone_n'] if r['phone_eligible'] else f'{r["phone_n"]} (thin)', 11, 'middle', fill='#b42318')
+    s.text(x0+w/2, y0+h+80, 'RAM level (SI GB, log2 spacing; each level is one recorded value)', 12, 'middle')
+    for i, (_, color, label, _) in enumerate(series):
+        s.circle(x0+620+i*190, 112, 5, color, 1)
+        s.text(x0+632+i*190, 116, label, 12, fill=color)
+    s.save(directory/'07_ram_binned_medians.svg')
+
+
 def comparison(annual, rows, params, directory):
     a,b=params['comparison']
     lookup={(r['brand'],r['year']):r for r in annual}
@@ -331,7 +402,7 @@ def comparison(annual, rows, params, directory):
 
 
 def analyze(con, params, output):
-    """Run every M4 query, write the six figures and return the aggregate results."""
+    """Run every M4 query, write the seven figures and return the aggregate results."""
     rows=read_cohort(con,params)
     strict=read_cohort(con,params,params['strict_flags'])
     annual=coverage(rows,params)
@@ -342,6 +413,8 @@ def analyze(con, params, output):
     periods=plot_time(annual,rows,params,figures)
     plot_relationship(rows,params,figures)
     joint=[r for r in rows if r['price'] is not None and r['ram'] is not None]
+    levels=ram_levels(joint,params)
+    plot_ram_levels(levels,joint,params,figures)
     xcut=quantile([r['ram'] for r in joint],.99);ycut=quantile([r['price'] for r in joint],.99)
     trimmed=[r for r in joint if r['ram']<=xcut and r['price']<=ycut]
     by_brand={b:correlation([r for r in joint if r['brand']==b]) for b in params['brands']}
@@ -397,6 +470,7 @@ def analyze(con, params, output):
                 trim_thresholds=dict(ram_gb=xcut,price_eur=ycut),by_brand=by_brand,
                 within_brand_year=within,group_demeaned=correlation(residuals),
                 leave_one_brand_out=influence,display_split=screens,large_screen_pairs=large_pairs,
+                ram_levels=levels,
                 comparison=contrast,all_pairs=allpairs,
                 without_coverage_rule=dict(estimate=st.mean(r['difference'] for r in unfiltered),paired=unfiltered),
                 retrieval_range=list(con.execute('SELECT MIN(retrieved_at),MAX(retrieved_at) FROM phone').fetchone()),
